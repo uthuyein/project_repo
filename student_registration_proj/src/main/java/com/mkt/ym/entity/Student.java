@@ -1,0 +1,71 @@
+package com.mkt.ym.entity;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.SecondaryTable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity(name = "student_tbl")
+@SecondaryTable(name = "contact_tbl")
+@NoArgsConstructor
+public class Student {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(nullable = false, length = 45)
+	private String name;
+	@Column(nullable = false)
+	private LocalDate dob;
+	private String image;
+	@Column(nullable = false)
+	private String nrc;
+	private String religion;
+
+	@Column(table = "contact_tbl")
+	private String email;
+	@Column(table = "contact_tbl")
+	private String primaryContact;
+	@Column(table = "contact_tbl")
+	private String secondaryContact;
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private SchoolInfo schoolInfo;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Parent parent;
+	@ManyToOne
+	private Hostel hostel;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	private Address address;
+	@OneToOne
+	private UniversityInfo university;
+	@OneToOne
+	private Account account;
+
+	public Student(String name, LocalDate dob,String religion, String image, String nrc, String email, String primaryContact,
+			String secondaryContact) {
+		super();
+		this.name = name;
+		this.dob = dob;
+		this.religion = religion;
+		this.image = image;
+		this.nrc = nrc;
+		this.email = email;
+		this.primaryContact = primaryContact;
+		this.secondaryContact = secondaryContact;
+	}
+
+}

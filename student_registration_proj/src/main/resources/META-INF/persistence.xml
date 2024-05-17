@@ -8,7 +8,8 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/student_registration_db"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
 			<property name="javax.persistence.jdbc.password" value="admin"/>
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="javax.persistence.schema-generation.database.action" value="none"/>
+			<property name="javax.persistence.sql-load-script-source" value="/META-INF/initFile.sql"/>
 		</properties>
 	</persistence-unit>
 </persistence>

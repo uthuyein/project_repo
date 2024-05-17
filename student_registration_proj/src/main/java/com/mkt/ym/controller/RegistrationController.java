@@ -6,7 +6,8 @@ import java.time.LocalDate;
 import com.mkt.ym.entity.Parent;
 import com.mkt.ym.entity.SchoolInfo;
 import com.mkt.ym.entity.Student;
-import com.mkt.ym.entity.UniversityInfo;
+import com.mkt.ym.entity.University;
+import com.mkt.ym.entity.UniversityPK;
 import com.mkt.ym.services.StudentService;
 
 import jakarta.servlet.ServletException;
@@ -21,23 +22,16 @@ public class RegistrationController  extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private StudentService service;
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		service = StudentService.getStudentService();
-		var list = service.search(getStudent(req));
 		
-		if(null != list && list.size() > 0) {
-			req.getRequestDispatcher("/student/add-payment.jsp").forward(req, resp);
-		}
-		req.getRequestDispatcher("").forward(req, resp);
+		
+		req.getRequestDispatcher("/student/add-payment.jsp").forward(req, resp);
 	}
 
-	private Student getStudent(HttpServletRequest req) {
+	private University getStudent(HttpServletRequest req) {
 		
 		var uniEnroll = req.getParameter("uniEnroll");
 		var stuName = req.getParameter("stuName");
@@ -63,14 +57,19 @@ public class RegistrationController  extends HttpServlet{
 		school.setRollNum(schEnroll);
 		school.setTotalMarks(schMarks);
 		
-		var uni = new UniversityInfo();
-		uni.setRollNumber(uniEnroll);
-		
 		student.setParent(parent);
 		student.setSchoolInfo(school);
-		student.setUniversity(uni);
 		
-		return student;
+		
+		var uniPk = new UniversityPK();
+		uniPk.setRollNumberId(uniEnroll);
+		
+		var uni = new University();
+		uni.setId(uniPk);
+		uni.setStudent(student);
+	
+		
+		return uni;
 		
 	}
 

@@ -49,7 +49,7 @@
 				<label for="fNrc" class="form-label text-primary">Add Roll Number</label> <input
 					type="text" class="form-control" id="fNrc" name="fNrc">
 			</div>
-		
+			
 			<button type="submit" class="btn btn-primary w-25">Save</button>
 		</form>
 	</div>

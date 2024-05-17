@@ -4,14 +4,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "address_tbl")
+@Entity
+@Table(name = "address_tbl")
 @NoArgsConstructor
+
 public class Address {
 
 	@Id
@@ -20,6 +23,7 @@ public class Address {
 	private String street;
 	private String township;
 	private String city;
+	private String hostelName;
 	
 	public Address(String street, String township, String city) {
 		super();

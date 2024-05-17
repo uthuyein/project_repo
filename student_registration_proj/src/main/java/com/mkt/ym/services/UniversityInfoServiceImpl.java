@@ -2,24 +2,24 @@ package com.mkt.ym.services;
 
 import java.util.List;
 
-import com.mkt.ym.entity.UniversityInfo;
+import com.mkt.ym.entity.University;
 
 public class UniversityInfoServiceImpl implements UniversityInfoService{
 
 	@Override
-	public void save(UniversityInfo t) {
+	public void save(University t) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public int update(UniversityInfo t) {
+	public int update(University t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public List<UniversityInfo> search(UniversityInfo t) {
+	public List<University> search(University t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

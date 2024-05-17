@@ -4,14 +4,13 @@ import java.util.List;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,25 +18,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "uni_info_tbl")
-public class UniversityInfo {
+@Table(name = "university_tbl")
+public class University {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	private String rollNumber;
+	@EmbeddedId
+	private UniversityPK id;
 	
 	@Enumerated(EnumType.STRING)
 	private Major major;
 
-
-	@OneToOne(mappedBy = "university")
+	@ManyToOne
 	private Student student;
 	
 	
 	@ElementCollection(targetClass = Year.class)
-	@CollectionTable(name = "uni_year_tbl",joinColumns = {@JoinColumn(name = "uni_id")})
+	@CollectionTable(name = "uni_year_tbl")
 	@Enumerated(EnumType.STRING)
 	private List<Year> years;
 	

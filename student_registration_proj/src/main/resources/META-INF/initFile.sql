@@ -1,0 +1,1 @@
+ insert into account_tbl(loginId,password,role)values('admin','admin@123',1);

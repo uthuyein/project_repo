@@ -7,8 +7,8 @@
 
 <jsp:include page="${head }"></jsp:include>
 <div class="card col-md-5">
-	<div class="card-header mt-2">
-		<i class="bi bi-person-fill text-primary"></i> Add Payment Information
+	<div class="card-header mt-2 text-primary">
+		<i class="bi bi-wallet "></i> &nbsp;Add Payment Information
 	</div>
 	<div class="card-body ">
 			<form action="/student/addPayment" method="post">
@@ -16,7 +16,7 @@
 				<div class="mb-3">
 				<label for="fName" class="form-label text-primary">Payment Type</label>
 				 <select class="form-select">
-					<option selected>Select One Payment</option>
+					<option selected>---</option>
 					<option value="1">KBZ Pay</option>
 					<option value="2">Aya Pay</option>
 					<option value="3">Wave Pay</option>
@@ -27,7 +27,7 @@
 						type="text" class="form-control" id="tName">
 				</div>
 				<div class="mb-3">
-					<label for="tNum" class="form-label text-primary">Trasaction No.</label> <input
+					<label for="tNum" class="form-label text-primary">Transaction No.</label> <input
 						type="text" class="form-control" id="tNum" name="tNum">
 				</div>
 				<div class="mb-3">

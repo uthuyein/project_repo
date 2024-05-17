@@ -11,13 +11,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SecondaryTable;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "student_tbl")
+@Entity
+@Table(name = "student_tbl")
 @SecondaryTable(name = "contact_tbl")
 @NoArgsConstructor
 public class Student {
@@ -46,14 +48,9 @@ public class Student {
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Parent parent;
-	@ManyToOne
-	private Hostel hostel;
 	@OneToOne(cascade = CascadeType.PERSIST)
 	private Address address;
-	@OneToOne
-	private UniversityInfo university;
-	@OneToOne
-	private Account account;
+
 
 	public Student(String name, LocalDate dob,String religion, String image, String nrc, String email, String primaryContact,
 			String secondaryContact) {

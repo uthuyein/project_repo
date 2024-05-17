@@ -37,7 +37,7 @@ public class SchoolInfo {
 		this.rollNum = rollNum;
 		this.totalMarks = totalMarks;
 		this.maths = maths;
-		Phys = phys;
+		this.Phys = phys;
 		this.chems = chems;
 		this.eng = eng;
 	}

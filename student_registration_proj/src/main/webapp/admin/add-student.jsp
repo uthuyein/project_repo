@@ -7,8 +7,8 @@
 
 <jsp:include page="${head }"></jsp:include>
 <div class="card col-md-6">
-	<div class="card-header mt-2">
-		<i class="bi bi-person-fill"></i> Add Student Information
+	<div class="card-header mt-2 text-primary">
+		<i class="bi bi-person-fill "></i> Add Student Information
 	</div>
 	<div class="card-body ">
 		<form action="/admin/addStudent" method="post"
@@ -27,40 +27,40 @@
 				</div>
 				<div class="col ">
 					<div class="mb-3">
-						<label for="stuName" class="form-label">Student's Name</label> <input
+						<label for="stuName" class="form-label text-primary">Student's Name</label> <input
 							type="text" class="form-control" id="stuName" name="stuName">
 					</div>
 
 					<div class="mb-3">
-						<label for="dob" class="form-label">Date Of Birth</label> <input
+						<label for="dob" class="form-label text-primary">Date Of Birth</label> <input
 							type="date" class="form-control" id="dob" name="dob">
 					</div>
 					<div class="mb-3">
-						<label for="imageFile" class="form-label">Image </label> <input
+						<label for="imageFile" class="form-label text-primary">Image </label> <input
 							type="file" accept="image/*" class="form-control" id="imageFile" name="imageFile" onchange="displaySelectedImage(event, 'selectedImage')">
 					</div>
 				</div>
 			</div>
 			<div class="mb-3">
-				<label for="religion" class="form-label">Nation / Religion </label>
+				<label for="religion" class="form-label text-primary">Nation / Religion </label>
 				<input type="text" class="form-control" id="religion"
 					name="religion">
 			</div>
 			<div class="mb-3">
-				<label for="nrc" class="form-label">National Identity
+				<label for="nrc" class="form-label text-primary">National Identity
 					Card(NRC)</label> <input type="text" class="form-control" id="nrc"
 					name="nrc">
 			</div>
-			<div class="mb-3">
-				<label for="email" class="form-label">Email address</label> <input
+			<div class="mb-3"> 
+				<label for="email" class="form-label text-primary ">Email address</label> <input
 					type="email" class="form-control" id="email" name="email">
 			</div>
 			<div class="mb-3">
-				<label for="pContact" class="form-label">Primary Contact</label> <input
+				<label for="pContact" class="form-label text-primary">Primary Contact</label> <input
 					type="text" class="form-control" id="pContact" name="pContact">
 			</div>
 			<div class="mb-3">
-				<label for="sContact" class="form-label">Secondary Contact</label> <input
+				<label for="sContact" class="form-label text-primary">Secondary Contact</label> <input
 					type="text" class="form-control" id="sContact" name="sContact">
 			</div>
 

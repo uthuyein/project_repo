@@ -26,7 +26,7 @@ import jakarta.servlet.http.Part;
 		"/admin/schoolInfo" 
 		})
 @MultipartConfig
-public class StudentServlet extends HttpServlet {
+public class StudentController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static Student student;

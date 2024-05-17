@@ -8,13 +8,13 @@
 <jsp:include page="${head }"></jsp:include>
 
 <div class="card col-md-5">
-	<div class="card-header mt-2">
+	<div class="card-header mt-2 text-primary">
 		<i class="bi bi-person-fill"></i> Add Student To University
 	</div>
 	<div class="card-body ">
 		<form action="/admin/uniStudent" method="post">
 			<div class="mb-3">
-				<label for="fName" class="form-label">Student</label>
+				<label for="fName" class="form-label text-primary">Student</label>
 				 <select class="form-select">
 					<option selected>Select One Student</option>
 					<option value="1">Aung Aung</option>
@@ -25,8 +25,7 @@
 			<div class="mb-3">
 				<div class="row">
 					<div class="col col-md-5">
-						<label for="mName" class="form-label">Year</label>  <select class="form-select">
-					<option selected>Select One Year</option>
+						<label for="mName" class="form-label text-primary">Year</label>  <select class="form-select">
 					<option value="1">First Year</option>
 					<option value="2">Second Year</option>
 					<option value="3">Third Year</option>
@@ -35,8 +34,7 @@
 				</select>
 					</div>
 					<div class="col">
-					<label for="mName" class="form-label">Major(Only For Second Year)</label>  <select class="form-select">
-					<option selected>Select One Major</option>
+					<label for="mName" class="form-label text-primary">Major(Only For Second Year)</label>  <select class="form-select">
 					<option value="1">FE</option>
 					<option value="2">SE</option>
 					<option value="3">AE</option>
@@ -48,7 +46,7 @@
 				
 			</div>
 			<div class="mb-3">
-				<label for="fNrc" class="form-label">Add Roll Number</label> <input
+				<label for="fNrc" class="form-label text-primary">Add Roll Number</label> <input
 					type="text" class="form-control" id="fNrc" name="fNrc">
 			</div>
 		

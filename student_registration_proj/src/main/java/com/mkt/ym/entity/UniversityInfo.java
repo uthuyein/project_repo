@@ -26,7 +26,7 @@ public class UniversityInfo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private int rollNumber;
+	private String rollNumber;
 	
 	@Enumerated(EnumType.STRING)
 	private Major major;

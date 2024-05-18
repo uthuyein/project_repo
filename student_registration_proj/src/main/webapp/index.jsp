@@ -11,16 +11,16 @@
 	data-bs-ride="carousel">
 	<div class="carousel-inner">
 		<div class="carousel-item active">
-			<img src="/images/uni_images/ytcc1.jpeg" class="d-block w-100" alt="...">
+			<img src="/images/uni_images/utycc1.jpeg" style="height:50rem;"  class="d-block w-100"alt="...">
 		</div>
 		<div class="carousel-item">
-			<img src="/images/uni_images/ytcc2.jpeg" class="d-block w-100" alt="...">
+			<img src="/images/uni_images/utycc2.jpeg" style="height:50rem;" class="d-block w-100 " alt="...">
 		</div>
 		<div class="carousel-item">
-			<img src="/images/uni_images/ytcc3.jpeg" class="d-block w-100" alt="...">
+			<img src="/images/uni_images/utycc3.jpeg" style="height:50rem;" class="d-block w-100 " alt="...">
 		</div>
 		<div class="carousel-item">
-			<img src="/images/uni_images/ytcc4.jpeg" class="d-block w-100" alt="...">
+			<img src="/images/uni_images/utycc4.jpeg" style="height:50rem;" class="d-block w-100 " alt="...">
 		</div>
 	</div>
 	<button class="carousel-control-prev" type="button"

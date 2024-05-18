@@ -36,10 +36,10 @@
 
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+	<nav class="navbar navbar-expand-md navbar-light bg-primary">
 		<div class="container-fluid">
 			<a class="navbar-brand text-white" href="${home }"> <img
-				src="/images/ucsy.png" alt="" width="30" height="24"
+				src="/images/uni_images/UTYCC.png" alt="" width="40" height="40"
 				class="rounded-circle"> &nbsp;UTYCC
 			</a>
 			<button class="navbar-toggler " type="button"

@@ -9,12 +9,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "account_tbl")
+@NoArgsConstructor
 public class Account {
 
 	@Id
@@ -31,5 +33,10 @@ public class Account {
 	
 	public enum Role{
 		ADMIN,STUDENT;
+	}
+	
+	public Account(String loginId,String password) {
+		this.loginId = loginId;
+		this.password = password;
 	}
 }

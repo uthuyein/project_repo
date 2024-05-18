@@ -32,8 +32,9 @@
 <c:url var="home" value="/index.jsp"></c:url>
 <c:url var="login" value="/student/login.jsp"></c:url>
 
-
-
+<%@ page import="com.mkt.ym.entity.Account.Role" %>
+<c:set var="role" value="<%= Role.ADMIN %>"></c:set>
+						
 <body>
 
 	<nav class="navbar navbar-expand-md navbar-light bg-primary">
@@ -57,7 +58,7 @@
 						href="${infoStudent }"><i class="bi bi-person-fill "></i>&nbsp;Student
 							Information </a></li>
 					<c:choose>
-						<c:when test="${true }">
+						<c:when test="${account ne null and account.role eq role}">
 							<li class="nav-item  dropdown "><a
 								class="nav-link dropdown-toggle text-white" href="#"
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -109,7 +110,7 @@
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="form">
+		<form class="form" method="post" action="/student/login" >
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -134,9 +135,9 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-primary">Login</button>
+						<button type="submit" class="btn btn-primary">Login</button>
 					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>

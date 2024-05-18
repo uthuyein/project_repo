@@ -6,6 +6,7 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 
 <jsp:include page="${head }"></jsp:include>
+<div class="row justify-content-center p-5">
 <div class="card col-md-5">
 	<div class="card-header mt-2 text-primary">
 		<i class="bi bi-person-fill"></i> Add School Information
@@ -55,5 +56,5 @@
 		</form>
 	</div>
 </div>
-
+</div>
 <jsp:include page="${foot }"></jsp:include>

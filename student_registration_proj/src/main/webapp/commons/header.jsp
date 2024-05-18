@@ -21,6 +21,8 @@
 <title>Student Registration</title>
 </head>
 <c:url var="register" value="/student/register.jsp"></c:url>
+<c:url var="infoStudent" value="/student/info-student.jsp"></c:url>
+
 <c:url var="addStudent" value="/admin/add-student.jsp"></c:url>
 <c:url var="listStudent" value="/admin/list-student.jsp"></c:url>
 <c:url var="uniStudent" value="/admin/add-uni-info.jsp"></c:url>
@@ -30,48 +32,61 @@
 <c:url var="home" value="/index.jsp"></c:url>
 <c:url var="login" value="/student/login.jsp"></c:url>
 
+
+
 <body>
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand text-white" href="${home }"><i
-				class="bi bi-house-fill"></i> &nbsp;Home</a>
+			<a class="navbar-brand text-white" href="${home }"> <img
+				src="/images/ucsy.png" alt="" width="30" height="24"
+				class="rounded-circle"> &nbsp;UTYCC
+			</a>
 			<button class="navbar-toggler " type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 				aria-controls="navbarNavDropdown" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+
+
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav w-75">
+				
 					<li class="nav-item "><a class="nav-link text-white"
-						href="${uniStudent }"><i class="bi bi-house-fill "></i>&nbsp;University
-							Info</a></li>
+						href="${infoStudent }"><i class="bi bi-person-fill "></i>&nbsp;Student
+							Information </a></li>
+					<c:choose>
+						<c:when test="${true }">
+							<li class="nav-item  dropdown "><a
+								class="nav-link dropdown-toggle text-white" href="#"
+								role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="bi bi-person-lines-fill"></i>&nbsp; Student
+							</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item " href="${addStudent }">Add
+											Student </a></li>
+									<li><a class="dropdown-item" href="${listStudent }">Student
+											List </a></li>
 
-					<li class="nav-item  dropdown "><a
-						class="nav-link dropdown-toggle text-white" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> <i
-							class="bi bi-person-lines-fill"></i>&nbsp; Student
-					</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item " href="${addStudent }">Add
-									Student </a></li>
-							<li><a class="dropdown-item" href="${listStudent }">Student
-									List </a></li>
+								</ul></li>
+							<li class="nav-item "><a class="nav-link text-white"
+								href="${uniStudent }"><i class="bi bi-house-fill "></i>&nbsp;University
+									Information</a></li>
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle text-white" href="#"
+								role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="bi bi-person-fill"></i>&nbsp; Account
+							</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="${addAccount }">Add
+											Account</a></li>
+									<li><a class="dropdown-item" href="${listAccount }">Account
+											List</a></li>
 
-						</ul></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle text-white" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> <i
-							class="bi bi-person-fill"></i>&nbsp; Account
-					</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="${addAccount }">Add
-									Account</a></li>
-							<li><a class="dropdown-item" href="${listAccount }">Account
-									List</a></li>
-
-						</ul></li>
-
+								</ul></li>
+						</c:when>
+					</c:choose>
 
 					<li class="nav-item "><a class="nav-link text-white" href="#"><i
 							class="bi bi-question-circle-fill"></i>&nbsp;About</a></li>
@@ -98,18 +113,21 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title text-primary" id="exampleModalLabel"><i class="bi bi-person-circle"></i>&nbsp;Login Form</h5>
+						<h5 class="modal-title text-primary" id="exampleModalLabel">
+							<i class="bi bi-person-circle"></i>&nbsp;Login Form
+						</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<div class="mb-3">
-							<label for="username" class="form-label text-primary">User Name</label> <input
-								type="text" class="form-control" id="username" name="username">
+							<label for="username" class="form-label text-primary">User
+								Name</label> <input type="text" class="form-control" id="username"
+								name="username">
 						</div>
 						<div class="mb-3">
-							<label for="password" class="form-label text-primary">Password</label> <input
-								type="password" class="form-control" id="password"
+							<label for="password" class="form-label text-primary">Password</label>
+							<input type="password" class="form-control" id="password"
 								name="password">
 						</div>
 					</div>
@@ -122,4 +140,3 @@
 			</div>
 		</div>
 	</div>
-	<div class="row justify-content-center p-5">

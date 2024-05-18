@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-</div>
+
 <nav class=" relative-bottom navbar-expand-lg bg-light ">
 	<div class="card text-center ">
 		<div class="card-body">

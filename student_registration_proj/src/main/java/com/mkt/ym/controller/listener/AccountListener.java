@@ -1,24 +1,22 @@
 package com.mkt.ym.controller.listener;
 
-import com.mkt.ym.services.AccountService;
-
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
+import jakarta.servlet.http.HttpSessionListener;
 
 @WebListener
-public class AccountListener implements ServletContextListener{
+public class AccountListener implements HttpSessionListener{
 	
-	private AccountService service;
+//	private AccountService service;
+//	
+//	@Override
+//	public void sessionCreated(HttpSessionEvent se) {
+//		
+//		service = AccountService.getAccountService();
+//		var accounts = service.search(null);
+//		
+//		var session = se.getSession();
+//		session.setAttribute("accounts", accounts);
+//	}
 
-	@Override
-	public void contextInitialized(ServletContextEvent sce) {
-		service = AccountService.getAccountService();
-		var accounts = service.search(null);
-		
-		var attr = sce.getServletContext();
-		attr.setAttribute("accounts", accounts);
-		
-		
-	}
+	
 }

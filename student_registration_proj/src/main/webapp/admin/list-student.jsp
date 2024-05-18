@@ -6,5 +6,5 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 
 <jsp:include page="${head }"></jsp:include>
-
+<div class="row justify-content-center p-5"></div>
 <jsp:include page="${foot }"></jsp:include>

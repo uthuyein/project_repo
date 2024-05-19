@@ -35,7 +35,6 @@ public class RegistrationController  extends HttpServlet{
 		
 		var uniEnroll = req.getParameter("uniEnroll");
 		var stuName = req.getParameter("stuName");
-		var religion = req.getParameter("religion");
 		var dob = LocalDate.parse(req.getParameter("dob"));
 		var nrc = req.getParameter("nrc");
 		var fNrc = req.getParameter("fNrc");
@@ -45,7 +44,6 @@ public class RegistrationController  extends HttpServlet{
 		
 		var student = new Student();
 		student.setName(stuName);
-		student.setReligion(religion);
 		student.setDob(dob);
 		student.setNrc(nrc);
 		

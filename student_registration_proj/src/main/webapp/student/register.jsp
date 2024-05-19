@@ -23,11 +23,7 @@
 						Name</label> <input type="text" class="form-control" id="stuName"
 						name="stuName">
 				</div>
-				<div class="mb-3">
-					<label for="religion" class="form-label text-primary">Nation
-						/ Religion </label> <input type="text" class="form-control" id="religion"
-						name="religion">
-				</div>
+				
 				<div class="mb-3">
 					<label for="dob" class="form-label text-primary">Date Of
 						Birth</label> <input type="date" class="form-control" id="dob" name="dob">

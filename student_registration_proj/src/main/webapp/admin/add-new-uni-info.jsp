@@ -2,17 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@page import="com.mkt.ym.entity.type.*"%>
+
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
-
-<%@page import="com.mkt.ym.entity.University.Major"%>
-<%@page import="com.mkt.ym.entity.University.Year"%>
 
 <jsp:include page="${head }"></jsp:include>
 <div class="row justify-content-center p-5">
 	<div class="card col-md-5">
 		<div class="card-header mt-2 text-primary">
-			<i class="bi bi-person-fill"></i> Add Student To University
+			<i class="bi bi-person-fill"></i> Add New Student To University
 		</div>
 		<div class="card-body ">
 			<form action="/admin/uniStudent" method="post">
@@ -54,7 +53,6 @@
 						Number</label> <input type="text" class="form-control" id="fNrc"
 						name="fNrc">
 				</div>
-
 				<button type="submit" class="btn btn-primary w-25">Save</button>
 			</form>
 		</div>

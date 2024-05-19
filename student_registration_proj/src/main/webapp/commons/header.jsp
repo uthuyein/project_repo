@@ -20,21 +20,28 @@
 <link rel="stylesheet" href="/commons/style.css" />
 <title>Student Registration</title>
 </head>
+<%@ page import="com.mkt.ym.entity.type.*"%>
+
 <c:url var="register" value="/student/register.jsp"></c:url>
 <c:url var="infoStudent" value="/student/info-student.jsp"></c:url>
-
 <c:url var="addStudent" value="/admin/add-student.jsp"></c:url>
 <c:url var="listStudent" value="/admin/list-student.jsp"></c:url>
-<c:url var="uniStudent" value="/admin/add-uni-info.jsp"></c:url>
 <c:url var="addAccount" value="/admin/add-account.jsp"></c:url>
 <c:url var="listStudent" value="/admin/list-student.jsp"></c:url>
 <c:url var="listAccount" value="/admin/list-account.jsp"></c:url>
+<c:url var="newStudent" value="/admin/add-new-uni-info.jsp"></c:url>
+<c:url var="oldStudent" value="/admin/add-old-uni-info.jsp"></c:url>
+
 <c:url var="home" value="/index.jsp"></c:url>
 <c:url var="login" value="/student/login.jsp"></c:url>
+<c:url var="logout" value="/student/logout"></c:url>
 
-<%@ page import="com.mkt.ym.entity.Account.Role" %>
-<c:set var="role" value="<%= Role.ADMIN %>"></c:set>
-						
+
+<c:set var="role" value="<%=Role.ADMIN%>"></c:set>
+<c:set var="warn" value="<%=MessageType.ERROR%>"></c:set>
+<c:set var="warn" value="<%=MessageType.WARNING%>"></c:set>
+<c:set var="warn" value="<%=MessageType.SUCCESS%>"></c:set>
+
 <body>
 
 	<nav class="navbar navbar-expand-md navbar-light bg-primary">
@@ -52,42 +59,47 @@
 
 
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav w-75">
-				
-					<li class="nav-item "><a class="nav-link text-white"
+				<ul class="navbar-nav w-75 mb-2">
+
+					<li class="nav-item "><a class="nav-link text-white "
 						href="${infoStudent }"><i class="bi bi-person-fill "></i>&nbsp;Student
 							Information </a></li>
-					<c:choose>
-						<c:when test="${account ne null and account.role eq role}">
-							<li class="nav-item  dropdown "><a
-								class="nav-link dropdown-toggle text-white" href="#"
-								role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="bi bi-person-lines-fill"></i>&nbsp; Student
-							</a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item " href="${addStudent }">Add
-											Student </a></li>
-									<li><a class="dropdown-item" href="${listStudent }">Student
-											List </a></li>
+					<c:if test="${account ne null and account.role eq role}">
+						<li class="nav-item  dropdown "><a
+							class="nav-link dropdown-toggle text-white" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-person-lines-fill"></i>&nbsp; Student Info
+						</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item " href="${addStudent }">Add
+										Student </a></li>
+								<li><a class="dropdown-item" href="${listStudent }">Student
+										List </a></li>
 
-								</ul></li>
-							<li class="nav-item "><a class="nav-link text-white"
-								href="${uniStudent }"><i class="bi bi-house-fill "></i>&nbsp;University
-									Information</a></li>
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle text-white" href="#"
-								role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="bi bi-person-fill"></i>&nbsp; Account
-							</a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="${addAccount }">Add
-											Account</a></li>
-									<li><a class="dropdown-item" href="${listAccount }">Account
-											List</a></li>
-
-								</ul></li>
-						</c:when>
-					</c:choose>
+							</ul></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle text-white" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-person-fill"></i>&nbsp; University Info
+						</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="${newStudent }">New Student
+										</a></li>
+								<li><a class="dropdown-item" href="${oldStudent }">Old Student
+										</a></li>
+							</ul></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle text-white" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-person-fill"></i>&nbsp; Account Info
+						</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="${addAccount }">Add
+										Account</a></li>
+								<li><a class="dropdown-item" href="${listAccount }">Account
+										List</a></li>
+							</ul></li>
+					</c:if>
 
 					<li class="nav-item "><a class="nav-link text-white" href="#"><i
 							class="bi bi-question-circle-fill"></i>&nbsp;About</a></li>
@@ -97,24 +109,35 @@
 					<a class="nav-link text-white" href="${register }"><i
 						class="bi bi-pencil-square"></i>&nbsp;Registration</a>
 				</div>
-				<div class="nav-item ">
-					<a class="nav-link text-white" data-bs-toggle="modal"
-						data-bs-target="#exampleModal"><i class="bi bi-person-circle"></i>&nbsp;Login
-					</a>
-				</div>
+				<c:choose>
+					<c:when test="${account ne null }">
+						<div class="nav-item ">
+							<a class="nav-link text-white" data-bs-toggle="modal"
+								data-bs-target="#logoutModal"><img
+								src="/images/uni_images/UTYCC.png" alt="" width="30" height="30"
+								class="rounded-circle">&nbsp;Logout </a>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="nav-item ">
+							<a class="nav-link text-white" data-bs-toggle="modal"
+								data-bs-target="#loginModal"><i class="bi bi-person-circle"></i>&nbsp;Login
+							</a>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</nav>
-
-
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<form class="form" method="post" action="/student/login" >
-			<div class="modal-dialog">
+	
+	<!-- Login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1"
+		aria-labelledby="loginModalLabel" aria-hidden="true">
+		<form class="form" method="post" action="/student/login">
+			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title text-primary" id="exampleModalLabel">
+						<h5 class="modal-title text-primary" id="loginModalLabel">
 							<i class="bi bi-person-circle"></i>&nbsp;Login Form
 						</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -140,4 +163,27 @@
 				</div>
 			</div>
 		</form>
+	</div>
+	<!-- Alert Modal -->
+	<div class="modal fade " id="logoutModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-warning">
+						<i class="bi bi-info-circle-fill"></i> Warning
+					</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Do you really want to logout !</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<a type="button" class="btn btn-primary" href="${logout }">Save
+						changes</a>
+				</div>
+			</div>
+		</div>
 	</div>

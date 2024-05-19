@@ -15,7 +15,7 @@
 			<form action="/admin/addParent" method="post">
 				<div class="mb-3">
 					<label for="fName" class="form-label text-primary">Father's Name</label> <input
-						type="text" class="form-control" id="fName" name="fName">
+						type="text" class="form-control" id="fName" name="fName" >
 				</div>
 				<div class="mb-3">
 					<label for="mName" class="form-label text-primary">Mother's Name</label> <input

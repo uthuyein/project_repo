@@ -1,5 +1,7 @@
 package com.mkt.ym.entity;
 
+import com.mkt.ym.entity.type.Role;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -31,12 +33,8 @@ public class Account {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	public enum Role{
-		ADMIN,STUDENT;
-	}
-	
-	public Account(String loginId,String password) {
+	public Account(String loginId) {
 		this.loginId = loginId;
-		this.password = password;
+		
 	}
 }

@@ -6,9 +6,8 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 
 <jsp:include page="${head }"></jsp:include>
-<%@page import="com.mkt.ym.entity.University.Year"%>
-<%@page import="com.mkt.ym.entity.University.Major"%>
-<%@page import="com.mkt.ym.entity.Account.Role"%>
+<%@page import="com.mkt.ym.entity.type.*"%>
+<c:url var="addAccount" value="/admin/addAccount"></c:url>
 
 <div class="row justify-content-center p-5">
 
@@ -17,18 +16,18 @@
 			<i class="bi bi-person-fill"></i> Add Account
 		</div>
 		<div class="card-body ">
-			<form action="/admin/addParent" method="post">
+			<form action="${addAccount }" method="post">
 
 				<div class="row">
 					<div class="col">
 						<div class="mb-3">
 							<label for="fName" class="form-label text-primary">University
-								Year</label> <select class="form-select">
+								Year</label> <select class="form-select" name="year">
 								<c:set var="years" value="<%=Year.values()%>"></c:set>
 								<option selected>---</option>
 
 								<c:forEach var="y" items="${years }">
-									<option value="${y}">${y.name()}</option>
+									<option >${y.name()}</option>
 
 								</c:forEach>
 							</select>
@@ -36,12 +35,12 @@
 					</div>
 					<div class="col">
 						<div class="mb-3">
-							<label for="fName" class="form-label text-primary">Major
-								Name</label> <select class="form-select">
+							<label for="major" class="form-label text-primary">Major
+								Name</label> <select id="major" class="form-select" name="major">
 								<c:set var="majors" value="<%=Major.values()%>"></c:set>
 								<option selected>---</option>
 								<c:forEach var="m" items="${majors }">
-									<option value="${m }">${m.name()}</option>
+									<option >${m.name()}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -49,24 +48,22 @@
 
 					<div class="col">
 						<div class="mb-3">
-							<label for="fName" class="form-label text-primary">Roll</label> <select
-								class="form-select">
+							<label for="roll" class="form-label text-primary">Roll</label> <select
+								class="form-select" name="roll" id="roll">
 								<option selected>---</option>
-								<option value="1">Aung Aung</option>
-								<option value="2">Maung</option>
-								<option value="3">Maung Myo</option>
+								<option >Aung Aung</option>
 							</select>
 						</div>
 					</div>
 				</div>
 
 				<div class="mb-3">
-					<label for="fName" class="form-label text-primary">Account
-						Role</label> <select class="form-select">
+					<label for="role" class="form-label text-primary">Account
+						Role</label> <select id="role" class="form-select" name="role">
 						<c:set var="roles" value="<%=Role.values()%>"></c:set>
 						<option selected>---</option>
 						<c:forEach var="role" items="${roles }">
-							<option value="${role }">${ role.name()}</option>
+							<option >${ role.name()}</option>
 						</c:forEach>
 
 					</select>
@@ -81,12 +78,12 @@
 					<input type="password" class="form-control" id="password"
 						name="password">
 				</div>
-				<div class="mb-3">
+				<!-- <div class="mb-3">
 					<label for="confirm" class="form-label text-primary ">Confirm
 						Password</label> <input type="password" class="form-control" id="confirm"
 						name="confirm">
 				</div>
-
+ -->
 				<button type="submit" class="btn btn-primary">Save Account</button>
 			</form>
 		</div>

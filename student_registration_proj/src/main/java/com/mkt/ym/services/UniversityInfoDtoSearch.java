@@ -47,7 +47,7 @@ public abstract class UniversityInfoDtoSearch {
 					sb.append(" and u.id.major = :major");
 					map.put("major", dto.major());
 				}
-				if (dto.name() != null) {
+				if (dto.name() != null && !dto.name().isEmpty()) {
 					sb.append(" and s.name = :name");
 					map.put("name", dto.name());
 				}

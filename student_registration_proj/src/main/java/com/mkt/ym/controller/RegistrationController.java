@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import com.mkt.ym.entity.Parent;
 import com.mkt.ym.entity.SchoolInfo;
 import com.mkt.ym.entity.Student;
-import com.mkt.ym.entity.University;
-import com.mkt.ym.entity.UniversityPK;
+import com.mkt.ym.entity.UniversityInfo;
+import com.mkt.ym.entity.UniversityInfoPK;
 import com.mkt.ym.services.StudentService;
 
 import jakarta.servlet.ServletException;
@@ -31,7 +31,7 @@ public class RegistrationController  extends HttpServlet{
 		req.getRequestDispatcher("/student/add-payment.jsp").forward(req, resp);
 	}
 
-	private University getStudent(HttpServletRequest req) {
+	private UniversityInfo getStudent(HttpServletRequest req) {
 		
 		var uniEnroll = req.getParameter("uniEnroll");
 		var stuName = req.getParameter("stuName");
@@ -58,15 +58,11 @@ public class RegistrationController  extends HttpServlet{
 		student.setParent(parent);
 		student.setSchoolInfo(school);
 		
-		
-		var uniPk = new UniversityPK();
-		uniPk.setRollNumberId(uniEnroll);
-		
-		var uni = new University();
-		uni.setId(uniPk);
+		var pk = new UniversityInfoPK();
+		pk.setRollNumber(uniEnroll);
+		var uni = new UniversityInfo();
 		uni.setStudent(student);
-	
-		
+		uni.setId(pk);
 		return uni;
 		
 	}

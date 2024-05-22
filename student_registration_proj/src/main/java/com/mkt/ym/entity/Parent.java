@@ -18,7 +18,7 @@ public class Parent {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String motherName;
 	private String fatherName;
 	private String motherNrc;

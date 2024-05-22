@@ -21,9 +21,9 @@ public class SchoolInfo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String rollNum;
-	private int totalMarks;
+	private Integer totalMarks;
 	
 	@Column(table = "subject_mark_tbl")
 	private int maths;

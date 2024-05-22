@@ -1,8 +1,16 @@
 package com.mkt.ym.services;
 
-import com.mkt.ym.entity.University;
+import java.util.List;
+
+import com.mkt.ym.entity.UniversityInfo;
+import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.utils.CommonServices;
 
-public interface UniversityInfoService extends CommonServices<University>{
+public interface UniversityInfoService extends CommonServices<UniversityInfo>{
 
+	List<UniversityInfoDto> searchUniversityInfo(UniversityInfoDto t);
+	
+	public static UniversityInfoService getUniversityInfoService() {
+		return new UniversityInfoServiceImpl();
+	}
 }

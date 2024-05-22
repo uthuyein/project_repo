@@ -1,5 +1,10 @@
 
-.nav-color{
+.fieldset-color{
 	color:#1E3A8A;
 } 
+
+
+.table-cell {
+   table-layout: fixed ;
+}
  

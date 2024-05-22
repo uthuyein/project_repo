@@ -25,12 +25,10 @@
 <c:url var="register" value="/student/register.jsp"></c:url>
 <c:url var="infoStudent" value="/student/info-student.jsp"></c:url>
 <c:url var="addStudent" value="/admin/add-student.jsp"></c:url>
-<c:url var="listStudent" value="/admin/list-student.jsp"></c:url>
 <c:url var="addAccount" value="/admin/add-account.jsp"></c:url>
-<c:url var="listStudent" value="/admin/list-student.jsp"></c:url>
-<c:url var="listAccount" value="/admin/list-account.jsp"></c:url>
-<c:url var="newStudent" value="/admin/add-new-uni-info.jsp"></c:url>
-<c:url var="oldStudent" value="/admin/add-old-uni-info.jsp"></c:url>
+<c:url var="listSccount" value="/admin/list-account.jsp"></c:url>
+<c:url var="addUniversityInfo" value="/admin/addUniInfo"></c:url>
+<c:url var="listStudent" value="/admin/students"></c:url>
 
 <c:url var="home" value="/index.jsp"></c:url>
 <c:url var="login" value="/student/login.jsp"></c:url>
@@ -77,17 +75,8 @@
 										List </a></li>
 
 							</ul></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle text-white" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-person-fill"></i>&nbsp; University Info
-						</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="${newStudent }">New Student
-										</a></li>
-								<li><a class="dropdown-item" href="${oldStudent }">Old Student
-										</a></li>
-							</ul></li>
+						<li class="nav-item "><a class="nav-link text-white" href="${addUniversityInfo }"><i
+							class="bi bi-question-circle-fill"></i>&nbsp;University</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle text-white" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">

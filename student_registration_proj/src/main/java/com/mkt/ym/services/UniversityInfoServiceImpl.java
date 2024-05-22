@@ -1,27 +1,32 @@
 package com.mkt.ym.services;
 
+import static com.mkt.ym.utils.FactoryServices.emf;
+
 import java.util.List;
 
-import com.mkt.ym.entity.University;
-
-public class UniversityInfoServiceImpl implements UniversityInfoService{
+import com.mkt.ym.entity.UniversityInfo;
+public class UniversityInfoServiceImpl extends UniversityInfoDtoSearch implements UniversityInfoService{
 
 	@Override
-	public void save(University t) {
-		// TODO Auto-generated method stub
-		
+	public void save(UniversityInfo t) {
+		var em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(t);
+		em.getTransaction().commit();
 	}
 
 	@Override
-	public int update(University t) {
-		// TODO Auto-generated method stub
+	public int update(UniversityInfo t) {
 		return 0;
 	}
 
 	@Override
-	public List<University> search(University t) {
-		// TODO Auto-generated method stub
+	public List<UniversityInfo> search(UniversityInfo t) {
 		return null;
 	}
+	
+	
+
+	
 
 }

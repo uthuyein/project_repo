@@ -1,7 +1,6 @@
 package com.mkt.ym.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import com.mkt.ym.entity.Account;
 import com.mkt.ym.entity.type.MessageType;
@@ -28,8 +27,12 @@ public class AccountController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		account = null;
-		req.getSession().invalidate();
+
+		switch (req.getServletPath()) {
+		case "/student/logout":
+			req.getSession().invalidate();
+			break;
+		}
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
 
@@ -39,7 +42,9 @@ public class AccountController extends HttpServlet {
 
 		switch (req.getServletPath()) {
 		case "/student/login":
-			login(req, resp);
+			login(req);
+			req.getSession(true).setAttribute("account", account);
+			req.getRequestDispatcher("/index.jsp").forward(req, resp);
 			break;
 		case "/admin/addAccount":
 			addAccount(req, resp);
@@ -79,7 +84,7 @@ public class AccountController extends HttpServlet {
 		req.getRequestDispatcher("/admin/add-account.jsp").forward(req, resp);
 	}
 
-	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void login(HttpServletRequest req) throws ServletException, IOException {
 		var user = req.getParameter("username");
 		var pass = req.getParameter("password");
 		var list = accService.search(new Account(user));
@@ -97,9 +102,8 @@ public class AccountController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		req.getSession(true).setAttribute("account", account);
-		req.getRequestDispatcher("/index.jsp").forward(req, resp);
-
 	}
+	
+	
 
 }

@@ -23,7 +23,7 @@
 						<div class="mb-3">
 							<label for="fName" class="form-label text-primary">University
 								Year</label> <select class="form-select" name="year">
-								<c:set var="years" value="<%=Year.values()%>"></c:set>
+								<c:set var="years" value="<%=UniYear.values()%>"></c:set>
 								<option selected>---</option>
 
 								<c:forEach var="y" items="${years }">

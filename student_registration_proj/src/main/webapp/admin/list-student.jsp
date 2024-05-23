@@ -12,10 +12,10 @@
 
 <jsp:include page="${head }"></jsp:include>
 <div class="p-3 mt-3">
-	<form action="/admin/students" class="form mt-2 w-75" method="post">
+	<form action="/admin/studentList" class="form mt-2 w-75" method="post">
 		<div class="row">
 			<div class="col">
-				<label for="openYear" class="form-label text-primary">University
+				<label for="openYear" class="form-label primary-text-color">University
 					Open Year</label><select name="openYear" id="openYear" class="form-select">
 					<option>---</option>
 					<c:forEach var="u" items="${listUniInfo }">
@@ -24,7 +24,7 @@
 				</select>
 			</div>
 			<div class="col">
-				<label for="uniYear" class="form-label text-primary">Unversity
+				<label for="uniYear" class="form-label primary-text-color">Unversity
 					Year</label><select name="uniYear" id="uniYear" class="form-select">
 					<option>---</option>
 					<c:forEach var="u" items="${years }">
@@ -33,7 +33,7 @@
 				</select>
 			</div>
 			<div class="col">
-				<label for="major" class="form-label text-primary">Major</label><select
+				<label for="major" class="form-label primary-text-color">Major</label><select
 					name="major" id="major" class="form-select">
 					<option>---</option>
 					<c:forEach var="u" items="${majors }">
@@ -42,12 +42,12 @@
 				</select>
 			</div>
 			<div class="col">
-				<label for="stuName" class="form-label text-primary">Student
+				<label for="stuName" class="form-label primary-text-color">Student
 					Name</label><input type="text" name="stuName" id="stuName"
 					class="form-control" />
 			</div>
 			<div class="col mt-4 pt-2 ">
-				<button class="btn btn-primary " type="submit">
+				<button class="btn primary-color " type="submit">
 					<i class="bi bi-search"></i>&nbsp;Search
 				</button>
 			</div>

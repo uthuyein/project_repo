@@ -29,9 +29,10 @@ import jakarta.servlet.http.Part;
 @WebServlet(urlPatterns = { 
 		"/admin/addStudent", 
 		"/admin/addParent", 
-		"/admin/addAddress", 
+		"/admin/addAddress",
+		"/student/infoStudent",
 		"/admin/schoolInfo",
-		"/admin/students"
+		"/admin/studentList"
 		})
 @MultipartConfig
 public class StudentController extends HttpServlet {
@@ -44,11 +45,19 @@ public class StudentController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		listUniInfo = uniService.searchUniversityInfo(null);			
+		req.setAttribute("listUniInfo", listUniInfo);
+		
 		switch (req.getServletPath()) {
-		case "/admin/students":
-			listUniInfo = uniService.searchUniversityInfo(null);			
-			req.setAttribute("listUniInfo", listUniInfo);
+		
+		case "/admin/addStudent":
+			req.getRequestDispatcher("/admin/add-student.jsp").forward(req, resp);
+			break;
+		case "/admin/studentList":
 			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
+			break;
+		case"/student/infoStudent":
+			req.getRequestDispatcher("/student/info-student.jsp").forward(req, resp);
 			break;
 		}
 	}
@@ -62,7 +71,7 @@ public class StudentController extends HttpServlet {
 			createStudent(req);
 			req.getRequestDispatcher("/admin/add-school-info.jsp").forward(req, resp);
 			break;
-		case"/admin/students":
+		case"/admin/studentList":
 			req.setAttribute("listUniInfo", searchStudentFromUni(req));
 			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
 			break;

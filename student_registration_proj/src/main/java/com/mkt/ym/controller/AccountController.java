@@ -3,6 +3,7 @@ package com.mkt.ym.controller;
 import java.io.IOException;
 
 import com.mkt.ym.entity.Account;
+import com.mkt.ym.entity.type.Major;
 import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.entity.type.Role;
 import com.mkt.ym.services.AccountService;
@@ -14,7 +15,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/student/login", "/student/logout", "/admin/addAccount"
+@WebServlet(urlPatterns = { 
+		"/student/login", 
+		"/student/logout",
+		"/admin/addAccount",
+		"/admin/accountList"
 
 }, loadOnStartup = 1)
 
@@ -22,7 +27,6 @@ public class AccountController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private AccountService accService;
-	private Account account;
 	private MessageType messageType;
 
 	@Override
@@ -31,9 +35,17 @@ public class AccountController extends HttpServlet {
 		switch (req.getServletPath()) {
 		case "/student/logout":
 			req.getSession().invalidate();
+			req.getRequestDispatcher("/index.jsp").forward(req, resp);
+			break;
+		case "/admin/addAccount":
+			req.getRequestDispatcher("/admin/add-account.jsp").forward(req, resp);
+			break;
+		case "/admin/accountList":
+			req.getRequestDispatcher("/admin/list-account.jsp").forward(req, resp);
 			break;
 		}
-		req.getRequestDispatcher("/index.jsp").forward(req, resp);
+		
+		
 	}
 
 	@Override
@@ -42,8 +54,7 @@ public class AccountController extends HttpServlet {
 
 		switch (req.getServletPath()) {
 		case "/student/login":
-			login(req);
-			req.getSession(true).setAttribute("account", account);
+			req.getSession(true).setAttribute("account", login(req));
 			req.getRequestDispatcher("/index.jsp").forward(req, resp);
 			break;
 		case "/admin/addAccount":
@@ -55,14 +66,21 @@ public class AccountController extends HttpServlet {
 
 	private void addAccount(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		var year = req.getParameter("year");
-		var major = req.getParameter("major");
+		var maj = req.getParameter("major");
 		var roll = req.getParameter("roll");
-		var role = req.getParameter("role");
+		var rol = req.getParameter("role");
 		var username = req.getParameter("username");
 		var password = req.getParameter("password");
 		var list = accService.search(new Account(username));
+		
+		var uniYear = null != year ? Integer.parseInt(year) : null;
+		var major = null != maj ? Major.valueOf(maj) : null;
+		var role = null != rol ? Role.valueOf(rol) : null;
 
 		try {
+			if(null == role || role == Role.STUDENT) {
+				
+			}
 
 			if (null != list) {
 				throw new StuRegException("Username is already taken .Plase choose another one !");
@@ -84,7 +102,7 @@ public class AccountController extends HttpServlet {
 		req.getRequestDispatcher("/admin/add-account.jsp").forward(req, resp);
 	}
 
-	private void login(HttpServletRequest req) throws ServletException, IOException {
+	private Account login(HttpServletRequest req) throws ServletException, IOException {
 		var user = req.getParameter("username");
 		var pass = req.getParameter("password");
 		var list = accService.search(new Account(user));
@@ -96,11 +114,12 @@ public class AccountController extends HttpServlet {
 			if (!list.get(0).getPassword().equals(pass)) {
 				throw new StuRegException("Please re-enter your password !");
 			}
-			account = list.get(0);
+			return list.get(0);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 
 	}
 	

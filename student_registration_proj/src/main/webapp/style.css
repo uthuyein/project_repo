@@ -1,0 +1,19 @@
+.primary-color {
+	background-color: #015D7C;
+	color: white;
+}
+
+.primary-text-color {
+	font: italic bold "Fira Sans", sans-serif;
+	color: #4a6f85 !important;
+	
+}
+
+.primary-text-color.active {
+	color: white !important;
+}
+
+.primary-header-text-color {
+	font: italic bold 1.2em "Fira Sans", sans-serif;
+	color: #0567a1;
+}

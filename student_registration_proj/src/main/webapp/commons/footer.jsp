@@ -11,7 +11,7 @@
 			<h5 class="card-title">University of Technology Yatanarpon Cyber City</h5>
 			<p class="card-text">This project is used for student
 				registration</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
+			<a href="#" class="btn primary-color">Go somewhere</a>
 		</div>
 	</div>
 </nav>

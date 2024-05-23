@@ -8,7 +8,7 @@
 <jsp:include page="${head }"></jsp:include>
 <div class="row justify-content-center p-5">
 	<div class="card col-md-5">
-		<div class="card-header mt-2 text-primary">
+		<div class="card-header mt-2 primary-header-text-color">
 			<i class="bi bi-wallet "></i> &nbsp;Add Payment Information
 		</div>
 		<div class="card-body ">
@@ -40,7 +40,7 @@
 						type="text" class="form-control" id="note">
 				</div>
 
-				<button type="submit" class="btn btn-primary">Confirm</button>
+				<button type="submit" class="btn primary-color">Confirm</button>
 			</form>
 		</div>
 	</div>

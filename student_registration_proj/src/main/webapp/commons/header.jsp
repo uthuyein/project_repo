@@ -17,21 +17,21 @@
 <!-- Option 1: Include in HTML -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/commons/style.css" />
+<link rel="stylesheet" href="/style.css" />
 <title>Student Registration</title>
 </head>
 <%@ page import="com.mkt.ym.entity.type.*"%>
 
-<c:url var="register" value="/student/register.jsp"></c:url>
-<c:url var="infoStudent" value="/student/info-student.jsp"></c:url>
-<c:url var="addStudent" value="/admin/add-student.jsp"></c:url>
-<c:url var="addAccount" value="/admin/add-account.jsp"></c:url>
-<c:url var="listSccount" value="/admin/list-account.jsp"></c:url>
+<c:url var="register" value="/student/register"></c:url>
+<c:url var="infoStudent" value="/student/infoStudent"></c:url>
+<c:url var="addStudent" value="/admin/addStudent"></c:url>
+<c:url var="addAccount" value="/admin/addAccount"></c:url>
+<c:url var="listAccount" value="/admin/accountList"></c:url>
 <c:url var="addUniversityInfo" value="/admin/addUniInfo"></c:url>
-<c:url var="listStudent" value="/admin/students"></c:url>
+<c:url var="listStudent" value="/admin/studentList"></c:url>
 
 <c:url var="home" value="/index.jsp"></c:url>
-<c:url var="login" value="/student/login.jsp"></c:url>
+<c:url var="login" value="/student/login"></c:url>
 <c:url var="logout" value="/student/logout"></c:url>
 
 
@@ -42,7 +42,7 @@
 
 <body>
 
-	<nav class="navbar navbar-expand-md navbar-light bg-primary">
+	<nav class="navbar navbar-expand-md navbar-light primary-color" >
 		<div class="container-fluid">
 			<a class="navbar-brand text-white" href="${home }"> <img
 				src="/images/uni_images/UTYCC.png" alt="" width="40" height="40"
@@ -63,20 +63,22 @@
 						href="${infoStudent }"><i class="bi bi-person-fill "></i>&nbsp;Student
 							Information </a></li>
 					<c:if test="${account ne null and account.role eq role}">
+					<li class="nav-item "><a class="nav-link text-white" href="${addStudent }"><i
+							class="bi bi-person-fill"></i>&nbsp;Add New Student</a></li>
+							
 						<li class="nav-item  dropdown "><a
 							class="nav-link dropdown-toggle text-white" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-person-lines-fill"></i>&nbsp; Student Info
+								<i class="bi bi-person-lines-fill"></i>&nbsp; University Info
 						</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item " href="${addStudent }">Add
-										Student </a></li>
+								<li><a class="dropdown-item " href="${addUniversityInfo }">Add
+										Student To University </a></li>
 								<li><a class="dropdown-item" href="${listStudent }">Student
-										List </a></li>
+										List From University </a></li>
 
 							</ul></li>
-						<li class="nav-item "><a class="nav-link text-white" href="${addUniversityInfo }"><i
-							class="bi bi-question-circle-fill"></i>&nbsp;University</a></li>
+						
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle text-white" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -126,7 +128,7 @@
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title text-primary" id="loginModalLabel">
+						<h5 class="modal-title primary-header-text-color" id="loginModalLabel">
 							<i class="bi bi-person-circle"></i>&nbsp;Login Form
 						</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -134,12 +136,12 @@
 					</div>
 					<div class="modal-body">
 						<div class="mb-3">
-							<label for="username" class="form-label text-primary">User
-								Name</label> <input type="text" class="form-control" id="username"
+							<label for="username" class="form-label primary-text-color">User
+								Name</label> <input type="text" class="form-control text-white" id="username"
 								name="username">
 						</div>
 						<div class="mb-3">
-							<label for="password" class="form-label text-primary">Password</label>
+							<label for="password" class="form-label primary-text-color">Password</label>
 							<input type="password" class="form-control" id="password"
 								name="password">
 						</div>
@@ -147,7 +149,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">Cancel</button>
-						<button type="submit" class="btn btn-primary">Login</button>
+						<button type="submit" class="btn primary-color">Login</button>
 					</div>
 				</div>
 			</div>
@@ -158,7 +160,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title text-warning">
+					<h5 class="modal-title primary-header-text-color">
 						<i class="bi bi-info-circle-fill"></i> Warning
 					</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -170,7 +172,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
-					<a type="button" class="btn btn-primary" href="${logout }">Save
+					<a type="button" class="btn primary-color" href="${logout }">Save
 						changes</a>
 				</div>
 			</div>

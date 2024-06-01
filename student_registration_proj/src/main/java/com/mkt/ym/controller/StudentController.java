@@ -142,12 +142,11 @@ public class StudentController extends HttpServlet {
 	
 	private StudentDto searchStudent(HttpServletRequest req) {
 		var city = req.getParameter("city");
-
 		var township = req.getParameter("township");
 		var name = req.getParameter("stuName");
 
-	
-		var dto = new StudentDto(city, township, name);
+		var dto = new StudentDto((city.equals("---"))?null:city, (township.equals("---"))?null:township, name);
+		
 		return dto;
 
 	}

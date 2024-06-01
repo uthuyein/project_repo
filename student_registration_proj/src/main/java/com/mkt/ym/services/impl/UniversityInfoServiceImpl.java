@@ -1,12 +1,13 @@
-package com.mkt.ym.services;
+package com.mkt.ym.services.impl;
 
 import static com.mkt.ym.utils.FactoryServices.emf;
 
 import java.util.List;
 
 import com.mkt.ym.entity.UniversityInfo;
+import com.mkt.ym.services.UniversityInfoService;
 
-public class UniversityInfoServiceImpl extends UniversityInfoDtoSearch implements UniversityInfoService {
+public class UniversityInfoServiceImpl extends UniversityInfoDtoSearchImpl implements UniversityInfoService {
 
 	@Override
 	public void save(UniversityInfo t) {

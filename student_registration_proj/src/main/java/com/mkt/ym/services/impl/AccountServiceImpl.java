@@ -1,4 +1,4 @@
-package com.mkt.ym.services;
+package com.mkt.ym.services.impl;
 
 import static com.mkt.ym.utils.FactoryServices.emf;
 
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mkt.ym.entity.Account;
+import com.mkt.ym.services.AccountService;
 
 import jakarta.persistence.TypedQuery;
 

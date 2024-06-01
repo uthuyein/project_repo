@@ -12,7 +12,7 @@
 
 
 <jsp:include page="${head }"></jsp:include>
-<div class="p-3 mt-3">
+<div class="row p-3 m-3">
 	<form action="${listStudentUni }" class="form mt-2 w-75" method="post">
 		<div class="row">
 			<div class="col">
@@ -64,8 +64,8 @@
 							<th scope="col">Name</th>
 							<th scope="col">Unversity Open Year</th>
 							<th scope="col">University Year</th>
-							<th scope="col">Major</th>
 							<th scope="col">Roll Number</th>
+							<th scope="col">Major</th>
 							<th scope="col">Date Of Birth</th>
 							<th scope="col">Nrc Number</th>
 							<th scope="col">City</th>
@@ -81,8 +81,8 @@
 								<td><a href="" class="nav-link">${s.name() }</a></td>
 								<td>${s.openYear() }</td>
 								<td>${s.uniYear() }</td>
-								<td>${s.major() }</td>
 								<td>${s.rollNumber()}</td>
+								<td>${s.major() }</td>
 								<td>${s.dob() }</td>
 								<td>${s.nrc() }</td>
 								<td>${s.city() }</td>

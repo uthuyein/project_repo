@@ -1,4 +1,4 @@
-package com.mkt.ym.services;
+package com.mkt.ym.services.impl;
 
 import static com.mkt.ym.utils.FactoryServices.emf;
 
@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.mkt.ym.entity.Student;
+import com.mkt.ym.services.StudentService;
 
 import jakarta.persistence.TypedQuery;
 
-public class StudentServiceImpl extends StudentDtoSearch implements StudentService {
+public class StudentServiceImpl extends StudentDtoSearchImpl implements StudentService {
 	
 	
 	@Override

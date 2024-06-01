@@ -36,19 +36,20 @@ public class AccountController extends HttpServlet {
 		var password = req.getParameter("password");
 		var confirm = req.getParameter("confirm");
 
-		var list = accService.search(new Account(username));
+		var acc = new Account(username);
+
+		var list = accService.search(acc);
 
 //		var uniYear = null != year ? Integer.parseInt(year) : null;
 //		var major = null != maj ? Major.valueOf(maj) : null;
 		var role = null != rol && !rol.equals("---") ? Role.valueOf(rol) : Role.STUDENT;
 
 		try {
-
+			System.out.println("Name :"+ list.get(0).getStudent().getName());
 			if (null != list) {
 				throw new StuRegException("Username is already taken .Plase choose another one !");
 			}
-			var acc = new Account(username);
-
+		
 			if (role == Role.STUDENT) {
 				acc.setStudent(getStudent(req, stuName, stuNrc).get());
 			}

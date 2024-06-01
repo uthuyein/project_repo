@@ -12,8 +12,8 @@
 
 
 <jsp:include page="${head }"></jsp:include>
-<div class="p-3 mt-3">
-	<form action="${listStudent }" class="form mt-2 w-75" method="post">
+<div class="row p-3 m-3">
+	<form action="${listStudent }" class="form  mt-2 w-75" method="post">
 		<div class="row">
 			<div class="col">
 				<label for="city" class="form-label primary-text-color">City</label><select name="city" id="city" class="form-select">

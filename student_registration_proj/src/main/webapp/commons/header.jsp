@@ -64,13 +64,13 @@
 				<ul class="navbar-nav w-75 mb-2">
 
 					<li class="nav-item "><a class="nav-link text-white "
-						href="${infoStudent }"><i class="bi bi-person-fill "></i>&nbsp;Student
+						href="${infoStudent }"><i class="bi bi-card-checklist"></i>&nbsp;Student
 							Information </a></li>
 					<c:if test="${account ne null and account.role eq role}">
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle text-white" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-person-fill"></i>&nbsp; Student Info
+								<i class="bi bi-person-badge"></i>&nbsp; Student
 						</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${addStudent }">Add
@@ -82,7 +82,7 @@
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle text-white" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-person-fill"></i>&nbsp; University Info
+								<i class="bi bi-building"></i>&nbsp; University
 						</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${addStudentToUniversity }">Add
@@ -93,7 +93,7 @@
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle text-white" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-person-fill"></i>&nbsp; Account Info
+								<i class="bi bi-credit-card-2-front-fill"></i>&nbsp; Account
 						</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${addAccount }">Add

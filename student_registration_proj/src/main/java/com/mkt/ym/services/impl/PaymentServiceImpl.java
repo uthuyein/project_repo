@@ -1,8 +1,10 @@
-package com.mkt.ym.services;
+package com.mkt.ym.services.impl;
 
 import java.util.List;
 
 import com.mkt.ym.entity.Payment;
+import com.mkt.ym.services.PaymentService;
+
 import static com.mkt.ym.utils.FactoryServices.emf;
 
 public class PaymentServiceImpl implements PaymentService {

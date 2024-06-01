@@ -8,6 +8,7 @@ import com.mkt.ym.entity.type.UniYear;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,12 +18,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
+@AllArgsConstructor
 @NoArgsConstructor
-public class UniversityInfoPK implements Serializable{
+public class UniversityInfoPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	private Integer uniOpenYear;	
+
+	private Integer uniOpenYear;
 	private String rollNumber;
 	
 	@Enumerated(EnumType.STRING)
@@ -31,13 +33,6 @@ public class UniversityInfoPK implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private UniYear uniYear;
 
-	public UniversityInfoPK(Integer uniOpenYear, String rollNumber, UniYear uniYear,Major major) {
-		super();
-		this.uniOpenYear = uniOpenYear;
-		this.rollNumber = rollNumber;
-		this.uniYear = uniYear;
-		this.major = major;
-	}
 	
-	
+
 }

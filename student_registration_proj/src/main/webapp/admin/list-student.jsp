@@ -6,20 +6,21 @@
 
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
+<c:url var="listStudent" value="/admin/studentList"></c:url>
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="years" value="<%=UniYear.values()%>"></c:set>
 
 
 <jsp:include page="${head }"></jsp:include>
 <div class="p-3 mt-3">
-	<form action="/admin/studentList" class="form mt-2 w-75" method="post">
+	<form action="${listStudent }" class="form mt-2 w-75" method="post">
 		<div class="row">
 			<div class="col">
 				<label for="openYear" class="form-label primary-text-color">University
 					Open Year</label><select name="openYear" id="openYear" class="form-select">
 					<option>---</option>
 					<c:forEach var="u" items="${listUniInfo }">
-						<option>${u.uniOpenYear()}</option>
+						<option>${u.openYear()}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -64,7 +65,7 @@
 							<th scope="col">Email</th>
 							<th scope="col">1st Contact</th>
 							<th scope="col">2nd Contact</th>
-							<th scope="col">Unversity Open Year</th>
+							<th scope="col">University Open Year</th>
 							<th scope="col">University Year</th>
 							<th scope="col">Major</th>
 							<th scope="col">Roll Number</th>
@@ -84,7 +85,7 @@
 								<td>${s.email()}</td>
 								<td>${s.primaryPhone()}</td>
 								<td>${s.secondaryPhone()}</td>
-								<td>${s.uniOpenYear() }</td>
+								<td>${s.openYear() }</td>
 								<td>${s.uniYear() }</td>
 								<td>${s.major() }</td>
 								<td>${s.rollNumber()}</td>

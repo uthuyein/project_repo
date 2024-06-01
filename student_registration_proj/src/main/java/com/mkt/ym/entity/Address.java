@@ -1,5 +1,6 @@
 package com.mkt.ym.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,8 @@ public class Address {
 	private String township;
 	private String city;
 	private String hostelName;
+	@Column(columnDefinition = "tinyint(1) default 1")
+	private boolean active;
 	
 	public Address(String street, String township, String city) {
 		super();

@@ -24,24 +24,23 @@ public class SchoolInfo {
 	private Integer id;
 	private String rollNum;
 	private Integer totalMarks;
+	@Column(columnDefinition = "boolean default true")
+	private boolean active;
 	
-	@Column(table = "subject_mark_tbl")
-	private int maths;
-	@Column(table = "subject_mark_tbl")
-	private int Phys;
-	@Column(table = "subject_mark_tbl")
-	private int chems;
-	@Column(table = "subject_mark_tbl")
-	private int eng;
+//	@Column(table = "subject_mark_tbl")
+//	private int maths;
+//	@Column(table = "subject_mark_tbl")
+//	private int Phys;
+//	@Column(table = "subject_mark_tbl")
+//	private int chems;
+//	@Column(table = "subject_mark_tbl")
+//	private int eng;
 	
-	public SchoolInfo(String rollNum, int totalMarks, int maths, int phys, int chems, int eng) {
+	public SchoolInfo(String rollNum, int totalMarks) {
 		super();
 		this.rollNum = rollNum;
 		this.totalMarks = totalMarks;
-		this.maths = maths;
-		this.Phys = phys;
-		this.chems = chems;
-		this.eng = eng;
+		
 	}
 	
 }

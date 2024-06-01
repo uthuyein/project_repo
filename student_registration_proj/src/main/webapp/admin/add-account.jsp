@@ -7,6 +7,7 @@
 
 <jsp:include page="${head }"></jsp:include>
 <%@page import="com.mkt.ym.entity.type.*"%>
+
 <c:url var="addAccount" value="/admin/addAccount"></c:url>
 
 <div class="row justify-content-center p-5">

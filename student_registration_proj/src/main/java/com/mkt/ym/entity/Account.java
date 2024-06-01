@@ -2,6 +2,7 @@ package com.mkt.ym.entity;
 
 import com.mkt.ym.entity.type.Role;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,6 +27,8 @@ public class Account {
 	private Integer id;
 	private String loginId;
 	private String password;
+	@Column(columnDefinition = "tinyint(1) default 1")
+	private boolean active;
 	
 	@OneToOne
 	private Student student;

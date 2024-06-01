@@ -24,11 +24,15 @@
 
 <c:url var="register" value="/student/register"></c:url>
 <c:url var="infoStudent" value="/student/infoStudent"></c:url>
-<c:url var="addStudent" value="/admin/addStudent"></c:url>
+
 <c:url var="addAccount" value="/admin/addAccount"></c:url>
 <c:url var="listAccount" value="/admin/accountList"></c:url>
-<c:url var="addUniversityInfo" value="/admin/addUniInfo"></c:url>
+
+<c:url var="addStudent" value="/admin/addStudent"></c:url>
 <c:url var="listStudent" value="/admin/studentList"></c:url>
+
+<c:url var="addStudentToUniversity" value="/admin/addStudentToUni"></c:url>
+<c:url var="listStudentfrmUni" value="/admin/studentListfrmUni"></c:url>
 
 <c:url var="home" value="/index.jsp"></c:url>
 <c:url var="login" value="/student/login"></c:url>
@@ -36,13 +40,13 @@
 
 
 <c:set var="role" value="<%=Role.ADMIN%>"></c:set>
-<c:set var="warn" value="<%=MessageType.ERROR%>"></c:set>
+<c:set var="error" value="<%=MessageType.ERROR%>"></c:set>
 <c:set var="warn" value="<%=MessageType.WARNING%>"></c:set>
-<c:set var="warn" value="<%=MessageType.SUCCESS%>"></c:set>
+<c:set var="success" value="<%=MessageType.SUCCESS%>"></c:set>
 
 <body>
 
-	<nav class="navbar navbar-expand-md navbar-light primary-color" >
+	<nav class="navbar navbar-expand-md navbar-light primary-color">
 		<div class="container-fluid">
 			<a class="navbar-brand text-white" href="${home }"> <img
 				src="/images/uni_images/UTYCC.png" alt="" width="40" height="40"
@@ -63,22 +67,29 @@
 						href="${infoStudent }"><i class="bi bi-person-fill "></i>&nbsp;Student
 							Information </a></li>
 					<c:if test="${account ne null and account.role eq role}">
-					<li class="nav-item "><a class="nav-link text-white" href="${addStudent }"><i
-							class="bi bi-person-fill"></i>&nbsp;Add New Student</a></li>
-							
-						<li class="nav-item  dropdown "><a
+						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle text-white" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-person-lines-fill"></i>&nbsp; University Info
+								<i class="bi bi-person-fill"></i>&nbsp; Student Info
 						</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item " href="${addUniversityInfo }">Add
-										Student To University </a></li>
-								<li><a class="dropdown-item" href="${listStudent }">Student
-										List From University </a></li>
-
+								<li><a class="dropdown-item" href="${addStudent }">Add
+										New Student</a></li>
+								<li><a class="dropdown-item" href="${listStudent }">List Student
+										</a></li>
 							</ul></li>
-						
+								
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle text-white" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-person-fill"></i>&nbsp; University Info
+						</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="${addStudentToUniversity }">Add
+										Student To University</a></li>
+								<li><a class="dropdown-item" href="${listStudentFrmUni }">List Student From Uni
+										</a></li>
+							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle text-white" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -120,7 +131,7 @@
 			</div>
 		</div>
 	</nav>
-	
+
 	<!-- Login Modal -->
 	<div class="modal fade" id="loginModal" tabindex="-1"
 		aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -128,7 +139,8 @@
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title primary-header-text-color" id="loginModalLabel">
+						<h5 class="modal-title primary-header-text-color"
+							id="loginModalLabel">
 							<i class="bi bi-person-circle"></i>&nbsp;Login Form
 						</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -137,7 +149,7 @@
 					<div class="modal-body">
 						<div class="mb-3">
 							<label for="username" class="form-label primary-text-color">User
-								Name</label> <input type="text" class="form-control text-white" id="username"
+								Name</label> <input type="text" class="form-control" id="username"
 								name="username">
 						</div>
 						<div class="mb-3">

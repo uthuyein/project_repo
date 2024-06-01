@@ -1,5 +1,6 @@
 package com.mkt.ym.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -19,12 +20,10 @@ public class UniversityInfo {
 	private UniversityInfoPK id;
 	@ManyToOne
 	private Student student;
+	
 
-	public UniversityInfo(Student student) {
-		super();
-		this.student = student;
-	}
-	
-	
+	@Column(columnDefinition = "tinyint(1) default 1")
+	private boolean active;
+
 
 }

@@ -6,6 +6,8 @@
 
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
+<c:url var="addUniInfo" value="/admin/addStudentToUni"></c:url>
+
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="years" value="<%=UniYear.values()%>"></c:set>
 
@@ -17,12 +19,12 @@
 			<i class="bi bi-person-fill"></i> Add Student To University
 		</div>
 		<div class="card-body ">
-			<form action="/admin/addUniInfo" method="post">
+			<form action="${addUniInfo }" method="post">
 				<div class="mb-3">
 					<div class="row">
 						<div class="col col-md-5">
-							<label for="openYear" class="form-label primary-text-color">University Opening
-								Year</label> <input type="text" id="openYear" class="form-control"
+							<label for="frmYear" class="form-label primary-text-color">University Opening
+								Year</label> <input type="text" id="frmYear" class="form-control"
 								name="openYear"/>
 						</div>
 					</div>
@@ -31,7 +33,7 @@
 					<div class="row">
 						<div class="col col-md-5">
 							<label for="newYear" class="form-label primary-text-color">Student
-								New Year</label> <select id="newYear" class="form-select" name="newYear">
+								New Year</label> <select id="newYear" class="form-select" name="newyear">
 								<option selected>---</option>
 								<c:forEach var="y" items="${years }">
 									<option>${y.name() }</option>
@@ -50,15 +52,31 @@
 					</div>
 				</div>
 				<div class="mb-3">
+				<div class="row">
+					<div class="col">
 					<label for="student" class="form-label primary-text-color">Student
-						Name</label> <select id="student" class="form-select" name="student">
+						Name</label> <select id="student" class="form-select" name="stuName">
 						<option selected>---</option>
 						<c:if test="${students ne null}">
 							<c:forEach var="s" items="${students }">
-								<option value="${s.id }">${s.name }</option>
+								<option >${s.name }</option>
 							</c:forEach>
 						</c:if>
 					</select>
+					</div>
+					<div class="col">
+					<label for="student" class="form-label primary-text-color">Student
+						Nrc</label> <select id="student" class="form-select" name="nrc">
+						<option selected>---</option>
+						<c:if test="${students ne null}">
+							<c:forEach var="s" items="${students }">
+								<option >${s.nrc }</option>
+							</c:forEach>
+						</c:if>
+					</select>
+					</div>
+				</div>
+					
 				</div>
 				<div class="mb-3">
 					<label for="newRollNum" class="form-label primary-text-color">Add

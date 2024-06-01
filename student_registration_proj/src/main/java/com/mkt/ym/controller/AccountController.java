@@ -1,27 +1,20 @@
 package com.mkt.ym.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 import com.mkt.ym.entity.Account;
-import com.mkt.ym.entity.type.Major;
+import com.mkt.ym.entity.Student;
 import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.entity.type.Role;
 import com.mkt.ym.services.AccountService;
 import com.mkt.ym.utils.StuRegException;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-@WebServlet(urlPatterns = { 
-		"/student/login", 
-		"/student/logout",
-		"/admin/addAccount",
-		"/admin/accountList"
-
-}, loadOnStartup = 1)
 
 public class AccountController extends HttpServlet {
 
@@ -29,67 +22,41 @@ public class AccountController extends HttpServlet {
 	private AccountService accService;
 	private MessageType messageType;
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		switch (req.getServletPath()) {
-		case "/student/logout":
-			req.getSession().invalidate();
-			req.getRequestDispatcher("/index.jsp").forward(req, resp);
-			break;
-		case "/admin/addAccount":
-			req.getRequestDispatcher("/admin/add-account.jsp").forward(req, resp);
-			break;
-		case "/admin/accountList":
-			req.getRequestDispatcher("/admin/list-account.jsp").forward(req, resp);
-			break;
-		}
-		
-		
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	void addAccount(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		accService = AccountService.getAccountService();
 
-		switch (req.getServletPath()) {
-		case "/student/login":
-			req.getSession(true).setAttribute("account", login(req));
-			req.getRequestDispatcher("/index.jsp").forward(req, resp);
-			break;
-		case "/admin/addAccount":
-			addAccount(req, resp);
-			break;
-		}
-
-	}
-
-	private void addAccount(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		var year = req.getParameter("year");
+		var year = req.getParameter("uniYear");
 		var maj = req.getParameter("major");
-		var roll = req.getParameter("roll");
 		var rol = req.getParameter("role");
+
+		var stuName = req.getParameter("stuName");
+		var stuNrc = req.getParameter("nrc");
 		var username = req.getParameter("username");
 		var password = req.getParameter("password");
+		var confirm = req.getParameter("confirm");
+
 		var list = accService.search(new Account(username));
-		
-		var uniYear = null != year ? Integer.parseInt(year) : null;
-		var major = null != maj ? Major.valueOf(maj) : null;
-		var role = null != rol ? Role.valueOf(rol) : null;
+
+//		var uniYear = null != year ? Integer.parseInt(year) : null;
+//		var major = null != maj ? Major.valueOf(maj) : null;
+		var role = null != rol && !rol.equals("---") ? Role.valueOf(rol) : Role.STUDENT;
 
 		try {
-			if(null == role || role == Role.STUDENT) {
-				
-			}
 
 			if (null != list) {
 				throw new StuRegException("Username is already taken .Plase choose another one !");
 			}
-
 			var acc = new Account(username);
+
+			if (role == Role.STUDENT) {
+				acc.setStudent(getStudent(req, stuName, stuNrc).get());
+			}
+			if (!password.equals(confirm)) {
+				throw new StuRegException("Password did not match confirm password and try again !");
+			}
+
 			acc.setPassword(password);
-			acc.setStudent(null);
-			acc.setRole(role == null || role.equals("---") ? Role.STUDENT : Role.valueOf(req.getParameter("role")));
+			acc.setRole(role);
 			accService.save(acc);
 			resp.sendRedirect("/admin/add-account.jsp");
 
@@ -102,27 +69,10 @@ public class AccountController extends HttpServlet {
 		req.getRequestDispatcher("/admin/add-account.jsp").forward(req, resp);
 	}
 
-	private Account login(HttpServletRequest req) throws ServletException, IOException {
-		var user = req.getParameter("username");
-		var pass = req.getParameter("password");
-		var list = accService.search(new Account(user));
-
-		try {
-			if (null == list || list.isEmpty()) {
-				throw new StuRegException("Please re-enter your account name !");
-			}
-			if (!list.get(0).getPassword().equals(pass)) {
-				throw new StuRegException("Please re-enter your password !");
-			}
-			return list.get(0);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-
+	@SuppressWarnings("unchecked")
+	private Optional<Student> getStudent(HttpServletRequest req, String name, String nrc) {
+		return ((List<Student>) req.getAttribute("students")).stream()
+				.filter(s -> s.getName().equalsIgnoreCase(name) && s.getNrc().equalsIgnoreCase(nrc)).findFirst();
 	}
-	
-	
 
 }

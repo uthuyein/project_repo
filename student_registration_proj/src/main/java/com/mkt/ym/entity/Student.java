@@ -43,13 +43,15 @@ public class Student {
 	@Column(table = "contact_tbl")
 	private String secondaryContact;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private SchoolInfo schoolInfo;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private Parent parent;
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private Address address;
+	@Column(columnDefinition = "tinyint(1) default 1")
+	private boolean active;
 
 
 	public Student(String name, LocalDate dob,String religion, String image, String nrc, String email, String primaryContact,

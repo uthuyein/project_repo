@@ -5,7 +5,8 @@ import static com.mkt.ym.utils.FactoryServices.emf;
 import java.util.List;
 
 import com.mkt.ym.entity.UniversityInfo;
-public class UniversityInfoServiceImpl extends UniversityInfoDtoSearch implements UniversityInfoService{
+
+public class UniversityInfoServiceImpl extends UniversityInfoDtoSearch implements UniversityInfoService {
 
 	@Override
 	public void save(UniversityInfo t) {
@@ -24,8 +25,6 @@ public class UniversityInfoServiceImpl extends UniversityInfoDtoSearch implement
 	public List<UniversityInfo> search(UniversityInfo t) {
 		return null;
 	}
-	
-	
 
 	
 

@@ -18,7 +18,7 @@ public class AccountTest extends CommonEntityManager{
 		var query = em.createQuery("select a from Account a ", Account.class);
 
 		
-		em.close();
+		//em.close();
 		var s = query.getResultList();
 		System.out.println(s.get(0).getLoginId()+"\t"+s.get(0).getPassword());
 	}

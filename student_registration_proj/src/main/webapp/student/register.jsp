@@ -4,6 +4,7 @@
 
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
+<c:url var="register" value="/student/register"></c:url>
 
 <%@page import="com.mkt.ym.entity.type.*"%>
 
@@ -26,17 +27,50 @@
 		<div data-bs-spy="scroll" data-bs-target="#navbar-example"
 			data-bs-offset="0" class="col col-md-6 scrollspy-example"
 			tabindex="0">
-			<div id="registerId"
-				class="card-header mt-2 primary-header-text-color">
-				<i class="bi bi-person-fill"></i> Registration Form
-			</div>
-			<div class="card-body ">
-				<form action="/student/chkStudent" method="post">
-					<div class="mb-3">
-						<label for="uniEnroll" class="form-label primary-text-color">University
-							Enroll Number</label> <input type="text" id="uniEnroll"
-							class="form-control" name="uniEnroll">
+			<form action="${register }" method="post">
+				<div class="card-body ">
+					
+					<div id="registerId"
+						class="card-header  mb-4 primary-header-text-color">
+						<i class="bi bi-person-fill"></i> Registration Form
 					</div>
+
+					<div class="row" >
+						<div class="col">
+							<div class="mb-3">
+								<label for="openYear" class="form-label primary-text-color">University
+									Open Year</label> <input type="text" id="openYear"
+									class="form-control" name="openYear">
+							</div>
+						</div>
+						<div class="col">
+							<div class="mb-3">
+								<label for="uniYear" class="form-label primary-text-color">University
+									Year</label> <select class="form-select" name="uniYear" id="uniYear">
+									<c:set var="years" value="<%=UniYear.values()%>"></c:set>
+									<option selected>---</option>
+
+									<c:forEach var="y" items="${years }">
+										<option>${y.name()}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="col">
+							<div class="mb-3">
+								<label for="major" class="form-label primary-text-color">Major
+									Name</label> <select id="major" class="form-select" name="major">
+									<c:set var="majors" value="<%=Major.values()%>"></c:set>
+									<option selected>---</option>
+									<c:forEach var="m" items="${majors }">
+										<option>${m.name()}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+
+					</div>
+
 					<div class="mb-3">
 						<label for="stuName" class="form-label primary-text-color">Student's
 							Name</label> <input type="text" class="form-control" id="stuName"
@@ -72,25 +106,20 @@
 							id="schMarks" name="schMarks">
 					</div>
 
-					<button type="submit" class="btn primary-color">Confirm
-						Student</button>
-				</form>
-			</div>
-
-			<div id="paymentId"
-				class="card-header mt-2 primary-header-text-color">
-				<i class="bi bi-wallet "></i> &nbsp;Add Payment Information
-			</div>
-			<div class="card-body ">
-				<form action="/student/addPayment" method="post">
-
+					<div id="paymentId"
+						class="card-header mt-3 mb-4 primary-header-text-color">
+						<i class="bi bi-wallet "></i> &nbsp;Add Payment Information
+					</div>
 					<div class="mb-3">
-						<label for="fName" class="form-label primary-text-color">Payment
-							Type</label> <select class="form-select">
+						<label for="payment" class="form-label primary-text-color">Payment
+							Type</label> <select class="form-select" name="payment">
 							<option selected>---</option>
-							<option value="1">KBZ Pay</option>
-							<option value="2">Aya Pay</option>
-							<option value="3">Wave Pay</option>
+							<c:set var="pays" value="<%=PaymentType.values()%>"></c:set>
+							<option selected>---</option>
+							<c:forEach var="m" items="${pays }">
+								<option>${m.name()}</option>
+							</c:forEach>
+
 						</select>
 					</div>
 					<div class="mb-3">
@@ -103,77 +132,26 @@
 					</div>
 					<div class="mb-3">
 						<label for="amount" class="form-label primary-text-color">Amount</label>
-						<input type="text" class="form-control" id="amount">
+						<input type="text" class="form-control" id="amount" name="amount">
 					</div>
 					<div class="mb-3">
 						<label for="note" class="form-label primary-text-color">Note</label>
-						<input type="text" class="form-control" id="note">
+						<input type="text" class="form-control" id="note" name="note">
 					</div>
 
-					<button type="submit" class="btn primary-color">Confirm
-						Payment</button>
-				</form>
-			</div>
-			<div id="accountId"
-				class="card-header mt-2 primary-header-text-color">
-				<i class="bi bi-person-fill "></i>&nbsp; Add Account
-			</div>
-			<div class="card-body ">
-				<form action="${addAccount }" method="post">
-					<div class="mb-3">
-						<label for="role" class="form-label primary-text-color">Account
-							Role</label> <select id="role" class="form-select" name="role">
-							<c:set var="roles" value="<%=Role.values()%>"></c:set>
-							<option selected>---</option>
-							<c:forEach var="role" items="${roles }">
-								<option>${ role.name()}</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="mb-3">
-								<label for="fName" class="form-label primary-text-color">University
-									Year</label> <select class="form-select" name="year">
-									<c:set var="years" value="<%=UniYear.values()%>"></c:set>
-									<option selected>---</option>
+					<div id="accountId"
+						class="card-header mt-3 mb-4 primary-header-text-color">
+						<figure>
+							<blockquote class="blockquote">
+								<i class="bi bi-person-fill "></i>&nbsp; Add Account
+							</blockquote>
+							<figcaption class="blockquote-footer">
+								<small>Admin will activate within 48hrs. </small>
+							</figcaption>
+						</figure>
 
-									<c:forEach var="y" items="${years }">
-										<option>${y.name()}</option>
+					</div>
 
-									</c:forEach>
-								</select>
-							</div>
-						</div>
-						<div class="col">
-							<div class="mb-3">
-								<label for="major" class="form-label primary-text-color">Major
-									Name</label> <select id="major" class="form-select" name="major">
-									<c:set var="majors" value="<%=Major.values()%>"></c:set>
-									<option selected>---</option>
-									<c:forEach var="m" items="${majors }">
-										<option>${m.name()}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="mb-3">
-								<label for="uniRollNum" class="form-label primary-text-color">University
-									Roll Number </label> <input type="text" class="form-control"
-									id="uniRollNum" name="uniRollNum">
-							</div>
-						</div>
-						<div class="col">
-							<div class="mb-3">
-								<label for="username" class="form-label primary-text-color">Student
-									Name</label> <input type="text" class="form-control" id="username"
-									name="username">
-							</div>
-						</div>
-					</div>
 					<div class="mb-3">
 						<label for="username" class="form-label primary-text-color">Account
 							User Name</label> <input type="text" class="form-control" id="username"
@@ -184,11 +162,16 @@
 						<input type="password" class="form-control" id="password"
 							name="password">
 					</div>
-
+					<div class="mb-3">
+						<label for="password" class="form-label primary-text-color">Confirm
+							Password</label> <input type="password" class="form-control"
+							id="password" name="confirm">
+					</div>
 					<button type="submit" class="btn primary-color">Save
 						Account</button>
-				</form>
-			</div>
+				</div>
+			</form>
+
 		</div>
 	</div>
 </div>

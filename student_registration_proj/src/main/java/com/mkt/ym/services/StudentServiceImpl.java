@@ -5,6 +5,7 @@ import static com.mkt.ym.utils.FactoryServices.emf;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.mkt.ym.entity.Student;
 
@@ -56,6 +57,10 @@ public class StudentServiceImpl implements StudentService {
 	
 	}
 	
-	
+//	@Override
+//	public Optional<Student> getStudent(String name, String nrc) {
+//		return search(null).stream().filter(s -> s.getName().equalsIgnoreCase(name) && s.getNrc().equalsIgnoreCase(nrc))
+//				.findFirst();
+//	}
 
 }

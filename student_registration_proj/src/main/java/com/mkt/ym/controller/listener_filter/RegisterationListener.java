@@ -1,7 +1,7 @@
 package com.mkt.ym.controller.listener_filter;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.services.StudentService;
@@ -22,12 +22,11 @@ public class RegisterationListener implements ServletRequestListener {
 	@Override
 	public void requestInitialized(ServletRequestEvent sre) {
 		
-		listUniInfo = new ArrayList<UniversityInfoDto>();
 		HttpServletRequest req = (HttpServletRequest) sre.getServletRequest();
 		uniService = UniversityInfoService.getUniversityInfoService();
 		stuService = StudentService.getStudentService();
 		
-		var listUniInfo = uniService.searchUniversityInfo(null);
+		listUniInfo = uniService.searchUniversityInfo(null);
 		var students = stuService.search(null);
 		var session = req.getSession(true);
 		
@@ -37,16 +36,24 @@ public class RegisterationListener implements ServletRequestListener {
 
 		if (null != listUniInfo) {
 			System.out.println("=================== year");
-			session.setAttribute("years", getYear());
+			session.setAttribute("openYears", getYear());
 			session.setAttribute("listUniInfo", listUniInfo);
-
+			session.setAttribute("cities", getCities());
+			session.setAttribute("townships", getTownships());
 		}
 	}
 
-	private int[] getYear() {
+	private List<Integer> getYear() {
 		return  listUniInfo.stream()
-				.mapToInt(uni -> uni.openYear())
-				.distinct().sorted().toArray();
+				.map(UniversityInfoDto::openYear)
+				.distinct().sorted().collect(Collectors.toList());
+	}
+	
+	private List<String> getCities() {
+		return  listUniInfo.stream().map(UniversityInfoDto::city).distinct().collect(Collectors.toList());
+	}
+	private List<String> getTownships() {
+		return  listUniInfo.stream().map(UniversityInfoDto::township).distinct().collect(Collectors.toList());
 	}
 
 }

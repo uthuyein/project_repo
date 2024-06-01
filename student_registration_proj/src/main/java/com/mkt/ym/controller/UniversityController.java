@@ -43,8 +43,9 @@ public class UniversityController extends HttpServlet {
 			req.getRequestDispatcher("/admin/add-uni-info.jsp").forward(req, resp);
 			break;
 		case "/admin/studentListfrmUni":
-			req.setAttribute("listUniInfo", listUniInfo);
-			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
+//			listUniInfo = uniService.searchUniversityInfo(null);		
+//			req.setAttribute("listUniInfo", listUniInfo);
+			req.getRequestDispatcher("/admin/list-uni-info.jsp").forward(req, resp);
 			break;
 		}
 	}
@@ -62,7 +63,7 @@ public class UniversityController extends HttpServlet {
 			var info = searchStudentFromUni(req);
 			listUniInfo = uniService.searchUniversityInfo(info);
 			req.setAttribute("listUniInfo", listUniInfo);
-			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/list-uni-info.jsp").forward(req, resp);
 			break;
 		}
 	}

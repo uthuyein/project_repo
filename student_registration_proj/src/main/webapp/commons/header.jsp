@@ -87,7 +87,7 @@
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${addStudentToUniversity }">Add
 										Student To University</a></li>
-								<li><a class="dropdown-item" href="${listStudentFrmUni }">List Student From Uni
+								<li><a class="dropdown-item" href="${listStudentfrmUni }">List Student From Uni
 										</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a

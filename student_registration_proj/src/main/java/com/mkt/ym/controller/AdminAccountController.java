@@ -1,11 +1,8 @@
 package com.mkt.ym.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import com.mkt.ym.entity.Account;
-import com.mkt.ym.entity.Student;
-import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.services.AccountService;
 import com.mkt.ym.utils.StuRegException;
 
@@ -21,15 +18,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public class AdminAccountController extends AccountController {
 
 	private static final long serialVersionUID = 1L;
-	private AccountService accService;
-	private MessageType messageType;
-	private List<Student> students;
-
-	@SuppressWarnings("unchecked")
+	private AccountService accService = AccountService.getAccountService();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		students = (List<Student>) req.getSession().getAttribute("students");
-
+		
 		switch (req.getServletPath()) {
 		case "/student/logout":
 			req.getSession().invalidate();

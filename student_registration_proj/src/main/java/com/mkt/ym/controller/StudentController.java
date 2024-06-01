@@ -11,6 +11,7 @@ import com.mkt.ym.entity.Address;
 import com.mkt.ym.entity.Parent;
 import com.mkt.ym.entity.SchoolInfo;
 import com.mkt.ym.entity.Student;
+import com.mkt.ym.entity.dto.StudentDto;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.Major;
 import com.mkt.ym.entity.type.UniYear;
@@ -48,6 +49,8 @@ public class StudentController extends HttpServlet {
 			req.getRequestDispatcher("/admin/add-student.jsp").forward(req, resp);
 			break;
 		case "/admin/studentList":
+			var studentList = stuService.searchStudentDto(null);
+			req.setAttribute("studentList", studentList);
 			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
 			break;
 		}
@@ -69,9 +72,9 @@ public class StudentController extends HttpServlet {
 			resp.sendRedirect("/admin/add-student.jsp");
 			break;
 		case "/admin/studentList":
-			var info = searchStudentFromUni(req);
-			listUniInfo = uniService.searchUniversityInfo(info);
-			req.setAttribute("listUniInfo", listUniInfo);
+			var dto = searchStudent(req);
+			var studentList = stuService.searchStudentDto(dto);
+			req.setAttribute("studentList", studentList);
 			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
 			break;
 
@@ -137,19 +140,15 @@ public class StudentController extends HttpServlet {
 	}
 	
 	
-	private UniversityInfoDto searchStudentFromUni(HttpServletRequest req) {
-		var fYear = req.getParameter("openYear");
+	private StudentDto searchStudent(HttpServletRequest req) {
+		var city = req.getParameter("city");
 
-		var uYear = req.getParameter("uniYear");
-		var maj = req.getParameter("major");
+		var township = req.getParameter("township");
 		var name = req.getParameter("stuName");
 
-		var openYear = !fYear.equals("---") ? Integer.valueOf(fYear) : null;		
-		var uniYear = !uYear.equals("---") ? UniYear.valueOf(uYear) : null;
-		var major = !maj.equals("---") ? Major.valueOf(maj) : null;
-
-		var info = new UniversityInfoDto(openYear, uniYear, major, name);
-		return info;
+	
+		var dto = new StudentDto(city, township, name);
+		return dto;
 
 	}
 

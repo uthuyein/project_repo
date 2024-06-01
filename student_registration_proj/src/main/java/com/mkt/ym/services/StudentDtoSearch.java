@@ -6,26 +6,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mkt.ym.entity.dto.UniversityInfoDto;
+import com.mkt.ym.entity.dto.StudentDto;
 
 import jakarta.persistence.TypedQuery;
 
-public abstract class UniversityInfoDtoSearch {
+public abstract class StudentDtoSearch {
 
-	public List<UniversityInfoDto> searchUniversityInfo(UniversityInfoDto dto) {
+	public List<StudentDto> searchStudentDto(StudentDto dto) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		
 		try (var em = emf.createEntityManager()) {
 
 			StringBuilder sb = new StringBuilder("""
-					select new com.mkt.ym.entity.dto.UniversityInfoDto(
-					u.id.uniOpenYear,u.id.uniYear,u.id.major,u.id.rollNumber,	
+					select new com.mkt.ym.entity.dto.StudentDto(
 					s.id,s.name,s.email,s.primaryContact,s.secondaryContact,s.dob,s.image,s.nrc,s.religion,
 					si.id,si.rollNum,si.totalMarks,
 					p.id,p.fatherName,p.motherName,p.fatherNrc,p.motherNrc,
-					a.id,a.city,a.township,a.street) from UniversityInfo u
-					join u.student s
+					a.id,a.city,a.township,a.street
+					) 
+					from Student s
 					join s.schoolInfo si
 					join s.parent p
 					join s.address a
@@ -33,13 +33,18 @@ public abstract class UniversityInfoDtoSearch {
 					""");
 
 			if (null != dto) {
-				if(null != dto.rollNumber()) {
-					sb.append(" and u.id.rollNumber = :roll");
-					map.put("roll", dto.name());
-				}
+				
 				if (dto.name() != null && !dto.name().isEmpty()) {
 					sb.append(" and s.name = :name");
 					map.put("name", dto.name());
+				}
+				if(null != dto.city()) {
+					sb.append(" and a.city = :city");
+					map.put("city", dto.city());
+				}
+				if(null != dto.township()) {
+					sb.append(" and a.township = :township");
+					map.put("township", dto.township());
 				}
 				if(null != dto.dob()) {
 					sb.append(" and s.dob = :dob");
@@ -57,36 +62,23 @@ public abstract class UniversityInfoDtoSearch {
 					sb.append(" and p.motherNrc = :mNrc");
 					map.put("mNrc", dto.mNrc());
 				}
-				if(null != dto.schoolRollnum()) {
+				if(null != dto.rollNum()) {
 					sb.append(" and si.rollNum = :schRoll");
-					map.put("schRoll", dto.schoolRollnum());
+					map.put("schRoll", dto.rollNum());
 				}
-				if(null != dto.schoolTotalMarks()) {
+				if(null != dto.totalMarks()) {
 					sb.append(" and si.totalMarks = :schMarks");
-					map.put("schMarks", dto.schoolTotalMarks());
+					map.put("schMarks", dto.totalMarks());
 				}
 				
-				if (dto.openYear() != null) {
-					sb.append(" and u.id.uniOpenYear = :openYear");
-					map.put("openYear", dto.openYear());
-				}
-				
-				if (dto.uniYear() != null) {
-					sb.append(" and u.id.uniYear = :uniYear");
-					map.put("uniYear", dto.uniYear());
-				}
-				if (dto.major() != null) {
-					sb.append(" and u.id.major = :major");
-					map.put("major", dto.major());
-				}
 				
 			}
-			TypedQuery<UniversityInfoDto> query = em.createQuery(sb.toString(), UniversityInfoDto.class);
+			TypedQuery<StudentDto> query = em.createQuery(sb.toString(), StudentDto.class);
 			for (Map.Entry<String, Object> m : map.entrySet()) {
 				query.setParameter(m.getKey(), m.getValue());
 			}
 			return query.getResultList();
-		
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

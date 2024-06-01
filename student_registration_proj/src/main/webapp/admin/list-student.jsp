@@ -8,7 +8,7 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="listStudent" value="/admin/studentList"></c:url>
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
-<c:set var="years" value="<%=UniYear.values()%>"></c:set>
+<c:set var="uniYears" value="<%=UniYear.values()%>"></c:set>
 
 
 <jsp:include page="${head }"></jsp:include>
@@ -16,29 +16,19 @@
 	<form action="${listStudent }" class="form mt-2 w-75" method="post">
 		<div class="row">
 			<div class="col">
-				<label for="openYear" class="form-label primary-text-color">University
-					Open Year</label><select name="openYear" id="openYear" class="form-select">
+				<label for="city" class="form-label primary-text-color">City</label><select name="city" id="city" class="form-select">
 					<option>---</option>
-					<c:forEach var="u" items="${listUniInfo }">
-						<option>${u.openYear()}</option>
+					<c:forEach var="u" items="${cities }">
+						<option>${u}</option>
 					</c:forEach>
 				</select>
 			</div>
 			<div class="col">
-				<label for="uniYear" class="form-label primary-text-color">Unversity
-					Year</label><select name="uniYear" id="uniYear" class="form-select">
+				<label for="township" class="form-label primary-text-color">Township
+					</label><select name="township" id="township" class="form-select">
 					<option>---</option>
-					<c:forEach var="u" items="${years }">
-						<option>${u.name()}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="col">
-				<label for="major" class="form-label primary-text-color">Major</label><select
-					name="major" id="major" class="form-select">
-					<option>---</option>
-					<c:forEach var="u" items="${majors }">
-						<option>${u.name()}</option>
+					<c:forEach var="u" items="${townships }">
+						<option>${u}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -55,7 +45,7 @@
 		</div>
 	</form>
 	<c:choose>
-		<c:when test="${null ne listUniInfo }">
+		<c:when test="${null ne studentList }">
 			<div class="table-responsive mt-4">
 				<table class="table table-hover w-auto">
 					<thead>
@@ -65,35 +55,38 @@
 							<th scope="col">Email</th>
 							<th scope="col">1st Contact</th>
 							<th scope="col">2nd Contact</th>
-							<th scope="col">University Open Year</th>
-							<th scope="col">University Year</th>
-							<th scope="col">Major</th>
-							<th scope="col">Roll Number</th>
+							<th scope="col">Grade 12 RollNumber</th>
+							<th scope="col">Grade 12 Marks</th>
 							<th scope="col">Date Of Birth</th>
 							<th scope="col">Nrc Number</th>
 							<th scope="col">City</th>
 							<th scope="col">Township</th>
 							<th scope="col">Street</th>
-
+							<th scope="col">Father Name</th>
+							<th scope="col">Father Nrc</th>
+							<th scope="col">Mother Name</th>
+							<th scope="col">Mother Nrc</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="s" items="${listUniInfo }" varStatus="n">
+						<c:forEach var="s" items="${studentList }" varStatus="n">
 							<tr>
 								<th scope="row">${n.index+1 }</th>
 								<td><a href="" class="nav-link">${s.name() }</a></td>
 								<td>${s.email()}</td>
-								<td>${s.primaryPhone()}</td>
-								<td>${s.secondaryPhone()}</td>
-								<td>${s.openYear() }</td>
-								<td>${s.uniYear() }</td>
-								<td>${s.major() }</td>
-								<td>${s.rollNumber()}</td>
+								<td>${s.primaryContact()}</td>
+								<td>${s.secondaryContact()}</td>
+								<td>${s.rollNum()}</td>
+								<td>${s.totalMarks() }</td>
 								<td>${s.dob() }</td>
 								<td>${s.nrc() }</td>
 								<td>${s.city() }</td>
 								<td>${s.township()}</td>
 								<td>${s.street()}</td>
+								<td>${s.fName() }</td>
+								<td>${s.fNrc() }</td>
+								<td>${s.mName() }</td>
+								<td>${s.mNrc() }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -102,7 +95,7 @@
 		</c:when>
 
 		<c:otherwise>
-			<div class="alert alert-success" role="alert">
+			<div class="alert alert-success mt-3" role="alert">
 				<h4 class="alert-heading">Well done!</h4>
 				<p>There is no student data</p>
 			</div>

@@ -8,7 +8,7 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="listStudentUni" value="/admin/studentListfrmUni"></c:url>
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
-<c:set var="years" value="<%=UniYear.values()%>"></c:set>
+<c:set var="uniYears" value="<%=UniYear.values()%>"></c:set>
 
 
 <jsp:include page="${head }"></jsp:include>
@@ -19,8 +19,8 @@
 				<label for="openYear" class="form-label primary-text-color">University
 					Open Year</label><select name="openYear" id="openYear" class="form-select">
 					<option>---</option>
-					<c:forEach var="u" items="${listUniInfo }">
-						<option>${u.uniOpenYear()}</option>
+					<c:forEach var="u" items="${openYears }">
+						<option>${u}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -28,7 +28,7 @@
 				<label for="uniYear" class="form-label primary-text-color">Unversity
 					Year</label><select name="uniYear" id="uniYear" class="form-select">
 					<option>---</option>
-					<c:forEach var="u" items="${years }">
+					<c:forEach var="u" items="${uniYears }">
 						<option>${u.name()}</option>
 					</c:forEach>
 				</select>
@@ -62,9 +62,6 @@
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Name</th>
-							<th scope="col">Email</th>
-							<th scope="col">1st Contact</th>
-							<th scope="col">2nd Contact</th>
 							<th scope="col">Unversity Open Year</th>
 							<th scope="col">University Year</th>
 							<th scope="col">Major</th>
@@ -82,10 +79,7 @@
 							<tr>
 								<th scope="row">${n.index+1 }</th>
 								<td><a href="" class="nav-link">${s.name() }</a></td>
-								<td>${s.email()}</td>
-								<td>${s.primaryPhone()}</td>
-								<td>${s.secondaryPhone()}</td>
-								<td>${s.uniOpenYear() }</td>
+								<td>${s.openYear() }</td>
 								<td>${s.uniYear() }</td>
 								<td>${s.major() }</td>
 								<td>${s.rollNumber()}</td>
@@ -102,7 +96,7 @@
 		</c:when>
 
 		<c:otherwise>
-			<div class="alert alert-success" role="alert">
+			<div class="alert alert-success mt-3" role="alert">
 				<h4 class="alert-heading">Well done!</h4>
 				<p>There is no student data</p>
 			</div>

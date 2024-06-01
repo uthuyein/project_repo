@@ -25,7 +25,6 @@ public class RegistrationController extends AccountController {
 	private static final long serialVersionUID = 1L;
 	private UniversityInfoService uniService;
 	private PaymentService pService;
-	private UniversityInfo uniInfo;
 	
 
 	@Override

@@ -5,13 +5,12 @@ import static com.mkt.ym.utils.FactoryServices.emf;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import com.mkt.ym.entity.Student;
 
 import jakarta.persistence.TypedQuery;
 
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl extends StudentDtoSearch implements StudentService {
 	
 	
 	@Override
@@ -56,11 +55,6 @@ public class StudentServiceImpl implements StudentService {
 		return null;
 	
 	}
-	
-//	@Override
-//	public Optional<Student> getStudent(String name, String nrc) {
-//		return search(null).stream().filter(s -> s.getName().equalsIgnoreCase(name) && s.getNrc().equalsIgnoreCase(nrc))
-//				.findFirst();
-//	}
+
 
 }

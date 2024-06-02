@@ -6,12 +6,25 @@
 
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
+<c:url var="addUniInfo" value="/admin/addStudentToUni"></c:url>
 <c:url var="listStudentUni" value="/admin/studentListfrmUni"></c:url>
+
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="uniYears" value="<%=UniYear.values()%>"></c:set>
 
 
 <jsp:include page="${head }"></jsp:include>
+<nav id="navbar-example"
+	class="navbar navbar-light bg-light px-3 sticky-sm-top">
+	<ul class="nav">
+		<li class="nav-item"><a href="${addUniInfo }"
+			class="nav-link primary-text-color"><i class="bi bi-collection"></i>&nbsp;Add Student To
+				University</a></li>
+		<li class="nav-item"><a href="${listStudentUni }"
+			class="nav-link primary-text-color"><i class="bi bi-collection-fill"></i>&nbsp;Student List
+				From University</a></li>
+	</ul>
+</nav>
 <div class="row p-3 m-3">
 	<form action="${listStudentUni }" class="form mt-2 w-75" method="post">
 		<div class="row">

@@ -7,12 +7,24 @@
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="addUniInfo" value="/admin/addStudentToUni"></c:url>
+<c:url var="listStudentUni" value="/admin/studentListfrmUni"></c:url>
+
 
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="years" value="<%=UniYear.values()%>"></c:set>
 
 <jsp:include page="${head }"></jsp:include>
-
+<nav id="navbar-example"
+	class="navbar navbar-light bg-light px-3 sticky-sm-top">
+	<ul class="nav">
+		<li class="nav-item"><a href="${addUniInfo }"
+			class="nav-link primary-text-color"><i class="bi bi-collection"></i>&nbsp;Add Student To
+				University</a></li>
+		<li class="nav-item"><a href="${listStudentUni }"
+			class="nav-link primary-text-color"><i class="bi bi-collection-fill"></i>&nbsp;Student List
+				From University</a></li>
+	</ul>
+</nav>
 <div class="row justify-content-center p-5">
 	<div class="card col-md-5">
 		<div class="card-header mt-2 primary-header-text-color">
@@ -83,37 +95,6 @@
 						Roll Number</label> <input type="text" class="form-control"
 						id="newRollNum" name="newRollNum">
 				</div>
-
-			<%-- 	<fieldset class="fieldset-color">
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox"
-							name="isOldStudent" id="isOldStudent" checked> <label
-							class="form-check-label text-primary" for="isOldStudent" >
-							Previous University Info </label>
-					</div>
-					<div id="emailHelp" class="form-text mb-3"
-						style="margin-top: -8px">Must be check and fill up for the old
-						students</div>
-
-					<div class="mb-3">
-						<div class="row">
-							<div class="col col-md-5">
-								<label for="prevYear" class="form-label text-primary">Student
-									Previous Year</label> <select class="form-select" id="prevYear" name="prevYear">
-									<option selected>---</option>
-									<c:forEach var="y" items="${years }">
-										<option>${y.name() }</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="prevRollNum" class="form-label text-primary">Previous
-							Roll Number</label> <input type="text" class="form-control"
-							id="prevRollNum" name="prevRollNum">
-					</div>
-				</fieldset> --%>
 				<button type="submit" class="btn primary-color w-25">Save</button>
 			</form>
 		</div>

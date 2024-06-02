@@ -23,15 +23,9 @@
 <%@ page import="com.mkt.ym.entity.type.*"%>
 
 <c:url var="register" value="/student/register"></c:url>
-<c:url var="infoStudent" value="/student/infoStudent"></c:url>
-
-<c:url var="addAccount" value="/admin/addAccount"></c:url>
+<c:url var="infoStudent" value="/student/studentInfo"></c:url>
 <c:url var="listAccount" value="/admin/accountList"></c:url>
-
-<c:url var="addStudent" value="/admin/addStudent"></c:url>
 <c:url var="listStudent" value="/admin/studentList"></c:url>
-
-<c:url var="addStudentToUniversity" value="/admin/addStudentToUni"></c:url>
 <c:url var="listStudentfrmUni" value="/admin/studentListfrmUni"></c:url>
 
 <c:url var="home" value="/index.jsp"></c:url>
@@ -40,9 +34,6 @@
 
 
 <c:set var="role" value="<%=Role.ADMIN%>"></c:set>
-<c:set var="error" value="<%=MessageType.ERROR%>"></c:set>
-<c:set var="warn" value="<%=MessageType.WARNING%>"></c:set>
-<c:set var="success" value="<%=MessageType.SUCCESS%>"></c:set>
 
 <body>
 
@@ -64,43 +55,18 @@
 				<ul class="navbar-nav w-75 mb-2">
 
 					<li class="nav-item "><a class="nav-link text-white "
-						href="${infoStudent }"><i class="bi bi-card-checklist"></i>&nbsp;Student
+						href="${infoStudent }"><i class="bi bi-person-lines-fill"></i>&nbsp;Student
 							Information </a></li>
 					<c:if test="${account ne null and account.role eq role}">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle text-white" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-person-badge"></i>&nbsp; Student
-						</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="${addStudent }">Add
-										New Student</a></li>
-								<li><a class="dropdown-item" href="${listStudent }">List Student
-										</a></li>
-							</ul></li>
-								
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle text-white" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-building"></i>&nbsp; University
-						</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="${addStudentToUniversity }">Add
-										Student To University</a></li>
-								<li><a class="dropdown-item" href="${listStudentfrmUni }">List Student From Uni
-										</a></li>
-							</ul></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle text-white" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-credit-card-2-front-fill"></i>&nbsp; Account
-						</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="${addAccount }">Add
-										Account</a></li>
-								<li><a class="dropdown-item" href="${listAccount }">Account
-										List</a></li>
-							</ul></li>
+						<li class="nav-item "><a class="nav-link text-white"
+							href="${listStudent }"><i class="bi bi-person-badge"></i>&nbsp;Student</a></li>
+
+						<li class="nav-item "><a class="nav-link text-white"
+							href="${listStudentfrmUni }"><i class="bi bi-building"></i>&nbsp;University</a></li>
+						<li class="nav-item "><a class="nav-link text-white"
+							href="${listAccount }"><i
+								class="bi bi-cone-striped"></i>&nbsp;Account</a></li>
+
 					</c:if>
 
 					<li class="nav-item "><a class="nav-link text-white" href="#"><i

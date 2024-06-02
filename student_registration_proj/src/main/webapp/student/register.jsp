@@ -29,18 +29,18 @@
 			tabindex="0">
 			<form action="${register }" method="post">
 				<div class="card-body ">
-					
+
 					<div id="registerId"
 						class="card-header  mb-4 primary-header-text-color">
 						<i class="bi bi-person-fill"></i> Registration Form
 					</div>
 
-					<div class="row" >
+					<div class="row">
 						<div class="col">
 							<div class="mb-3">
 								<label for="openYear" class="form-label primary-text-color">University
-									Open Year</label> <input type="text" id="openYear"
-									class="form-control" name="openYear">
+									Open Year</label> <input type="text" id="openYear" class="form-control"
+									name="openYear">
 							</div>
 						</div>
 						<div class="col">
@@ -49,7 +49,6 @@
 									Year</label> <select class="form-select" name="uniYear" id="uniYear">
 									<c:set var="years" value="<%=UniYear.values()%>"></c:set>
 									<option selected>---</option>
-
 									<c:forEach var="y" items="${years }">
 										<option>${y.name()}</option>
 									</c:forEach>
@@ -68,15 +67,12 @@
 								</select>
 							</div>
 						</div>
-
 					</div>
-
 					<div class="mb-3">
 						<label for="stuName" class="form-label primary-text-color">Student's
 							Name</label> <input type="text" class="form-control" id="stuName"
 							name="stuName">
 					</div>
-
 					<div class="mb-3">
 						<label for="dob" class="form-label primary-text-color">Date
 							Of Birth</label> <input type="date" class="form-control" id="dob"
@@ -105,7 +101,6 @@
 							Grade 12 Marks </label> <input type="text" class="form-control"
 							id="schMarks" name="schMarks">
 					</div>
-
 					<div id="paymentId"
 						class="card-header mt-3 mb-4 primary-header-text-color">
 						<i class="bi bi-wallet "></i> &nbsp;Add Payment Information
@@ -119,7 +114,6 @@
 							<c:forEach var="m" items="${pays }">
 								<option>${m.name()}</option>
 							</c:forEach>
-
 						</select>
 					</div>
 					<div class="mb-3">
@@ -149,7 +143,6 @@
 								<small>Admin will activate within 48hrs. </small>
 							</figcaption>
 						</figure>
-
 					</div>
 
 					<div class="mb-3">
@@ -171,7 +164,6 @@
 						Account</button>
 				</div>
 			</form>
-
 		</div>
 	</div>
 </div>

@@ -6,7 +6,6 @@ import java.time.LocalTime;
 
 import com.mkt.ym.entity.Payment;
 import com.mkt.ym.entity.RegisterPk;
-import com.mkt.ym.entity.UniversityInfo;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.Major;
 import com.mkt.ym.entity.type.PaymentType;

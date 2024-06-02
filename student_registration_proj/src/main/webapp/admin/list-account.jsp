@@ -4,8 +4,22 @@
 
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
+<c:url var="addAccount" value="/admin/addAccount"></c:url>
+<c:url var="listAccount" value="/admin/accountList"></c:url>
+
 
 <jsp:include page="${head }"></jsp:include>
+<nav id="navbar-example"
+	class="navbar navbar-light bg-light px-3 sticky-sm-top">
+	<ul class="nav">
+		<li class="nav-item"><a href="${addAccount }"
+			class="nav-link primary-text-color"><i
+				class="bi bi-credit-card-2-front"></i>&nbsp;Add Account </a></li>
+		<li class="nav-item"><a href="${listAccount }"
+			class="nav-link primary-text-color"><i
+				class="bi bi-credit-card-2-front-fill"></i>&nbsp;Account List </a></li>
+	</ul>
+</nav>
 <div class="row justify-content-center p-5">
 <table class="table table-striped">
   <thead>

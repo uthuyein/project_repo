@@ -7,6 +7,15 @@
 
 
 <jsp:include page="${head }"></jsp:include>
+<nav id="navbar-example"
+	class="navbar navbar-light bg-light px-3 sticky-sm-top">
+	<ul class="nav">
+		<li class="nav-item"><a href="#"
+			class="nav-link primary-text-color"><i></i>&nbsp;</a></li>
+		<li class="nav-item"><a href="#"
+			class="nav-link primary-text-color"><i></i>&nbsp;</a></li>
+	</ul>
+</nav>
 <div id="carouselExampleControls" class="carousel slide"
 	data-bs-ride="carousel">
 	<div class="carousel-inner">

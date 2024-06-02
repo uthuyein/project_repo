@@ -4,14 +4,24 @@
 
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
+<c:url var="addAccount" value="/admin/addAccount"></c:url>
+<c:url var="listAccount" value="/admin/accountList"></c:url>
 
-<jsp:include page="${head }"></jsp:include>
 <%@page import="com.mkt.ym.entity.type.*"%>
 
-<c:url var="addAccount" value="/admin/addAccount"></c:url>
+
+<jsp:include page="${head }"></jsp:include>
+<nav id="navbar-example"
+	class="navbar navbar-light bg-light px-3 sticky-sm-top">
+	<ul class="nav">
+		<li class="nav-item"><a href="${addAccount }"
+			class="nav-link primary-text-color"><i class="bi bi-credit-card-2-front"></i>&nbsp;Add Account </a></li>
+		<li class="nav-item"><a href="${listAccount }"
+			class="nav-link primary-text-color"><i class="bi bi-credit-card-2-front-fill"></i>&nbsp;Account List </a></li>
+	</ul>
+</nav>
 
 <div class="row justify-content-center p-5">
-
 	<div class="card col-md-5 ">
 		<div class="card-header mt-2 primary-header-text-color">
 			<i class="bi bi-person-fill "></i>&nbsp; Add Account
@@ -56,8 +66,6 @@
 						</div>
 					</div>
 				</div>
-
-
 				<div class="row">
 					<div class="col">
 						<div class="mb-3">
@@ -81,16 +89,10 @@
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label primary-text-color">Password</label>
-					<input type="password" class="form-control" id="password"
+					<input type="text" class="form-control" id="password"
 						name="password">
 				</div>
-				<!-- <div class="mb-3">
-					<label for="confirm" class="form-label text-primary ">Confirm
-						Password</label> <input type="password" class="form-control" id="confirm"
-						name="confirm">
-				</div>
- -->
-				<button type="submit" class="btn primary-color">Save
+						<button type="submit" class="btn primary-color">Save
 					Account</button>
 			</form>
 		</div>

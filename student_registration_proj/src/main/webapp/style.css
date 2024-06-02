@@ -17,3 +17,9 @@
 	font: italic bold 1.2em "Fira Sans", sans-serif;
 	color: #0567a1;
 }
+
+.flex-column > .nav-link.active:focus, 
+.flex-column > .nav-link.active:hover{
+  background:black;
+  color:#fff;
+}

@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import com.mkt.ym.entity.Account;
 import com.mkt.ym.entity.Student;
-import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.entity.type.Role;
 import com.mkt.ym.services.AccountService;

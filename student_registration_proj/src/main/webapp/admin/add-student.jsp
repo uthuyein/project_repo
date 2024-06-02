@@ -13,13 +13,17 @@
 <jsp:include page="${head }"></jsp:include>
 
 <c:url var="addStudent" value="/admin/addStudent"></c:url>
+<c:url var="listStudent" value="/admin/studentList"></c:url>
 
-<div id="test" class=" ">
 	<div class="row" data-bs-spy="scroll" data-bs-target="#navbar-example"
 		style="position: relative">
 
 		<nav id="navbar-example"
 			class="navbar navbar-light bg-light px-3 sticky-sm-top">
+			<ul class="nav">
+				<li class="nav-item"><a href="${addStudent }" class="nav-link primary-text-color"><i class="bi bi-person-fill"></i>&nbsp;Add Student</a></li>
+				<li class="nav-item"><a href="${listStudent }" class="nav-link primary-text-color"><i  class="bi bi-person-lines-fill"></i>&nbsp;Student List</a></li>
+			</ul>
 			<ul class="nav nav-pills">
 				<li class="nav-item"><a
 					class="nav-link primary-text-color fs-sm" href="#studentId">Student</a></li>
@@ -29,7 +33,6 @@
 					href="#parentId">Parent</a></li>
 				<li class="nav-item"><a class="nav-link primary-text-color"
 					href="#addressId">Address</a></li>
-
 			</ul>
 		</nav>
 		<div class="row justify-content-center  p-5 ">
@@ -98,48 +101,6 @@
 								Contact</label> <input type="text" class="form-control" id="sContact"
 								name="sContact">
 						</div>
-						<%-- <div id="universityId"
-							class="card-header mt-3 mb-3 primary-header-text-color">
-							<i class="bi bi-person-fill"></i> Add Student To University
-						</div>
-						<div class="mb-3">
-							<div class="row">
-								<div class="col col-md-5">
-									<label for="openYear" class="form-label primary-text-color">University
-										Opening Year</label> <input type="text" id="openYear"
-										class="form-control" name="openYear" />
-								</div>
-							</div>
-						</div>
-						<div class="mb-3">
-							<div class="row">
-								<div class="col col-md-5">
-									<label for="newYear" class="form-label primary-text-color">Student
-										New Year</label> <select id="newYear" class="form-select"
-										name="newYear">
-										<option selected>---</option>
-										<c:forEach var="y" items="${years }">
-											<option>${y.name() }</option>
-										</c:forEach>
-									</select>
-								</div>
-								<div class="col">
-									<label for="major" class="form-label primary-text-color">Major</label>
-									<select class="form-select" id="major" name="major">
-										<option selected>---</option>
-										<c:forEach var="m" items="${majors }">
-											<option>${m.name() }</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-						</div>
-
-						<div class="mb-3">
-							<label for="newRollNum" class="form-label primary-text-color">Add
-								Roll Number</label> <input type="text" class="form-control"
-								id="newRollNum" name="newRollNum">
-						</div> --%>
 						<div id="schoolId"
 							class="card-header mt-3 mb-3 primary-header-text-color">
 							<i class="bi bi-person-fill"></i> Add School Information
@@ -201,12 +162,11 @@
 						<button type="submit" class="btn primary-color">Save
 							Student</button>
 					</div>
-
 				</form>
 			</div>
 		</div>
 	</div>
-</div>
+
 <jsp:include page="${foot }"></jsp:include>
 
 <script>

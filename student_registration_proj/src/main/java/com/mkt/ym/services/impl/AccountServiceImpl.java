@@ -20,7 +20,6 @@ public class AccountServiceImpl implements AccountService {
 		em.persist(t);
 		em.getTransaction().commit();
 		em.close();
-
 	}
 
 	@Override
@@ -30,7 +29,6 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public List<Account> search(Account acc) {
-
 		try (var em = emf.createEntityManager()) {
 
 			StringBuilder sb = new StringBuilder("select c from Account c where 1=1");
@@ -41,14 +39,12 @@ public class AccountServiceImpl implements AccountService {
 					sb.append(" and c.loginId = :loginId");
 					map.put("loginId", acc.getLoginId());
 				}
-
 				if (null != acc.getStudent()) {
 
 				}
 			}
 
 			TypedQuery<Account> query = em.createQuery(sb.toString(), Account.class);
-
 			for (Map.Entry<String, Object> m : map.entrySet()) {
 				query.setParameter(m.getKey(), m.getValue());
 			}

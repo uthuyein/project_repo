@@ -20,13 +20,11 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public int update(Payment t) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public List<Payment> search(Payment t) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

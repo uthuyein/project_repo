@@ -13,25 +13,23 @@ import jakarta.persistence.TypedQuery;
 public abstract class UniversityInfoDtoSearchImpl {
 
 	public List<UniversityInfoDto> searchUniversityInfo(UniversityInfoDto dto) {
-		Map<String, Object> map = new HashMap<String, Object>();
+		StringBuilder sb = new StringBuilder("""
+				select new com.mkt.ym.entity.dto.UniversityInfoDto(
+				u.id.uniOpenYear,u.id.uniYear,u.id.major,u.id.rollNumber,	
+				s.id,s.name,s.email,s.primaryContact,s.secondaryContact,s.dob,s.image,s.nrc,s.religion,
+				si.id,si.rollNum,si.totalMarks,
+				p.id,p.fatherName,p.motherName,p.fatherNrc,p.motherNrc,
+				a.id,a.city,a.township,a.street) from UniversityInfo u
+				join u.student s
+				join s.schoolInfo si
+				join s.parent p
+				join s.address a
+				where 1=1
+				""");
 		
-		
+		Map<String, Object> map = new HashMap<String, Object>();	
 		try (var em = emf.createEntityManager()) {
-
-			StringBuilder sb = new StringBuilder("""
-					select new com.mkt.ym.entity.dto.UniversityInfoDto(
-					u.id.uniOpenYear,u.id.uniYear,u.id.major,u.id.rollNumber,	
-					s.id,s.name,s.email,s.primaryContact,s.secondaryContact,s.dob,s.image,s.nrc,s.religion,
-					si.id,si.rollNum,si.totalMarks,
-					p.id,p.fatherName,p.motherName,p.fatherNrc,p.motherNrc,
-					a.id,a.city,a.township,a.street) from UniversityInfo u
-					join u.student s
-					join s.schoolInfo si
-					join s.parent p
-					join s.address a
-					where 1=1
-					""");
-
+			
 			if (null != dto) {
 				if(null != dto.rollNumber()) {
 					sb.append(" and u.id.rollNumber = :roll");
@@ -78,9 +76,9 @@ public abstract class UniversityInfoDtoSearchImpl {
 				if (dto.major() != null) {
 					sb.append(" and u.id.major = :major");
 					map.put("major", dto.major());
-				}
-				
+				}			
 			}
+			
 			TypedQuery<UniversityInfoDto> query = em.createQuery(sb.toString(), UniversityInfoDto.class);
 			for (Map.Entry<String, Object> m : map.entrySet()) {
 				query.setParameter(m.getKey(), m.getValue());

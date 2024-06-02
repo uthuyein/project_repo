@@ -20,21 +20,16 @@ public class StudentServiceImpl extends StudentDtoSearchImpl implements StudentS
 		em.getTransaction().begin();
 		em.persist(t);
 		em.getTransaction().commit();
-		em.close();
-		
+		em.close();		
 	}
 	
-	
-
 	@Override
 	public int update(Student t) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public List<Student> search(Student t) {
-		
+	public List<Student> search(Student t) {		
 		try (var em = emf.createEntityManager()) {
 
 			StringBuilder sb = new StringBuilder("""

@@ -84,7 +84,6 @@ public class RegistrationController extends AccountController {
 		payment.setTransactionNum(tNum);
 		payment.setAmount(amount);
 		payment.setNote(note);
-	//	payment.setUniInfo(uni);
 		pService.save(payment);
 	}
 	

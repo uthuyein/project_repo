@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import com.mkt.ym.entity.Account;
 import com.mkt.ym.entity.Student;
-import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.entity.type.Role;
 import com.mkt.ym.services.AccountService;
 import com.mkt.ym.utils.StuRegException;
@@ -20,8 +19,7 @@ public class AccountController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private AccountService accService;
-	private MessageType messageType;
-
+	
 	void addAccount(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		accService = AccountService.getAccountService();
 
@@ -36,19 +34,13 @@ public class AccountController extends HttpServlet {
 		var confirm = req.getParameter("confirm");
 
 		var acc = new Account(username);
-
 		var list = accService.search(acc);
-
-//		var uniYear = null != year ? Integer.parseInt(year) : null;
-//		var major = null != maj ? Major.valueOf(maj) : null;
+		
 		var role = null != rol && !rol.equals("---") ? Role.valueOf(rol) : Role.STUDENT;
 
 		try {
 			System.out.println("Name :"+ list.get(0).getStudent().getName());
-			if (null != list) {
-				throw new StuRegException("Username is already taken .Plase choose another one !");
-			}
-		
+			
 			if (role == Role.STUDENT) {
 				acc.setStudent(getStudent(req, stuName, stuNrc).get());
 			}
@@ -62,11 +54,8 @@ public class AccountController extends HttpServlet {
 			resp.sendRedirect("/admin/add-account.jsp");
 
 		} catch (StuRegException e) {
-			messageType = MessageType.WARNING;
-			messageType.setMessage(e.getMessage());
 			e.printStackTrace();
 		}
-		req.setAttribute("message", messageType);
 		req.getRequestDispatcher("/admin/add-account.jsp").forward(req, resp);
 	}
 	

@@ -70,7 +70,6 @@ public class StudentController extends HttpServlet {
 			req.setAttribute("studentList", studentList);
 			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
 			break;
-
 		}
 
 	}
@@ -137,9 +136,7 @@ public class StudentController extends HttpServlet {
 		var city = req.getParameter("city");
 		var township = req.getParameter("township");
 		var name = req.getParameter("stuName");
-
-		var dto = new StudentDto((city.equals("---"))?null:city, (township.equals("---"))?null:township, name);
-		
+		var dto = new StudentDto((city.equals("---"))?null:city, (township.equals("---"))?null:township, name);		
 		return dto;
 
 	}

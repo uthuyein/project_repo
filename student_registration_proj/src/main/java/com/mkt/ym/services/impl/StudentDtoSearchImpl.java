@@ -69,9 +69,7 @@ public abstract class StudentDtoSearchImpl {
 				if(null != dto.totalMarks()) {
 					sb.append(" and si.totalMarks = :schMarks");
 					map.put("schMarks", dto.totalMarks());
-				}
-				
-				
+				}				
 			}
 			TypedQuery<StudentDto> query = em.createQuery(sb.toString(), StudentDto.class);
 			for (Map.Entry<String, Object> m : map.entrySet()) {

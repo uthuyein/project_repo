@@ -43,8 +43,6 @@ public class UniversityController extends HttpServlet {
 			req.getRequestDispatcher("/admin/add-uni-info.jsp").forward(req, resp);
 			break;
 		case "/admin/studentListfrmUni":
-//			listUniInfo = uniService.searchUniversityInfo(null);		
-//			req.setAttribute("listUniInfo", listUniInfo);
 			req.getRequestDispatcher("/admin/list-uni-info.jsp").forward(req, resp);
 			break;
 		}
@@ -77,7 +75,6 @@ public class UniversityController extends HttpServlet {
 
 		var major = (null != maj) ? Major.valueOf(maj) : null;
 		var newYear = (null != newY) ? UniYear.valueOf(newY) : null;
-
 		var uniYear = (uYear != null) ? Integer.valueOf(uYear) : LocalDate.now().getYear();
 
 		var uniInfo = new UniversityInfo();

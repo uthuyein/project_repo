@@ -59,7 +59,7 @@
 							Information </a></li>
 					<c:if test="${account ne null and account.role eq role}">
 						<li class="nav-item "><a class="nav-link text-white"
-							href="${listStudent }"><i class="bi bi-person-badge"></i>&nbsp;Student</a></li>
+							href="${listStudent }"><i class="bi bi-person-fill"></i>&nbsp;Student</a></li>
 
 						<li class="nav-item "><a class="nav-link text-white"
 							href="${listStudentfrmUni }"><i class="bi bi-building"></i>&nbsp;University</a></li>

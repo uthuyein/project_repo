@@ -13,8 +13,7 @@
 
 
 <jsp:include page="${head }"></jsp:include>
-<div class="row" data-bs-spy="scroll" data-bs-target="#navbar-example"
-	style="position: relative">
+<div class="row">
 	<nav id="navbar-example"
 		class="navbar navbar-light bg-light px-3 sticky-sm-top">
 		<ul class="nav">
@@ -26,7 +25,7 @@
 					class="bi bi-person-lines-fill"></i>&nbsp;Student List</a></li>
 		</ul>
 	</nav>
-	<div class="row p-3 m-3">
+	<div class="row p-5 m-3">
 		<form action="${listStudent }" class="form  mt-2 w-75" method="post">
 			<div class="row">
 				<div class="col">

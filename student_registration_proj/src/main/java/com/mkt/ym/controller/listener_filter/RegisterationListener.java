@@ -31,11 +31,11 @@ public class RegisterationListener implements ServletRequestListener {
 		var session = req.getSession(true);
 		
 		if (null != students) {
-			session.setAttribute("students", students);
+			session.setAttribute("listStudent", students);
 		}
 
 		if (null != listUniInfo) {
-			System.out.println("=================== year");
+			
 			session.setAttribute("openYears", getYear());
 			session.setAttribute("listUniInfo", listUniInfo);
 			session.setAttribute("cities", getCities());

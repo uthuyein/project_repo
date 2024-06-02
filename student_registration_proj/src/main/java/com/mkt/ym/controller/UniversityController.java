@@ -28,18 +28,17 @@ public class UniversityController extends HttpServlet {
 	private List<UniversityInfoDto> listUniInfo;
 	private static List<Student> students;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		listUniInfo = new ArrayList<UniversityInfoDto>();
 		students = new ArrayList<Student>();
 		
 		uniService = UniversityInfoService.getUniversityInfoService();
-		students = (List<Student>) req.getSession().getAttribute("students");
+		//students = (List<Student>) req.getSession().getAttribute("listStudent");
 		
 		switch (req.getServletPath()) {
 		case "/admin/addStudentToUni":
-			req.setAttribute("students", students);
+			//req.setAttribute("students", students);
 			req.getRequestDispatcher("/admin/add-uni-info.jsp").forward(req, resp);
 			break;
 		case "/admin/studentListfrmUni":

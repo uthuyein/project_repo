@@ -20,7 +20,6 @@
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/entity/type/MessageType.java
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/entity/Parent.java
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/utils/CommonServices.java
-/Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/controller/RegistrationController.java
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/entity/Account.java
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/entity/UniversityInfo.java
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/entity/type/UniYear.java
@@ -32,5 +31,6 @@
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/services/impl/UniversityInfoServiceImpl.java
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/controller/AdminAccountController.java
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/controller/UniversityController.java
+/Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/controller/RegistrationAccountController.java
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/entity/RegisterPk.java
 /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/src/main/java/com/mkt/ym/services/impl/UniversityInfoDtoSearchImpl.java

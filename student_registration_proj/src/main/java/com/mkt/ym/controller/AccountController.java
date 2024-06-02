@@ -19,7 +19,7 @@ public class AccountController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private AccountService accService;
-	
+
 	void addAccount(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		accService = AccountService.getAccountService();
 
@@ -35,12 +35,13 @@ public class AccountController extends HttpServlet {
 
 		var acc = new Account(username);
 		var list = accService.search(acc);
-		
+
 		var role = null != rol && !rol.equals("---") ? Role.valueOf(rol) : Role.STUDENT;
 
 		try {
-			System.out.println("Name :"+ list.get(0).getStudent().getName());
-			
+			if (null != list && list.size() > 0) {
+				System.out.println("Name :" + list.get(0).getStudent().getName());
+			}
 			if (role == Role.STUDENT) {
 				acc.setStudent(getStudent(req, stuName, stuNrc).get());
 			}
@@ -58,11 +59,10 @@ public class AccountController extends HttpServlet {
 		}
 		req.getRequestDispatcher("/admin/add-account.jsp").forward(req, resp);
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	private Optional<Student> getStudent(HttpServletRequest req, String name, String nrc) {
-		return ((List<Student>) req.getAttribute("students")).stream()
+		return ((List<Student>) req.getSession().getAttribute("listStudent")).stream()
 				.filter(s -> s.getName().equalsIgnoreCase(name) && s.getNrc().equalsIgnoreCase(nrc)).findFirst();
 	}
 

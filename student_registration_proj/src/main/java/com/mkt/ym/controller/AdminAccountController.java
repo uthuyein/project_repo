@@ -12,8 +12,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {
-
-		"/student/login", "/student/logout", "/admin/addAccount", "/admin/accountList" }, loadOnStartup = 1)
+		"/student/login",
+		"/student/logout",
+		"/admin/addAccount",
+		"/admin/accountList" }, loadOnStartup = 1)
 
 public class AdminAccountController extends AccountController {
 
@@ -45,7 +47,8 @@ public class AdminAccountController extends AccountController {
 		
 		switch (req.getServletPath()) {
 		case "/student/login":
-			req.getSession(true).setAttribute("account", login(req));
+			var acc = login(req);
+			req.getSession(true).setAttribute("account", acc);
 			req.getRequestDispatcher("/index.jsp").forward(req, resp);
 			break;
 		case "/admin/addAccount":

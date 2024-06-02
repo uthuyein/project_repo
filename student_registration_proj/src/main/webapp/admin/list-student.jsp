@@ -7,7 +7,7 @@
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="addStudent" value="/admin/addStudent"></c:url>
-<c:url var="listStudent" value="/admin/studentList"></c:url>
+<c:url var="studentList" value="/admin/studentList"></c:url>
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="uniYears" value="<%=UniYear.values()%>"></c:set>
 
@@ -20,13 +20,13 @@
 			<li class="nav-item"><a href="${addStudent }"
 				class="nav-link primary-text-color"><i class="bi bi-person-fill"></i>&nbsp;Add
 					Student</a></li>
-			<li class="nav-item"><a href="${listStudent }"
+			<li class="nav-item"><a href="${studentList }"
 				class="nav-link primary-text-color"><i
 					class="bi bi-person-lines-fill"></i>&nbsp;Student List</a></li>
 		</ul>
 	</nav>
 	<div class="row p-5 m-3">
-		<form action="${listStudent }" class="form  mt-2 w-75" method="post">
+		<form action="${studentList }" class="form  mt-2 w-75" method="post">
 			<div class="row">
 				<div class="col">
 					<label for="city" class="form-label primary-text-color">City</label><select
@@ -59,7 +59,7 @@
 			</div>
 		</form>
 		<c:choose>
-			<c:when test="${null ne studentList }">
+			<c:when test="${null ne listStudent }">
 				<div class="table-responsive mt-4">
 					<table class="table table-hover w-auto">
 						<thead>
@@ -83,7 +83,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="s" items="${studentList }" varStatus="n">
+							<c:forEach var="s" items="${listStudent }" varStatus="n">
 								<tr>
 									<th scope="row">${n.index+1 }</th>
 									<td><a href="" class="nav-link">${s.name() }</a></td>

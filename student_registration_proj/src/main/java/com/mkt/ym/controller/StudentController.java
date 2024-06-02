@@ -43,7 +43,7 @@ public class StudentController extends HttpServlet {
 			break;
 		case "/admin/studentList":
 			var studentList = stuService.searchStudentDto(null);
-			req.setAttribute("studentList", studentList);
+			req.setAttribute("listStudent", studentList);
 			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
 			break;
 		}
@@ -67,7 +67,7 @@ public class StudentController extends HttpServlet {
 		case "/admin/studentList":
 			var dto = searchStudent(req);
 			var studentList = stuService.searchStudentDto(dto);
-			req.setAttribute("studentList", studentList);
+			req.setAttribute("listStudent", studentList);
 			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
 			break;
 		}

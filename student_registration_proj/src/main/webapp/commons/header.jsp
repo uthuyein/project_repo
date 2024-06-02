@@ -80,9 +80,10 @@
 				<c:choose>
 					<c:when test="${account ne null }">
 						<div class="nav-item ">
+						<c:set value="${null ne account.student ? account.student.image:'uni_images/UTYCC.png'}" var="img"></c:set>
 							<a class="nav-link text-white" data-bs-toggle="modal"
 								data-bs-target="#logoutModal"><img
-								src="/images/uni_images/UTYCC.png" alt="" width="30" height="30"
+								src="/images/${img }" alt="" width="30" height="30"
 								class="rounded-circle">&nbsp;Logout </a>
 						</div>
 					</c:when>

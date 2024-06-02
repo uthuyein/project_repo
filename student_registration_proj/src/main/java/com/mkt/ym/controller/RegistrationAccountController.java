@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = { "/student/chkStudent", "/student/register" })
-public class RegistrationController extends AccountController {
+public class RegistrationAccountController extends AccountController {
 
 	private static final long serialVersionUID = 1L;
 	private UniversityInfoService uniService;
@@ -36,8 +36,7 @@ public class RegistrationController extends AccountController {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		var dto = getUniInfoDto(req);
-		if (null != dto) {
-			
+		if (null != dto) {			
 			createPayment(req);
 			addAccount(req, resp);
 			
@@ -56,7 +55,8 @@ public class RegistrationController extends AccountController {
 		var mNrc = req.getParameter("mNrc");
 		var schEnroll = req.getParameter("schEnroll");
 		var schMarks = Integer.parseInt(req.getParameter("schMarks"));
-		var openYear = Integer.parseInt(req.getParameter("openYear"));
+		
+		var openYear = (null != req.getParameter("openYear"))? Integer.parseInt(req.getParameter("openYear")):LocalDate.now().getYear();
 
 		var uniYear = UniYear.valueOf(null != req.getParameter("uniYear")?req.getParameter("uniYear"):"FIRST");
 		var major = Major.valueOf(req.getParameter("major"));

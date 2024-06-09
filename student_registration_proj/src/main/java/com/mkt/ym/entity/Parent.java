@@ -24,7 +24,7 @@ public class Parent {
 	private String fatherName;
 	private String motherNrc;
 	private String fatherNrc;
-	@Column(columnDefinition = "tinyint(1) default 1")
+	@Column(columnDefinition = "tinyint default 1")
 	private boolean active;
 	
 	public Parent(String motherName, String fatherName, String motherNrc, String fatherNrc) {

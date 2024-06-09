@@ -117,8 +117,8 @@
 						</select>
 					</div>
 					<div class="mb-3">
-						<label for="tName" class="form-label primary-text-color">Transfer
-							From</label> <input type="text" class="form-control" id="tName">
+						<label for="tName" class="form-label primary-text-color">Transfer 
+							From</label> <input type="text" class="form-control" id="tName" name="tName">
 					</div>
 					<div class="mb-3">
 						<label for="tNum" class="form-label primary-text-color">Transaction

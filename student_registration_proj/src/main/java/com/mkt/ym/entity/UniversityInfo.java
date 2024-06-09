@@ -5,6 +5,7 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "university_tbl")
 @NoArgsConstructor
+@AllArgsConstructor
 public class UniversityInfo {
 	
 	@EmbeddedId
@@ -22,7 +24,7 @@ public class UniversityInfo {
 	private Student student;
 	
 
-	@Column(columnDefinition = "tinyint(1) default 1")
+	@Column(columnDefinition = "tinyint default 1")
 	private boolean active;
 
 

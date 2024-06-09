@@ -6,6 +6,9 @@ import java.time.LocalTime;
 
 import com.mkt.ym.entity.Payment;
 import com.mkt.ym.entity.RegisterPk;
+import com.mkt.ym.entity.Student;
+import com.mkt.ym.entity.UniversityInfo;
+import com.mkt.ym.entity.UniversityInfoPK;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.Major;
 import com.mkt.ym.entity.type.PaymentType;
@@ -24,6 +27,7 @@ public class RegistrationAccountController extends AccountController {
 	private static final long serialVersionUID = 1L;
 	private UniversityInfoService uniService;
 	private PaymentService pService;
+	private UniversityInfo uniInfo;
 	
 
 	@Override
@@ -64,6 +68,12 @@ public class RegistrationAccountController extends AccountController {
 		var dto = new UniversityInfoDto(openYear,uniYear,major, stuName, dob, nrc, fNrc, mNrc, schEnroll, schMarks);
 
 		var uniInfoDto = uniService.searchUniversityInfo(dto).stream().findFirst().orElse(null);
+		
+		var uniInfoPk = new UniversityInfoPK(uniInfoDto.openYear(),uniInfoDto.rollNumber(),uniInfoDto.major(),uniInfoDto.uniYear());
+		var student = new Student();
+		student.setId(uniInfoDto.stuId());
+		uniInfo = new UniversityInfo(uniInfoPk,student,true);
+		
 		return uniInfoDto;
 	}
 
@@ -84,6 +94,7 @@ public class RegistrationAccountController extends AccountController {
 		payment.setTransactionNum(tNum);
 		payment.setAmount(amount);
 		payment.setNote(note);
+		payment.setUniInfo(uniInfo);
 		pService.save(payment);
 	}
 	

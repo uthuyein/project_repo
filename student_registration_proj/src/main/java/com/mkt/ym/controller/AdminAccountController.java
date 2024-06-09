@@ -57,8 +57,6 @@ public class AdminAccountController extends AccountController {
 		}
 	}
 
-
-
 	private Account login(HttpServletRequest req) throws ServletException, IOException {
 		var user = req.getParameter("username");
 		var pass = req.getParameter("password");

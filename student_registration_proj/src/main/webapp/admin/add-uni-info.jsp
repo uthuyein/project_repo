@@ -69,8 +69,8 @@
 					<label for="student" class="form-label primary-text-color">Student
 						Name</label> <select id="student" class="form-select" name="stuName">
 						<option selected>---</option>
-						<c:if test="${students ne null}">
-							<c:forEach var="s" items="${students }">
+						<c:if test="${listStudent ne null}">
+							<c:forEach var="s" items="${listStudent }">
 								<option >${s.name }</option>
 							</c:forEach>
 						</c:if>
@@ -80,8 +80,8 @@
 					<label for="student" class="form-label primary-text-color">Student
 						Nrc</label> <select id="student" class="form-select" name="nrc">
 						<option selected>---</option>
-						<c:if test="${students ne null}">
-							<c:forEach var="s" items="${students }">
+						<c:if test="${listStudent ne null}">
+							<c:forEach var="s" items="${listStudent }">
 								<option >${s.nrc }</option>
 							</c:forEach>
 						</c:if>

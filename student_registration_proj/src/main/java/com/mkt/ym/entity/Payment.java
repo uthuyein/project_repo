@@ -1,5 +1,6 @@
 package com.mkt.ym.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -21,9 +22,9 @@ public class Payment {
 	private String transactionNum;	
 	private Integer amount;
 	private String note;
-	
 	@ManyToOne
 	private UniversityInfo uniInfo;
+	@Column(columnDefinition = "tinyint default 1")
 	private boolean active;
 	
 }

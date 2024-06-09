@@ -44,13 +44,12 @@ public class Student {
 	private String secondaryContact;
 
 	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-	private SchoolInfo schoolInfo;
-	
+	private SchoolInfo schoolInfo;	
 	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private Parent parent;
 	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private Address address;
-	@Column(columnDefinition = "tinyint(1) default 1")
+	@Column(columnDefinition = "tinyint default 1")
 	private boolean active;
 
 

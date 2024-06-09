@@ -24,17 +24,9 @@ public class SchoolInfo {
 	private Integer id;
 	private String rollNum;
 	private Integer totalMarks;
-	@Column(columnDefinition = "boolean default true")
-	private boolean active;
 	
-//	@Column(table = "subject_mark_tbl")
-//	private int maths;
-//	@Column(table = "subject_mark_tbl")
-//	private int Phys;
-//	@Column(table = "subject_mark_tbl")
-//	private int chems;
-//	@Column(table = "subject_mark_tbl")
-//	private int eng;
+	@Column(columnDefinition = "tinyint default 1")
+	private boolean active;
 	
 	public SchoolInfo(String rollNum, int totalMarks) {
 		super();

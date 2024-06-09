@@ -37,7 +37,7 @@ public class CommonEntityManager {
 			em.close();
 	}
 	
-	//@Test
+	@Test
 	void testStudent() {}
 	
 }

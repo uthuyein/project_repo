@@ -5,28 +5,26 @@
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="register" value="/student/register"></c:url>
+<c:url var="payment" value="/student/payment"></c:url>
+<c:url var="account" value="/student/account"></c:url>
 
 <%@page import="com.mkt.ym.entity.type.*"%>
 
 <jsp:include page="${head }"></jsp:include>
-<div class="row" data-bs-spy="scroll" data-bs-target="#navbar-example"
-	style="position: relative">
-
+<div class="row">
 	<nav id="navbar-example"
 		class="navbar navbar-light bg-light px-3 sticky-sm-top">
-		<ul class="nav nav-pills">
+		<ul class="nav">
 			<li class="nav-item"><a
-				class="nav-link primary-text-color fs-sm" href="#registerId">Register</a></li>
-			<li class="nav-item "><a class="nav-link primary-text-color"
-				href="#paymentId">Payment</a></li>
-			<li class="nav-item"><a class="nav-link primary-text-color"
-				href="#accountId">Account</a></li>
+				class="nav-link primary-text-color fs-sm" href="${register }">Register</a></li>
+			<li class="nav-item "hidden="true"><a class="nav-link primary-text-color"
+				href="${payment }" >Payment</a></li>
+			<li class="nav-item" hidden="true"><a class="nav-link primary-text-color"
+				href="${account }">Account</a></li>
 		</ul>
 	</nav>
-	<div class="row justify-content-center  p-5 ">
-		<div data-bs-spy="scroll" data-bs-target="#navbar-example"
-			data-bs-offset="0" class="col col-md-6 scrollspy-example"
-			tabindex="0">
+	<div class="row justify-content-center p-5 ">
+		<div class="col col-md-6 ">
 			<form action="${register }" method="post">
 				<div class="card-body ">
 
@@ -40,7 +38,7 @@
 							<div class="mb-3">
 								<label for="openYear" class="form-label primary-text-color">University
 									Open Year</label> <input type="text" id="openYear" class="form-control"
-									name="openYear">
+									name="openYear" value="2022">
 							</div>
 						</div>
 						<div class="col">
@@ -48,14 +46,14 @@
 								<label for="uniYear" class="form-label primary-text-color">University
 									Year</label> <select class="form-select" name="uniYear" id="uniYear">
 									<c:set var="years" value="<%=UniYear.values()%>"></c:set>
-									<option selected>---</option>
+									<option selected>FIRST</option>
 									<c:forEach var="y" items="${years }">
 										<option>${y.name()}</option>
 									</c:forEach>
 								</select>
 							</div>
 						</div>
-						<div class="col">
+						<%-- <div class="col">
 							<div class="mb-3">
 								<label for="major" class="form-label primary-text-color">Major
 									Name</label> <select id="major" class="form-select" name="major">
@@ -66,102 +64,45 @@
 									</c:forEach>
 								</select>
 							</div>
-						</div>
+						</div> --%>
 					</div>
 					<div class="mb-3">
 						<label for="stuName" class="form-label primary-text-color">Student's
 							Name</label> <input type="text" class="form-control" id="stuName"
-							name="stuName">
+							name="stuName" value="andrew">
 					</div>
 					<div class="mb-3">
 						<label for="dob" class="form-label primary-text-color">Date
 							Of Birth</label> <input type="date" class="form-control" id="dob"
-							name="dob">
+							name="dob" value="1991-05-22">
 					</div>
 					<div class="mb-3">
 						<label for="nrc" class="form-label primary-text-color">National
 							Identity Card(NRC)</label> <input type="text" class="form-control"
-							id="nrc" name="nrc">
+							id="nrc" name="nrc" value="9/pamana(n)765642">
 					</div>
 					<div class="mb-3">
 						<label for="fNrc" class="form-label primary-text-color">Father
-							NRC</label> <input type="text" class="form-control" id="fNrc" name="fNrc">
+							NRC</label> <input type="text" class="form-control" id="fNrc" name="fNrc" value="5/pakaka(n)982342">
 					</div>
 					<div class="mb-3">
 						<label for="mNrc" class="form-label primary-text-color">Mother
-							NRC</label> <input type="text" class="form-control" id="mNrc" name="mNrc">
+							NRC</label> <input type="text" class="form-control" id="mNrc" name="mNrc" value="6/yatata(F)0942342">
 					</div>
 					<div class="mb-3">
 						<label for="schEnroll" class="form-label primary-text-color">School
 							Grade 12 Enroll Number</label> <input type="text" class="form-control"
-							id="schEnroll" name="schEnroll">
+							id="schEnroll" name="schEnroll" value="10">
 					</div>
 					<div class="mb-3">
 						<label for="schMarks" class="form-label primary-text-color">School
 							Grade 12 Marks </label> <input type="text" class="form-control"
-							id="schMarks" name="schMarks">
+							id="schMarks" name="schMarks" value="405">
 					</div>
-					<div id="paymentId"
-						class="card-header mt-3 mb-4 primary-header-text-color">
-						<i class="bi bi-wallet "></i> &nbsp;Add Payment Information
+					<div class="nav justify-content-end">
+						<button type="submit" class="btn primary-color">
+							Register</button>
 					</div>
-					<div class="mb-3">
-						<label for="payment" class="form-label primary-text-color">Payment
-							Type</label> <select class="form-select" name="payment">
-							<option selected>---</option>
-							<c:set var="pays" value="<%=PaymentType.values()%>"></c:set>
-							<option selected>---</option>
-							<c:forEach var="m" items="${pays }">
-								<option>${m.name()}</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="mb-3">
-						<label for="tName" class="form-label primary-text-color">Transfer 
-							From</label> <input type="text" class="form-control" id="tName" name="tName">
-					</div>
-					<div class="mb-3">
-						<label for="tNum" class="form-label primary-text-color">Transaction
-							No.</label> <input type="text" class="form-control" id="tNum" name="tNum">
-					</div>
-					<div class="mb-3">
-						<label for="amount" class="form-label primary-text-color">Amount</label>
-						<input type="text" class="form-control" id="amount" name="amount">
-					</div>
-					<div class="mb-3">
-						<label for="note" class="form-label primary-text-color">Note</label>
-						<input type="text" class="form-control" id="note" name="note">
-					</div>
-
-					<div id="accountId"
-						class="card-header mt-3 mb-4 primary-header-text-color">
-						<figure>
-							<blockquote class="blockquote">
-								<i class="bi bi-person-fill "></i>&nbsp; Add Account
-							</blockquote>
-							<figcaption class="blockquote-footer">
-								<small>Admin will activate within 48hrs. </small>
-							</figcaption>
-						</figure>
-					</div>
-
-					<div class="mb-3">
-						<label for="username" class="form-label primary-text-color">Account
-							User Name</label> <input type="text" class="form-control" id="username"
-							name="username">
-					</div>
-					<div class="mb-3">
-						<label for="password" class="form-label primary-text-color">Password</label>
-						<input type="password" class="form-control" id="password"
-							name="password">
-					</div>
-					<div class="mb-3">
-						<label for="password" class="form-label primary-text-color">Confirm
-							Password</label> <input type="password" class="form-control"
-							id="password" name="confirm">
-					</div>
-					<button type="submit" class="btn primary-color">Save
-						Account</button>
 				</div>
 			</form>
 		</div>
@@ -169,8 +110,8 @@
 </div>
 <jsp:include page="${foot }"></jsp:include>
 
-<script>
+<!-- <script>
 	var scrollSpy = new bootstrap.ScrollSpy(document.body, {
 		target : '#navbar-example'
 	})
-</script>
+</script> -->

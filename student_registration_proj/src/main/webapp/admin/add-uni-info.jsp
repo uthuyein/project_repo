@@ -18,11 +18,11 @@
 	class="navbar navbar-light bg-light px-3 sticky-sm-top">
 	<ul class="nav">
 		<li class="nav-item"><a href="${addUniInfo }"
-			class="nav-link primary-text-color"><i class="bi bi-collection"></i>&nbsp;Add Student To
-				University</a></li>
+			class="nav-link primary-text-color"><i class="bi bi-collection"></i>&nbsp;Add
+				Student To University</a></li>
 		<li class="nav-item"><a href="${listStudentUni }"
-			class="nav-link primary-text-color"><i class="bi bi-collection-fill"></i>&nbsp;Student List
-				From University</a></li>
+			class="nav-link primary-text-color"><i
+				class="bi bi-collection-fill"></i>&nbsp;Student List From University</a></li>
 	</ul>
 </nav>
 <div class="row justify-content-center p-5">
@@ -35,9 +35,9 @@
 				<div class="mb-3">
 					<div class="row">
 						<div class="col col-md-5">
-							<label for="frmYear" class="form-label primary-text-color">University Opening
-								Year</label> <input type="text" id="frmYear" class="form-control"
-								name="openYear"/>
+							<label for="frmYear" class="form-label primary-text-color">University
+								Opening Year</label> <input type="text" id="frmYear"
+								class="form-control" name="openYear" />
 						</div>
 					</div>
 				</div>
@@ -64,38 +64,40 @@
 					</div>
 				</div>
 				<div class="mb-3">
-				<div class="row">
-					<div class="col">
-					<label for="student" class="form-label primary-text-color">Student
-						Name</label> <select id="student" class="form-select" name="stuName">
-						<option selected>---</option>
-						<c:if test="${listStudent ne null}">
-							<c:forEach var="s" items="${listStudent }">
-								<option >${s.name }</option>
-							</c:forEach>
-						</c:if>
-					</select>
+					<div class="row">
+						<div class="col">
+							<label for="student" class="form-label primary-text-color">Student
+								Name</label> <select id="student" class="form-select" name="stuName">
+								<option selected>---</option>
+								<c:if test="${listStudent ne null}">
+									<c:forEach var="s" items="${listStudent }">
+										<option>${s.name()}</option>
+									</c:forEach>
+								</c:if>
+							</select>
+						</div>
+						<div class="col">
+							<label for="student" class="form-label primary-text-color">Student
+								Nrc</label> <select id="student" class="form-select" name="nrc">
+								<option selected>---</option>
+								<c:if test="${listStudent ne null}">
+									<c:forEach var="s" items="${listStudent }">
+										<option>${s.nrc() }</option>
+									</c:forEach>
+								</c:if>
+							</select>
+						</div>
 					</div>
-					<div class="col">
-					<label for="student" class="form-label primary-text-color">Student
-						Nrc</label> <select id="student" class="form-select" name="nrc">
-						<option selected>---</option>
-						<c:if test="${listStudent ne null}">
-							<c:forEach var="s" items="${listStudent }">
-								<option >${s.nrc }</option>
-							</c:forEach>
-						</c:if>
-					</select>
-					</div>
-				</div>
-					
+
 				</div>
 				<div class="mb-3">
 					<label for="newRollNum" class="form-label primary-text-color">Add
 						Roll Number</label> <input type="text" class="form-control"
 						id="newRollNum" name="newRollNum">
 				</div>
-				<button type="submit" class="btn primary-color w-25">Save</button>
+				<div class="nav justify-content-end">
+					<button type="submit" class="btn primary-color w-25">Save</button>
+				</div>
 			</form>
 		</div>
 	</div>

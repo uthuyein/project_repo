@@ -49,7 +49,7 @@ public class Student {
 	private Parent parent;
 	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private Address address;
-	@Column(columnDefinition = "tinyint default 1")
+	@Column(columnDefinition = "boolean not null default true")
 	private boolean active;
 
 

@@ -15,9 +15,11 @@
 	class="navbar navbar-light bg-light px-3 sticky-sm-top">
 	<ul class="nav">
 		<li class="nav-item"><a href="${addAccount }"
-			class="nav-link primary-text-color"><i class="bi bi-credit-card-2-front"></i>&nbsp;Add Account </a></li>
+			class="nav-link primary-text-color"><i
+				class="bi bi-credit-card-2-front"></i>&nbsp;Add Account </a></li>
 		<li class="nav-item"><a href="${listAccount }"
-			class="nav-link primary-text-color"><i class="bi bi-credit-card-2-front-fill"></i>&nbsp;Account List </a></li>
+			class="nav-link primary-text-color"><i
+				class="bi bi-credit-card-2-front-fill"></i>&nbsp;Account List </a></li>
 	</ul>
 </nav>
 
@@ -92,8 +94,11 @@
 					<input type="text" class="form-control" id="password"
 						name="password">
 				</div>
-						<button type="submit" class="btn primary-color">Save
-					Account</button>
+				<div class="nav justify-content-end">
+					<button type="submit" class="btn primary-color">Save
+						Account</button>
+				</div>
+
 			</form>
 		</div>
 	</div>

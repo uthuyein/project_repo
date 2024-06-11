@@ -25,7 +25,7 @@ public class SchoolInfo {
 	private String rollNum;
 	private Integer totalMarks;
 	
-	@Column(columnDefinition = "tinyint default 1")
+	@Column(columnDefinition = "boolean not null default true")
 	private boolean active;
 	
 	public SchoolInfo(String rollNum, int totalMarks) {

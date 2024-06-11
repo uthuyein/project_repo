@@ -30,7 +30,6 @@ public class StudentController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		stuService = StudentService.getStudentService();
 		
 
@@ -42,8 +41,8 @@ public class StudentController extends HttpServlet {
 			req.getRequestDispatcher("/admin/add-student.jsp").forward(req, resp);
 			break;
 		case "/admin/studentList":
-			var studentList = stuService.searchStudentDto(null);
-			req.setAttribute("listStudent", studentList);
+//			var studentList = stuService.searchStudentDto(null);
+//			req.setAttribute("listStudent", studentList);
 			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
 			break;
 		}

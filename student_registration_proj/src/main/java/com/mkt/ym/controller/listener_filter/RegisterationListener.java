@@ -3,6 +3,7 @@ package com.mkt.ym.controller.listener_filter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.mkt.ym.entity.dto.StudentDto;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.services.StudentService;
 import com.mkt.ym.services.UniversityInfoService;
@@ -18,6 +19,8 @@ public class RegisterationListener implements ServletRequestListener {
 	private UniversityInfoService uniService;
 	private StudentService stuService;
 	private List<UniversityInfoDto> listUniInfo;
+	private List<StudentDto> listStudent;
+
 
 	@Override
 	public void requestInitialized(ServletRequestEvent sre) {
@@ -27,19 +30,18 @@ public class RegisterationListener implements ServletRequestListener {
 		stuService = StudentService.getStudentService();
 		
 		listUniInfo = uniService.searchUniversityInfo(null);
-		var students = stuService.search(null);
-		var session = req.getSession(true);
+		listStudent = stuService.searchStudentDto(null);
 		
-		if (null != students) {
-			session.setAttribute("listStudent", students);
+		if (null != listStudent) {
+			req.setAttribute("listStudent", listStudent);
 		}
 
 		if (null != listUniInfo) {
 			
-			session.setAttribute("openYears", getYear());
-			session.setAttribute("listUniInfo", listUniInfo);
-			session.setAttribute("cities", getCities());
-			session.setAttribute("townships", getTownships());
+			req.setAttribute("openYears", getYear());
+			req.setAttribute("listUniInfo", listUniInfo);
+			req.setAttribute("cities", getCities());
+			req.setAttribute("townships", getTownships());
 		}
 	}
 
@@ -50,10 +52,10 @@ public class RegisterationListener implements ServletRequestListener {
 	}
 	
 	private List<String> getCities() {
-		return  listUniInfo.stream().map(UniversityInfoDto::city).distinct().collect(Collectors.toList());
+		return  listStudent.stream().map(StudentDto::city).distinct().collect(Collectors.toList());
 	}
 	private List<String> getTownships() {
-		return  listUniInfo.stream().map(UniversityInfoDto::township).distinct().collect(Collectors.toList());
+		return  listStudent.stream().map(StudentDto::township).distinct().collect(Collectors.toList());
 	}
 
 }

@@ -22,9 +22,7 @@ public class UniversityInfo {
 	private UniversityInfoPK id;
 	@ManyToOne
 	private Student student;
-	
-
-	@Column(columnDefinition = "tinyint default 1")
+	@Column(columnDefinition = "boolean not null default true")
 	private boolean active;
 
 

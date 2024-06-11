@@ -24,7 +24,7 @@ public class Payment {
 	private String note;
 	@ManyToOne
 	private UniversityInfo uniInfo;
-	@Column(columnDefinition = "tinyint default 1")
+	@Column(columnDefinition = "boolean not null default true")
 	private boolean active;
 	
 }

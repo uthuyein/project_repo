@@ -25,7 +25,7 @@ public class Address {
 	private String township;
 	private String city;
 	private String hostelName;
-	@Column(columnDefinition = "tinyint default 1")
+	@Column(columnDefinition = "boolean not null default true")
 	private boolean active;
 	
 	public Address(String street, String township, String city) {

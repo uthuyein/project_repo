@@ -117,12 +117,12 @@
 						<div class="mb-3">
 							<label for="username" class="form-label primary-text-color">User
 								Name</label> <input type="text" class="form-control" id="username"
-								name="username">
+								name="username" value="admin">
 						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label primary-text-color">Password</label>
 							<input type="password" class="form-control" id="password"
-								name="password">
+								name="password" value="admin">
 						</div>
 					</div>
 					<div class="modal-footer">

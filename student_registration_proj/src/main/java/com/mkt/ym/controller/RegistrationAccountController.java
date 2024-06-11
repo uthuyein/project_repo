@@ -21,33 +21,57 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/student/chkStudent", "/student/register" })
+@WebServlet(urlPatterns = { "/student/chkStudent", "/student/register", "/student/payment", "/student/account" })
 public class RegistrationAccountController extends AccountController {
 
 	private static final long serialVersionUID = 1L;
 	private UniversityInfoService uniService;
 	private PaymentService pService;
 	private UniversityInfo uniInfo;
-	
+	private UniversityInfoDto dto;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		uniService = UniversityInfoService.getUniversityInfoService();
-		pService = PaymentService.getPaymentService();		
-		req.getRequestDispatcher("/student/register.jsp").forward(req, resp);
+		pService = PaymentService.getPaymentService();
+		String name = "";
+		switch (req.getServletPath()) {
+		case "/student/register":
+			name = "register";
+			break;
+			
+		case "/student/payment":
+			name = "payment";
+			break;
+			
+		case "/student/account":
+			name = "account";
+			break;
+		}
+		req.getRequestDispatcher("/student/" + name + ".jsp").forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		var dto = getUniInfoDto(req);
-		if (null != dto) {			
-			createPayment(req);
-			addAccount(req, resp);
+
+		String name = "";
+		switch (req.getServletPath()) {
+		case "/student/register":
+			dto = getUniInfoDto(req);
+			name = null != dto ? "payment" : "register";		
+			break;
 			
-		}else {
-			System.out.println("************************");
+		case "/student/payment":
+			createPayment(req);
+			name = "account";		
+			break;
+			
+		case "/student/account":
+			addAccount(req, resp);
+			name = "register";			
+			break;
 		}
-		req.getRequestDispatcher("/student/register.jsp").forward(req, resp);
+		req.getRequestDispatcher("/student/"+name+".jsp").forward(req, resp);
 	}
 
 	private UniversityInfoDto getUniInfoDto(HttpServletRequest req) {
@@ -59,21 +83,24 @@ public class RegistrationAccountController extends AccountController {
 		var mNrc = req.getParameter("mNrc");
 		var schEnroll = req.getParameter("schEnroll");
 		var schMarks = Integer.parseInt(req.getParameter("schMarks"));
-		
-		var openYear = (null != req.getParameter("openYear"))? Integer.parseInt(req.getParameter("openYear")):LocalDate.now().getYear();
 
-		var uniYear = UniYear.valueOf(null != req.getParameter("uniYear")?req.getParameter("uniYear"):"FIRST");
-		var major = Major.valueOf(req.getParameter("major"));
-		
-		var dto = new UniversityInfoDto(openYear,uniYear,major, stuName, dob, nrc, fNrc, mNrc, schEnroll, schMarks);
+		var openYear = (null != req.getParameter("openYear")) ? Integer.parseInt(req.getParameter("openYear"))
+				: LocalDate.now().getYear();
+
+		var uniYear = UniYear.valueOf(null != req.getParameter("uniYear") ? req.getParameter("uniYear") : "FIRST");
+		//var major = Major.valueOf(req.getParameter("major"));
+
+		System.out.println(stuName+"\t"+dob+"\t"+nrc+"\t"+fNrc+"\t"+mNrc+"\t"+schEnroll+"\t"+schMarks+'\t'+openYear);
+		var dto = new UniversityInfoDto(openYear, uniYear, null, stuName, dob, nrc, fNrc, mNrc, schEnroll, schMarks);
 
 		var uniInfoDto = uniService.searchUniversityInfo(dto).stream().findFirst().orElse(null);
-		
-		var uniInfoPk = new UniversityInfoPK(uniInfoDto.openYear(),uniInfoDto.rollNumber(),uniInfoDto.major(),uniInfoDto.uniYear());
+
+		var uniInfoPk = new UniversityInfoPK(uniInfoDto.openYear(), uniInfoDto.rollNumber(), uniInfoDto.major(),
+				uniInfoDto.uniYear());
 		var student = new Student();
 		student.setId(uniInfoDto.stuId());
-		uniInfo = new UniversityInfo(uniInfoPk,student,true);
-		
+		uniInfo = new UniversityInfo(uniInfoPk, student, true);
+
 		return uniInfoDto;
 	}
 
@@ -83,11 +110,11 @@ public class RegistrationAccountController extends AccountController {
 		var tNum = req.getParameter("tNum");
 		var amo = req.getParameter("amount");
 		var note = req.getParameter("note");
-		
+
 		var payType = (null != pay && !pay.equals("---")) ? PaymentType.valueOf(pay) : null;
-		var amount = (null != amo ) ? Integer.valueOf(amo) : 0 ;
-		
-		var pk = new RegisterPk(payType,LocalDate.now(),LocalTime.now());
+		var amount = (null != amo) ? Integer.valueOf(amo) : 0;
+
+		var pk = new RegisterPk(payType, LocalDate.now(), LocalTime.now());
 		var payment = new Payment();
 		payment.setId(pk);
 		payment.setTransferFrom(tName);
@@ -97,5 +124,5 @@ public class RegistrationAccountController extends AccountController {
 		payment.setUniInfo(uniInfo);
 		pService.save(payment);
 	}
-	
+
 }

@@ -9,6 +9,7 @@ import java.util.Optional;
 import com.mkt.ym.entity.Student;
 import com.mkt.ym.entity.UniversityInfo;
 import com.mkt.ym.entity.UniversityInfoPK;
+import com.mkt.ym.entity.dto.StudentDto;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.Major;
 import com.mkt.ym.entity.type.UniYear;
@@ -26,25 +27,24 @@ public class UniversityController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UniversityInfoService uniService;
 	private List<UniversityInfoDto> listUniInfo;
-	private static List<Student> students;
+	private static List<StudentDto> listStudent;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		listUniInfo = new ArrayList<UniversityInfoDto>();
-		students = new ArrayList<Student>();
 		
 		uniService = UniversityInfoService.getUniversityInfoService();
-		students = (List<Student>) req.getSession().getAttribute("listStudent");
+		listStudent = (List<StudentDto>) req.getAttribute("listStudent");
 		
 		switch (req.getServletPath()) {
 		case "/admin/addStudentToUni":
-			//req.setAttribute("students", students);
 			req.getRequestDispatcher("/admin/add-uni-info.jsp").forward(req, resp);
 			break;
 		case "/admin/studentListfrmUni":
 			req.getRequestDispatcher("/admin/list-uni-info.jsp").forward(req, resp);
 			break;
+			
 		}
 	}
 
@@ -71,7 +71,7 @@ public class UniversityController extends HttpServlet {
 		var maj = req.getParameter("major");
 		var newRoll = req.getParameter("newRollNum");
 		var newY = req.getParameter("newyear");
-		var student = getStudent(req.getParameter("stuName"), req.getParameter("nrc")).get();
+		var stuDto = getStudent(req.getParameter("stuName"), req.getParameter("nrc")).get();
 
 		var major = (null != maj) ? Major.valueOf(maj) : null;
 		var newYear = (null != newY) ? UniYear.valueOf(newY) : null;
@@ -81,6 +81,8 @@ public class UniversityController extends HttpServlet {
 		var uniPk = new UniversityInfoPK(uniYear, newRoll, major, newYear);
 
 		uniInfo.setId(uniPk);
+		var student = new Student();
+		student.setId(stuDto.id());
 		uniInfo.setStudent(student);
 		return uniInfo;
 
@@ -102,8 +104,8 @@ public class UniversityController extends HttpServlet {
 
 	}
 
-	private Optional<Student> getStudent(String name, String nrc) {
-		return students.stream().filter(s -> s.getName().equalsIgnoreCase(name) && s.getNrc().equalsIgnoreCase(nrc))
+	private Optional<StudentDto> getStudent(String name, String nrc) {
+		return listStudent.stream().filter(s -> s.name().equalsIgnoreCase(name) && s.nrc().equalsIgnoreCase(nrc))
 				.findFirst();
 	}
 

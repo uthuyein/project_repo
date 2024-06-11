@@ -27,7 +27,7 @@ public class Account {
 	private Integer id;
 	private String loginId;
 	private String password;
-	@Column(columnDefinition = "tinyint default 1")
+	@Column(columnDefinition = "boolean not null default true")
 	private boolean active;
 	
 	@OneToOne

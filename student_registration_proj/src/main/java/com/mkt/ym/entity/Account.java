@@ -1,5 +1,7 @@
 package com.mkt.ym.entity;
 
+import com.mkt.ym.controller.listener_filter.EnableTimesListener;
+import com.mkt.ym.controller.listener_filter.Times;
 import com.mkt.ym.entity.type.Role;
 
 import jakarta.persistence.Column;
@@ -20,13 +22,16 @@ import lombok.Setter;
 @Entity
 @Table(name = "account_tbl")
 @NoArgsConstructor
-public class Account {
+public class Account implements EnableTimesListener{
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String loginId;
 	private String password;
+	private Times times;
+	
 	@Column(columnDefinition = "boolean not null default true")
 	private boolean active;
 	

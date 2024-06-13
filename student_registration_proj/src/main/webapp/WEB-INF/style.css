@@ -6,7 +6,6 @@
 .primary-text-color {
 	font: italic bold "Fira Sans", sans-serif;
 	color: #4a6f85 !important;
-	
 }
 
 .primary-text-color.active {
@@ -18,8 +17,17 @@
 	color: #0567a1;
 }
 
-.flex-column > .nav-link.active:focus, 
-.flex-column > .nav-link.active:hover{
-  background:black;
-  color:#fff;
+.flex-column>.nav-link.active:focus, .flex-column>.nav-link.active:hover
+	{
+	background: black;
+	color: #fff;
+}
+
+.message {
+	display: none;
+	position: absolute;
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+	padding: 10px;
+	border-radius: 5px;
 }

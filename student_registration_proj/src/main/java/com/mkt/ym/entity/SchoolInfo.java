@@ -1,7 +1,10 @@
 package com.mkt.ym.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ExcludeDefaultListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,8 +20,10 @@ import lombok.Setter;
 @Table(name = "school_info_tbl")
 @SecondaryTable(name = "subject_mark_tbl")
 @NoArgsConstructor
-public class SchoolInfo {
+@ExcludeDefaultListeners
+public class SchoolInfo implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

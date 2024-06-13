@@ -1,5 +1,10 @@
 package com.mkt.ym.entity;
 
+import java.io.Serializable;
+
+import com.mkt.ym.controller.listener_filter.EnableTimesListener;
+import com.mkt.ym.controller.listener_filter.Times;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -14,14 +19,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Table(name = "payment_tbl")
-public class Payment {
+public class Payment implements EnableTimesListener{
 
+	private static final long serialVersionUID = 1L;
 	@EmbeddedId
-	private RegisterPk id;
+	private PaymentPk id;
 	private String transferFrom;
 	private String transactionNum;	
 	private Integer amount;
 	private String note;
+	private Times times;
 	@ManyToOne
 	private UniversityInfo uniInfo;
 	@Column(columnDefinition = "boolean not null default true")

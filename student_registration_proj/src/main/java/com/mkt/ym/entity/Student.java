@@ -2,6 +2,9 @@ package com.mkt.ym.entity;
 
 import java.time.LocalDate;
 
+import com.mkt.ym.controller.listener_filter.EnableTimesListener;
+import com.mkt.ym.controller.listener_filter.Times;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,8 +25,9 @@ import lombok.Setter;
 @Table(name = "student_tbl")
 @SecondaryTable(name = "contact_tbl")
 @NoArgsConstructor
-public class Student {
+public class Student implements EnableTimesListener{
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -35,7 +39,7 @@ public class Student {
 	@Column(nullable = false)
 	private String nrc;
 	private String religion;
-
+	private Times times;
 	@Column(table = "contact_tbl")
 	private String email;
 	@Column(table = "contact_tbl")

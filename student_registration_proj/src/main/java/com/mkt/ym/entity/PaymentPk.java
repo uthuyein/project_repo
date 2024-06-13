@@ -21,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class RegisterPk implements Serializable {
+public class PaymentPk implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

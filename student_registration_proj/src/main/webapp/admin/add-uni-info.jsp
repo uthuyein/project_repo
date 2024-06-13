@@ -25,78 +25,102 @@
 				class="bi bi-collection-fill"></i>&nbsp;Student List From University</a></li>
 	</ul>
 </nav>
-<div class="row justify-content-center p-5">
-	<div class="card col-md-5">
-		<div class="card-header mt-2 primary-header-text-color">
-			<i class="bi bi-person-fill"></i> Add Student To University
-		</div>
-		<div class="card-body ">
-			<form action="${addUniInfo }" method="post">
-				<div class="mb-3">
-					<div class="row">
-						<div class="col col-md-5">
-							<label for="frmYear" class="form-label primary-text-color">University
-								Opening Year</label> <input type="text" id="frmYear"
-								class="form-control" name="openYear" />
-						</div>
-					</div>
-				</div>
-				<div class="mb-3">
-					<div class="row">
-						<div class="col col-md-5">
-							<label for="newYear" class="form-label primary-text-color">Student
-								New Year</label> <select id="newYear" class="form-select" name="newyear">
-								<option selected>---</option>
-								<c:forEach var="y" items="${years }">
-									<option>${y.name() }</option>
-								</c:forEach>
-							</select>
-						</div>
-						<div class="col">
-							<label for="major" class="form-label primary-text-color">Major</label>
-							<select class="form-select" id="major" name="major">
-								<option selected>---</option>
-								<c:forEach var="m" items="${majors }">
-									<option>${m.name() }</option>
-								</c:forEach>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="mb-3">
-					<div class="row">
-						<div class="col">
-							<label for="student" class="form-label primary-text-color">Student
-								Name</label> <select id="student" class="form-select" name="stuName">
-								<option selected>---</option>
-								<c:if test="${listStudent ne null}">
-									<c:forEach var="s" items="${listStudent }">
-										<option>${s.name()}</option>
-									</c:forEach>
-								</c:if>
-							</select>
-						</div>
-						<div class="col">
-							<label for="student" class="form-label primary-text-color">Student
-								Nrc</label> <select id="student" class="form-select" name="nrc">
-								<option selected>---</option>
-								<c:if test="${listStudent ne null}">
-									<c:forEach var="s" items="${listStudent }">
-										<option>${s.nrc() }</option>
-									</c:forEach>
-								</c:if>
-							</select>
-						</div>
-					</div>
+<div class="row justify-content-center p-5 message-target">
+	<div class="col col-md-5">
+		<c:if test="${null ne message }">
+				<span class="message"> <label
+					class="alert d-flex p-2 ${message.getColor() } }">${message.message} Hello</label>
+				</span>
+			</c:if>
+		<div class="card">
+			<form action="${addUniInfo }" method="post" class="needs-validation"
+				novalidate>
+				<div class="card-body ">
 
-				</div>
-				<div class="mb-3">
-					<label for="newRollNum" class="form-label primary-text-color">Add
-						Roll Number</label> <input type="text" class="form-control"
-						id="newRollNum" name="newRollNum">
-				</div>
-				<div class="nav justify-content-end">
-					<button type="submit" class="btn primary-color w-25">Save</button>
+					<div class="card-header mt-2 mb-3 primary-header-text-color">
+						<i class="bi bi-person-fill"></i> Add Student To University
+					</div>
+					<div class="mb-3">
+						<div class="row">
+							<div class="col col-md-5">
+								<label for="frmYear" class="form-label primary-text-color">University
+									Opening Year</label> <input type="text" id="frmYear"
+									class="form-control" name="openYear" required="required">
+								<div class="invalid-feedback">Please re-enter university
+									open year !</div>
+							</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<div class="row">
+							<div class="col col-md-5">
+								<label for="newYear" class="form-label primary-text-color">Student
+									New Year</label> <select id="newYear" class="form-select"
+									name="newyear" required="required">
+									<option selected disabled="disabled" value="">---</option>
+									<c:forEach var="y" items="${years }">
+										<option>${y.name() }</option>
+									</c:forEach>
+								</select>
+								<div class="invalid-feedback">Please select university
+									year !</div>
+							</div>
+							<div class="col">
+								<label for="major" class="form-label primary-text-color">Major</label>
+								<select class="form-select" id="major" name="major"
+									required="required">
+									<option selected disabled="disabled" value="">---</option>
+									<c:forEach var="m" items="${majors }">
+										<option>${m.name() }</option>
+									</c:forEach>
+								</select>
+								<div class="invalid-feedback">Please select major !</div>
+							</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<div class="row">
+							<div class="col">
+								<label for="student" class="form-label primary-text-color">Student
+									Name</label> <select id="student" class="form-select" name="stuName"
+									required="required">
+									<option selected disabled="disabled" value="" ted>---</option>
+									<c:if test="${listStudent ne null}">
+										<c:forEach var="s" items="${listStudent }">
+											<option>${s.name()}</option>
+										</c:forEach>
+									</c:if>
+								</select>
+								<div class="invalid-feedback">Please select student's name
+									!</div>
+							</div>
+							<div class="col">
+								<label for="student" class="form-label primary-text-color">Student
+									Nrc</label> <select id="student" class="form-select" name="nrc"
+									required="required">
+									<option selected disabled="disabled" value="">---</option>
+									<c:if test="${listStudent ne null}">
+										<c:forEach var="s" items="${listStudent }">
+											<option>${s.nrc() }</option>
+										</c:forEach>
+									</c:if>
+								</select>
+								<div class="invalid-feedback">Please select student's nrc
+									!</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="mb-3">
+						<label for="newRollNum" class="form-label primary-text-color">Add
+							Roll Number</label> <input type="text" class="form-control"
+							id="newRollNum" name="newRollNum" required="required">
+						<div class="invalid-feedback">Please re-enter student
+							university roll number !</div>
+					</div>
+					<div class="nav justify-content-end">
+						<button type="submit" class="btn primary-color w-25">Save</button>
+					</div>
 				</div>
 			</form>
 		</div>

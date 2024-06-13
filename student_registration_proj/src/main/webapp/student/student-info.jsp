@@ -233,23 +233,3 @@
 	</div>
 </div>
 <jsp:include page="${foot }"></jsp:include>
-
-<script>
-	function displaySelectedImage(event, elementId) {
-		const selectedImage = document.getElementById(elementId);
-		const fileInput = event.target;
-
-		if (fileInput.files && fileInput.files[0]) {
-			const reader = new FileReader();
-
-			reader.onload = function(e) {
-				selectedImage.src = e.target.result;
-			};
-
-			reader.readAsDataURL(fileInput.files[0]);
-		}
-	}
-	var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-		target : '#navbar-example'
-	})
-</script>

@@ -20,61 +20,75 @@
 				class="nav-link primary-text-color fs-sm" href="${register }">Register</a></li>
 			<li class="nav-item "><a class="nav-link primary-text-color"
 				href="${payment }">Payment</a></li>
-			<li class="nav-item" hidden="true"><a class="nav-link primary-text-color"
-				href="${account }">Account</a></li>
+			<li class="nav-item"><a
+				class="nav-link primary-text-color" href="${account }">Account</a></li>
 		</ul>
 	</nav>
-	<div class="row justify-content-center  p-5 ">
+	<div class="row justify-content-center  p-5 message-target">
 		<div class="col col-md-6 ">
-			<form action="${payment }" method="post">
-				<div class="card-body ">
+			<c:if test="${null ne message }">
+				<span class="message"> <label
+					class="alert d-flex p-2 ${message.getColor() } }">${message.message} Hello</label>
+				</span>
+			</c:if>
+			<div class="card">
 
-					<div id="paymentId"
-						class="card-header mt-3 mb-4 primary-header-text-color">
-						<i class="bi bi-wallet "></i> &nbsp;Add Payment Information
-					</div>
-					<div class="mb-3">
-						<label for="payment" class="form-label primary-text-color">Payment
-							Type</label> <select class="form-select" name="payment">
-							<option selected>---</option>
-							<c:set var="pays" value="<%=PaymentType.values()%>"></c:set>
-							<option selected>---</option>
-							<c:forEach var="m" items="${pays }">
-								<option>${m.name()}</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="mb-3">
-						<label for="tName" class="form-label primary-text-color">Transfer
-							From</label> <input type="text" class="form-control" id="tName"
-							name="tName">
-					</div>
-					<div class="mb-3">
-						<label for="tNum" class="form-label primary-text-color">Transaction
-							No.</label> <input type="text" class="form-control" id="tNum" name="tNum">
-					</div>
-					<div class="mb-3">
-						<label for="amount" class="form-label primary-text-color">Amount</label>
-						<input type="text" class="form-control" id="amount" name="amount">
-					</div>
-					<div class="mb-3">
-						<label for="note" class="form-label primary-text-color">Note</label>
-						<input type="text" class="form-control" id="note" name="note">
-					</div>
+				<form action="${payment }" method="post" class="needs-validation"
+					novalidate>
+					<div class="card-body ">
 
-					<div class="nav justify-content-end">
-						<button type="submit" class="btn primary-color">Save
-							Payment</button>
+						<div class="card-header mt-3 mb-4 primary-header-text-color">
+							<i class="bi bi-wallet "></i> &nbsp;Add Payment Information
+						</div>
+						<div class="mb-3">
+							<label for="payment" class="form-label primary-text-color">Payment
+								Type</label> <select class="form-select" name="payment"
+								required="required">
+								<option selected disabled="disabled" value="">---</option>
+								<c:set var="pays" value="<%=PaymentType.values()%>"></c:set>
+								<c:forEach var="m" items="${pays }">
+									<option>${m.name()}</option>
+								</c:forEach>
+								<div class="invalid-feedback">Please select payment type !</div>
+							</select>
+						</div>
+						<div class="mb-3">
+							<label for="tName" class="form-label primary-text-color">Transfer
+								From</label> <input type="text" class="form-control" id="tName"
+								name="tName" required="required">
+							<div class="invalid-feedback">Please re-enter transferring
+								from !</div>
+						</div>
+						<div class="mb-3">
+							<label for="tNum" class="form-label primary-text-color">Transaction
+								No.</label> <input type="text" class="form-control" id="tNum"
+								name="tNum" required="required">
+							<div class="invalid-feedback">Please re-enter transaction
+								number !</div>
+						</div>
+						<div class="mb-3">
+							<label for="amount" class="form-label primary-text-color">Amount</label>
+							<input type="text" class="form-control" id="amount" name="amount"
+								required="required">
+							<div class="invalid-feedback">Please re-enter transfer
+								amount !</div>
+						</div>
+						<div class="mb-3">
+							<label for="note" class="form-label primary-text-color">Note</label>
+							<input type="text" class="form-control" id="note" name="note"
+								required="required">
+							<div class="invalid-feedback">Please re-enter transferring
+								note !</div>
+						</div>
+
+						<div class="nav justify-content-end">
+							<button type="submit" class="btn primary-color">Save
+								Payment</button>
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
 <jsp:include page="${foot }"></jsp:include>
-
-<!-- <script>
-	var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-		target : '#navbar-example'
-	})
-</script> -->

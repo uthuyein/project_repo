@@ -86,7 +86,7 @@
 							<c:forEach var="s" items="${listStudent }" varStatus="n">
 								<tr>
 									<th scope="row">${n.index+1 }</th>
-									<td><a href="" class="nav-link">${s.name() }</a></td>
+									<td><a href=""  class="nav-link primary-text-color" data-bs-toggle="tooltip" data-bs-placement="top" title="click to edit Student info"  >${s.name() }</a></td>
 									<td>${s.email()}</td>
 									<td>${s.primaryContact()}</td>
 									<td>${s.secondaryContact()}</td>

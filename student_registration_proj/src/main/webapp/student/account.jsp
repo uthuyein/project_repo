@@ -31,7 +31,7 @@
 					class="alert d-flex p-2 ${message.getColor() } }">${message.message}</label>
 				</span>
 			</c:if>
-		</span>
+		
 			<div class="card">
 				<form action="${account }" method="post">
 					<div class="card-body ">
@@ -39,7 +39,7 @@
 						<div class="card-header mt-3 mb-4 primary-header-text-color">
 							<figure>
 								<blockquote class="blockquote">
-								<input class="form-check-input" type="checkbox" name="active" hidden  />
+								<input class="form-check-input" type="checkbox" name="active" hidden ="hidden" />
 					
 									<i class="bi bi-person-fill "></i>&nbsp; Add Account
 								</blockquote>

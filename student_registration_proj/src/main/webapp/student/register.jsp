@@ -30,7 +30,6 @@
 					class="alert d-flex p-2 ${message.getColor() } }">${message.message}</label>
 				</span>
 			</c:if>
-		</span>
 			<div class="card">
 				<form action="${register }" method="post" class="needs-validation"
 					novalidate>
@@ -65,18 +64,7 @@
 										year !</div>
 								</div>
 							</div>
-							<%-- <div class="col">
-							<div class="mb-3">
-								<label for="major" class="form-label primary-text-color">Major
-									Name</label> <select id="major" class="form-select" name="major">
-									<c:set var="majors" value="<%=Major.values()%>"></c:set>
-									<option selected>---</option>
-									<c:forEach var="m" items="${majors }">
-										<option>${m.name()}</option>
-									</c:forEach>
-								</select>
-							</div> --%>
-
+						
 						</div>
 						<div class="mb-3">
 							<label for="stuName" class="form-label primary-text-color">Student's

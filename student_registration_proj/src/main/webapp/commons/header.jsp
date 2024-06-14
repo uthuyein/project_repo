@@ -23,7 +23,7 @@
 
 <c:url var="style" value="/style.css"></c:url>
 <c:url var="register" value="/student/register"></c:url>
-<c:url var="infoStudent" value="/student/studentInfo"></c:url>
+<c:url var="stuUniInfo" value="/student/stuUniversityInfo"></c:url>
 <c:url var="listAccount" value="/admin/accountList"></c:url>
 <c:url var="listStudent" value="/admin/studentList"></c:url>
 <c:url var="listStudentfrmUni" value="/admin/studentListfrmUni"></c:url>
@@ -56,8 +56,8 @@
 				<ul class="navbar-nav w-75 mb-2">
 
 					<c:if test="${null ne account }">
-						<li class="nav-item "><a class="nav-link text-white "
-							href="${infoStudent }"><i class="bi bi-person-lines-fill"></i>&nbsp;Student
+						 <li class="nav-item "><a class="nav-link text-white "
+							href="${stuUniInfo }?id=${account.student.id}"><i class="bi bi-person-lines-fill"></i>&nbsp;Student
 								Information </a></li>
 						<c:if test="${account.role eq role}">
 							<li class="nav-item "><a class="nav-link text-white"

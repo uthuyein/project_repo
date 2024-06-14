@@ -20,8 +20,8 @@
 				class="nav-link primary-text-color fs-sm" href="${register }">Register</a></li>
 			<li class="nav-item "><a class="nav-link primary-text-color"
 				href="${payment }">Payment</a></li>
-			<li class="nav-item"><a
-				class="nav-link primary-text-color" href="${account }">Account</a></li>
+			<li class="nav-item"><a class="nav-link primary-text-color"
+				href="${account }">Account</a></li>
 		</ul>
 	</nav>
 	<div class="row justify-content-center  p-5 message-target">
@@ -49,8 +49,9 @@
 								<c:forEach var="m" items="${pays }">
 									<option>${m.name()}</option>
 								</c:forEach>
-								<div class="invalid-feedback">Please select payment type !</div>
 							</select>
+							<div class="invalid-feedback">Please select payment type !</div>
+
 						</div>
 						<div class="mb-3">
 							<label for="tName" class="form-label primary-text-color">Transfer

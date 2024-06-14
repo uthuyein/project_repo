@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.List;
 
 import com.mkt.ym.entity.Address;
 import com.mkt.ym.entity.Parent;
 import com.mkt.ym.entity.SchoolInfo;
 import com.mkt.ym.entity.Student;
 import com.mkt.ym.entity.dto.StudentDto;
+import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.Message;
 import com.mkt.ym.services.StudentService;
 import com.mkt.ym.utils.StuRegException;
@@ -22,7 +24,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-@WebServlet(urlPatterns = { "/student/studentInfo", "/admin/studentList", "/admin/addStudent" })
+@WebServlet(urlPatterns = { "/student/studentInfo", "/admin/studentList", "/admin/addStudent",
+		"/student/stuUniversityInfo" })
 @MultipartConfig
 public class StudentController extends HttpServlet {
 
@@ -32,7 +35,7 @@ public class StudentController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		stuService = StudentService.getStudentService();
-
+		
 		switch (req.getServletPath()) {
 		case "/student/studentInfo":
 			req.getRequestDispatcher("/student/studentInfo.jsp").forward(req, resp);
@@ -43,7 +46,19 @@ public class StudentController extends HttpServlet {
 		case "/admin/studentList":
 			req.getRequestDispatcher("/admin/listStudent.jsp").forward(req, resp);
 			break;
+		case "/student/stuUniversityInfo":
+			var uniInfoDto = getUniInfo(req, Integer.valueOf( req.getParameter("id")));
+			req.setAttribute("uniInfoDto", uniInfoDto);
+			req.getRequestDispatcher("/student/studentUniInfo.jsp").forward(req, resp);
+			break;
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<UniversityInfoDto> getUniInfo(HttpServletRequest req,Integer stuId) {
+		var list = (List<UniversityInfoDto>) req.getAttribute("listUniInfo");
+		return list.stream().filter(u -> u.stuId() == stuId).toList();
+		
 	}
 
 	@Override
@@ -61,6 +76,7 @@ public class StudentController extends HttpServlet {
 		}
 
 	}
+
 	private void saveStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			var student = getStudent(req);
@@ -72,15 +88,14 @@ public class StudentController extends HttpServlet {
 			student.setAddress(address);
 			stuService.save(student);
 			resp.sendRedirect("/admin/addStudent.jsp");
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			Message message = Message.ERROR;
 			message.setMessage(e.getMessage());
 			req.setAttribute("message", message);
 			req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
 		}
-		
-		
+
 	}
 
 	private Student getStudent(HttpServletRequest req) {
@@ -88,18 +103,19 @@ public class StudentController extends HttpServlet {
 			var name = req.getParameter("stuName");
 			var religion = req.getParameter("religion").toLowerCase().replaceAll(" ", "");
 			var date = LocalDate.parse(req.getParameter("dob"));
-			var nrc = req.getParameter("nrc").toLowerCase().replaceAll(" ", "");;
+			var nrc = req.getParameter("nrc").toLowerCase().replaceAll(" ", "");
+			;
 			var email = req.getParameter("email");
 			var pContact = req.getParameter("pContact").toLowerCase().replaceAll(" ", "");
 			var sContact = req.getParameter("sContact").toLowerCase().replaceAll(" ", "");
-			
-			if(!pContact.matches("[0-9]+") || !sContact.matches("[0-9]+")) {
+
+			if (!pContact.matches("[0-9]+") || !sContact.matches("[0-9]+")) {
 				throw new StuRegException("Phone number must be digit only");
 			}
 
 			var image = getFile(req).getFileName().toString();
 			return new Student(name, date, religion, image, nrc, email, pContact, sContact);
-			
+
 		} catch (Exception e) {
 			throw new StuRegException(e.getMessage());
 		}
@@ -112,7 +128,7 @@ public class StudentController extends HttpServlet {
 			var township = req.getParameter("township");
 			var street = req.getParameter("street");
 			return new Address(street, township, city);
-			
+
 		} catch (Exception e) {
 			throw new StuRegException(e.getMessage());
 		}
@@ -137,13 +153,13 @@ public class StudentController extends HttpServlet {
 		try {
 			var roll = req.getParameter("rollNumber");
 			var ttl = req.getParameter("ttl");
-			
-			if(!ttl.matches("\\d+")) {
+
+			if (!ttl.matches("\\d+")) {
 				throw new StuRegException("Total number must be digit only !");
 			}
 			var total = Integer.parseInt(req.getParameter("ttl"));
 			return new SchoolInfo(roll, total);
-			
+
 		} catch (Exception e) {
 			throw new StuRegException(e.getMessage());
 		}

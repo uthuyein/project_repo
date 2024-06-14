@@ -8,6 +8,7 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="addUniInfo" value="/admin/addStudentToUni"></c:url>
 <c:url var="listStudentUni" value="/admin/studentListfrmUni"></c:url>
+<c:url var="stuUniInfo" value="/student/stuUniversityInfo"></c:url>
 
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="uniYears" value="<%=UniYear.values()%>"></c:set>
@@ -18,11 +19,11 @@
 	class="navbar navbar-light bg-light px-3 sticky-sm-top">
 	<ul class="nav">
 		<li class="nav-item"><a href="${addUniInfo }"
-			class="nav-link primary-text-color"><i class="bi bi-collection"></i>&nbsp;Add Student To
-				University</a></li>
+			class="nav-link primary-text-color"><i class="bi bi-collection"></i>&nbsp;Add
+				Student To University</a></li>
 		<li class="nav-item"><a href="${listStudentUni }"
-			class="nav-link primary-text-color"><i class="bi bi-collection-fill"></i>&nbsp;Student List
-				From University</a></li>
+			class="nav-link primary-text-color"><i
+				class="bi bi-collection-fill"></i>&nbsp;Student List From University</a></li>
 	</ul>
 </nav>
 <div class="row p-3 m-3">
@@ -91,7 +92,10 @@
 						<c:forEach var="s" items="${listUniInfo }" varStatus="n">
 							<tr>
 								<th scope="row">${n.index+1 }</th>
-								<td><a href="" class="nav-link">${s.name() }</a></td>
+								<td><a href="${stuUniInfo }?id=${s.stuId()}" class="nav-link primary-text-color"
+									data-bs-toggle="tooltip" data-bs-placement="top"
+									title="click to edit student university information">${s.name() }</a></td>
+
 								<td>${s.openYear() }</td>
 								<td>${s.uniYear() }</td>
 								<td>${s.rollNumber()}</td>

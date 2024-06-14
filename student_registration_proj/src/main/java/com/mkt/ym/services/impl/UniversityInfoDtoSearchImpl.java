@@ -15,7 +15,7 @@ public abstract class UniversityInfoDtoSearchImpl {
 	public List<UniversityInfoDto> searchUniversityInfo(UniversityInfoDto dto) {
 		StringBuilder sb = new StringBuilder("""
 				select new com.mkt.ym.entity.dto.UniversityInfoDto(
-				u.id.uniOpenYear,u.id.uniYear,u.id.major,u.id.rollNumber,	
+				u.id.openYear,u.id.uniYear,u.id.major,u.id.rollNumber,	
 				s.id,s.name,s.email,s.primaryContact,s.secondaryContact,s.dob,s.image,s.nrc,s.religion,
 				si.id,si.rollNum,si.totalMarks,
 				p.id,p.fatherName,p.motherName,p.fatherNrc,p.motherNrc,
@@ -65,7 +65,7 @@ public abstract class UniversityInfoDtoSearchImpl {
 				}
 				
 				if (dto.openYear() != null) {
-					sb.append(" and u.id.uniOpenYear = :openYear");
+					sb.append(" and u.id.openYear = :openYear");
 					map.put("openYear", dto.openYear());
 				}
 				

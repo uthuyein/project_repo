@@ -12,8 +12,10 @@ import com.mkt.ym.entity.UniversityInfoPK;
 import com.mkt.ym.entity.dto.StudentDto;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.Major;
+import com.mkt.ym.entity.type.Message;
 import com.mkt.ym.entity.type.UniYear;
 import com.mkt.ym.services.UniversityInfoService;
+import com.mkt.ym.utils.StuRegException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -33,18 +35,18 @@ public class UniversityController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		listUniInfo = new ArrayList<UniversityInfoDto>();
-		
+
 		uniService = UniversityInfoService.getUniversityInfoService();
 		listStudent = (List<StudentDto>) req.getAttribute("listStudent");
-		
+
 		switch (req.getServletPath()) {
 		case "/admin/addStudentToUni":
-			req.getRequestDispatcher("/admin/add-uni-info.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);
 			break;
 		case "/admin/studentListfrmUni":
-			req.getRequestDispatcher("/admin/list-uni-info.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/listUniInfo.jsp").forward(req, resp);
 			break;
-			
+
 		}
 	}
 
@@ -53,44 +55,71 @@ public class UniversityController extends HttpServlet {
 
 		switch (req.getServletPath()) {
 		case "/admin/addStudentToUni":
-			var uniInfo = getUniInfo(req);
-			uniService.save(uniInfo);
-			resp.sendRedirect(req.getServletPath());
+			saveUniInfo(req, resp);
 			break;
 		case "/admin/studentListfrmUni":
 			var info = searchStudentFromUni(req);
 			listUniInfo = uniService.searchUniversityInfo(info);
 			req.setAttribute("listUniInfo", listUniInfo);
-			req.getRequestDispatcher("/admin/list-uni-info.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/listUniInfo.jsp").forward(req, resp);
 			break;
 		}
 	}
 
+	private void saveUniInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			var uniInfo = getUniInfo(req);
+			uniService.save(uniInfo);
+			resp.sendRedirect(req.getServletPath());
+		} catch (Exception e) {
+			Message message = Message.ERROR;
+			message.setMessage(e.getMessage());
+			req.setAttribute("message", message);
+			req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);			
+		}
+	}
+	
+	
+
 	private UniversityInfo getUniInfo(HttpServletRequest req) {
-		var uYear = req.getParameter("openYear");
-		var maj = req.getParameter("major");
-		var newRoll = req.getParameter("newRollNum");
-		var newY = req.getParameter("newyear");
-		var stuDto = getStudent(req.getParameter("stuName"), req.getParameter("nrc")).get();
+		try {
+			var oYear = req.getParameter("openYear");
+			var maj = req.getParameter("major");
+			var newRoll = req.getParameter("newRollNum");
+			var uYear = req.getParameter("uniyear");
+			
+			var major = (null != maj) ? Major.valueOf(maj) : null;
+			var uniYear = (null != uYear) ? UniYear.valueOf(uYear) : null;
+			var openYear = (oYear != null) ? Integer.valueOf(oYear) : LocalDate.now().getYear();
 
-		var major = (null != maj) ? Major.valueOf(maj) : null;
-		var newYear = (null != newY) ? UniYear.valueOf(newY) : null;
-		var uniYear = (uYear != null) ? Integer.valueOf(uYear) : LocalDate.now().getYear();
+			var uniInfo = new UniversityInfo();
+			var uniPk = new UniversityInfoPK(openYear, newRoll, major, uniYear);
 
-		var uniInfo = new UniversityInfo();
-		var uniPk = new UniversityInfoPK(uniYear, newRoll, major, newYear);
+			var stuDto = getStudent(req.getParameter("stuName"), req.getParameter("nrc")).get();
+			if (null == stuDto) {
+				throw new StuRegException("Student name and student nrc did not match. Please try again !");
+			}
+			
+			listUniInfo = uniService
+					.searchUniversityInfo(new UniversityInfoDto(openYear, uniYear, major, stuDto.name()));
 
-		uniInfo.setId(uniPk);
-		var student = new Student();
-		student.setId(stuDto.id());
-		uniInfo.setStudent(student);
-		return uniInfo;
+			if (null != listUniInfo) {
+				throw new StuRegException("Student name of this university year is already register !");
+			}
 
+			uniInfo.setId(uniPk);
+			var student = new Student();
+			student.setId(stuDto.id());
+			uniInfo.setStudent(student);
+			return uniInfo;
+			
+		} catch (Exception e) {
+			throw new StuRegException(e.getMessage());
+		}
 	}
 
 	private UniversityInfoDto searchStudentFromUni(HttpServletRequest req) {
 		var fYear = req.getParameter("openYear");
-
 		var uYear = req.getParameter("uniYear");
 		var maj = req.getParameter("major");
 		var name = req.getParameter("stuName");

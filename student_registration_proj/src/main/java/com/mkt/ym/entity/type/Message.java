@@ -25,6 +25,7 @@ public enum Message {
 	
 	public void setMessage(String message) {
 		this.message = message;
+		
 	}
 	
 	public String getMessage() {

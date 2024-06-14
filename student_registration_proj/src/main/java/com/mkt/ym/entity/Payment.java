@@ -1,7 +1,5 @@
 package com.mkt.ym.entity;
 
-import java.io.Serializable;
-
 import com.mkt.ym.controller.listener_filter.EnableTimesListener;
 import com.mkt.ym.controller.listener_filter.Times;
 

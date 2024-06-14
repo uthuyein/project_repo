@@ -30,10 +30,10 @@
 		</ul>
 	</nav>
 	<div class="row justify-content-center p-5 message-target">
-		<div class="col col-md-6">
+		<div class="col col-md-5">
 			<c:if test="${null ne message }">
-				<span class="message"> <label
-					class="alert d-flex p-2 ${message.getColor() } }">${message.message} </label>
+				<span class="mess"> <label
+					class="alert d-flex p-2 ${message.getColor() } ">${message.message} </label>
 				</span>
 			</c:if>
 			<div class="card">

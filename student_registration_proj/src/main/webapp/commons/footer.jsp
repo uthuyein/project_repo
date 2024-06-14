@@ -52,7 +52,7 @@
 	/* for message disapper */
 	document.addEventListener('DOMContentLoaded', function() {
 		const hoverTarget = document.querySelector('.message-target');
-		const message = hoverTarget.querySelector('.message');
+		const message = hoverTarget.querySelector('.mess');
 
 		hoverTarget.addEventListener('input', function() {
 			message.style.display = 'none';

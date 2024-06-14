@@ -36,13 +36,12 @@ public class RegisterationListener implements ServletRequestListener {
 			req.setAttribute("listStudent", listStudent);
 		}
 
-		if (null != listUniInfo) {
 			
 			req.setAttribute("openYears", getYear());
 			req.setAttribute("listUniInfo", listUniInfo);
 			req.setAttribute("cities", getCities());
 			req.setAttribute("townships", getTownships());
-		}
+		
 	}
 
 	private List<Integer> getYear() {

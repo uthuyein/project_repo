@@ -17,11 +17,11 @@
 <!-- Option 1: Include in HTML -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/style.css" />
 <title>Student Registration</title>
 </head>
 <%@ page import="com.mkt.ym.entity.type.*"%>
 
+<c:url var="style" value="/style.css"></c:url>
 <c:url var="register" value="/student/register"></c:url>
 <c:url var="infoStudent" value="/student/studentInfo"></c:url>
 <c:url var="listAccount" value="/admin/accountList"></c:url>
@@ -32,6 +32,7 @@
 <c:url var="login" value="/student/login"></c:url>
 <c:url var="logout" value="/student/logout"></c:url>
 
+<link rel="stylesheet" href="${style }" />
 
 <c:set var="role" value="<%=Role.ADMIN%>"></c:set>
 
@@ -54,19 +55,19 @@
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav w-75 mb-2">
 
-					<li class="nav-item "><a class="nav-link text-white "
-						href="${infoStudent }"><i class="bi bi-person-lines-fill"></i>&nbsp;Student
-							Information </a></li>
-					<c:if test="${account ne null and account.role eq role}">
-						<li class="nav-item "><a class="nav-link text-white"
-							href="${listStudent }"><i class="bi bi-person-fill"></i>&nbsp;Student</a></li>
+					<c:if test="${null ne account }">
+						<li class="nav-item "><a class="nav-link text-white "
+							href="${infoStudent }"><i class="bi bi-person-lines-fill"></i>&nbsp;Student
+								Information </a></li>
+						<c:if test="${account.role eq role}">
+							<li class="nav-item "><a class="nav-link text-white"
+								href="${listStudent }"><i class="bi bi-person-fill"></i>&nbsp;Student</a></li>
 
-						<li class="nav-item "><a class="nav-link text-white"
-							href="${listStudentfrmUni }"><i class="bi bi-building"></i>&nbsp;University</a></li>
-						<li class="nav-item "><a class="nav-link text-white"
-							href="${listAccount }"><i
-								class="bi bi-cone-striped"></i>&nbsp;Account</a></li>
-
+							<li class="nav-item "><a class="nav-link text-white"
+								href="${listStudentfrmUni }"><i class="bi bi-building"></i>&nbsp;University</a></li>
+							<li class="nav-item "><a class="nav-link text-white"
+								href="${listAccount }"><i class="bi bi-cone-striped"></i>&nbsp;Account</a></li>
+						</c:if>
 					</c:if>
 
 					<li class="nav-item "><a class="nav-link text-white" href="#"><i
@@ -80,11 +81,13 @@
 				<c:choose>
 					<c:when test="${account ne null }">
 						<div class="nav-item ">
-						<c:set value="${null ne account.student ? account.student.image:'uni_images/UTYCC.png'}" var="img"></c:set>
+							<c:set
+								value="${null ne account.student ? account.student.image:'uni_images/UTYCC.png'}"
+								var="img"></c:set>
 							<a class="nav-link text-white" data-bs-toggle="modal"
-								data-bs-target="#logoutModal"><img
-								src="/images/${img }" alt="" width="30" height="30"
-								class="rounded-circle">&nbsp;Logout </a>
+								data-bs-target="#logoutModal"><img src="/images/${img }"
+								alt="" width="30" height="30" class="rounded-circle">&nbsp;Logout
+							</a>
 						</div>
 					</c:when>
 					<c:otherwise>

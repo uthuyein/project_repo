@@ -9,7 +9,6 @@
 
 <%@page import="com.mkt.ym.entity.type.*"%>
 
-
 <jsp:include page="${head }"></jsp:include>
 <nav id="navbar-example"
 	class="navbar navbar-light bg-light px-3 sticky-sm-top">
@@ -26,7 +25,7 @@
 <div class="row justify-content-center p-5 message-target">
 	<div class="col col-md-5">
 		<c:if test="${null ne message }">
-				<span class="message"> <label
+				<span class="mess"> <label
 					class="alert d-flex p-2 ${message.getColor() } }">${message.message}</label>
 				</span>
 			</c:if>
@@ -36,6 +35,8 @@
 				novalidate>
 				<div class="card-body ">
 					<div class="card-header mt-2 mb-3 primary-header-text-color">
+					<input class="form-check-input" type="checkbox" name="active" checked  />
+					
 						<i class="bi bi-person-fill "></i>&nbsp; Add Account
 					</div>
 					<div class="mb-3">
@@ -53,8 +54,8 @@
 					<div class="row">
 						<div class="col">
 							<div class="mb-3">
-								<label for="fName" class="form-label primary-text-color">University
-									Year</label> <select class="form-select" name="year"
+								<label for="uniYear" class="form-label primary-text-color">University
+									Year</label> <select class="form-select" id="uniYear" name="uniYear"
 									required="required">
 									<c:set var="years" value="<%=UniYear.values()%>"></c:set>
 									<option selected disabled="disabled" value="">---</option>
@@ -97,7 +98,7 @@
 							<div class="mb-3">
 								<label for="stuName" class="form-label primary-text-color">Student
 									Name</label> <input type="text" class="form-control" id="stuName"
-									name="username" required="required">
+									name="stuName" required="required">
 								<div class="invalid-feedback">Please re-enter student name
 									!</div>
 							</div>

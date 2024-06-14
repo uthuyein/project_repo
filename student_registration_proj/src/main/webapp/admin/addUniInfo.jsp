@@ -12,7 +12,6 @@
 
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="years" value="<%=UniYear.values()%>"></c:set>
-
 <jsp:include page="${head }"></jsp:include>
 <nav id="navbar-example"
 	class="navbar navbar-light bg-light px-3 sticky-sm-top">
@@ -26,10 +25,10 @@
 	</ul>
 </nav>
 <div class="row justify-content-center p-5 message-target">
-	<div class="col col-md-5">
-		<c:if test="${null ne message }">
-				<span class="message"> <label
-					class="alert d-flex p-2 ${message.getColor() } }">${message.message} Hello</label>
+		<div class="col col-md-5">
+			<c:if test="${null != message }">
+				<span class="mess"> <label
+					class="alert d-flex p-2 ${message.getColor() } ">${message.message}</label>
 				</span>
 			</c:if>
 		<div class="card">
@@ -43,8 +42,8 @@
 					<div class="mb-3">
 						<div class="row">
 							<div class="col col-md-5">
-								<label for="frmYear" class="form-label primary-text-color">University
-									Opening Year</label> <input type="text" id="frmYear"
+								<label for="openYear" class="form-label primary-text-color">University
+									Opening Year</label> <input type="text" id="openYear"
 									class="form-control" name="openYear" required="required">
 								<div class="invalid-feedback">Please re-enter university
 									open year !</div>
@@ -54,9 +53,9 @@
 					<div class="mb-3">
 						<div class="row">
 							<div class="col col-md-5">
-								<label for="newYear" class="form-label primary-text-color">Student
-									New Year</label> <select id="newYear" class="form-select"
-									name="newyear" required="required">
+								<label for="uniYear" class="form-label primary-text-color">Student
+									New Year</label> <select id="uniYear" class="form-select"
+									name="uniYear" required="required">
 									<option selected disabled="disabled" value="">---</option>
 									<c:forEach var="y" items="${years }">
 										<option>${y.name() }</option>
@@ -81,10 +80,10 @@
 					<div class="mb-3">
 						<div class="row">
 							<div class="col">
-								<label for="student" class="form-label primary-text-color">Student
-									Name</label> <select id="student" class="form-select" name="stuName"
+								<label for="stuName" class="form-label primary-text-color">Student
+									Name</label> <select id="stuName" class="form-select" name="stuName"
 									required="required">
-									<option selected disabled="disabled" value="" ted>---</option>
+									<option selected disabled="disabled" value="">---</option>
 									<c:if test="${listStudent ne null}">
 										<c:forEach var="s" items="${listStudent }">
 											<option>${s.name()}</option>
@@ -95,8 +94,8 @@
 									!</div>
 							</div>
 							<div class="col">
-								<label for="student" class="form-label primary-text-color">Student
-									Nrc</label> <select id="student" class="form-select" name="nrc"
+								<label for="nrc" class="form-label primary-text-color">Student
+									Nrc</label> <select id="nrc" class="form-select" name="nrc"
 									required="required">
 									<option selected disabled="disabled" value="">---</option>
 									<c:if test="${listStudent ne null}">

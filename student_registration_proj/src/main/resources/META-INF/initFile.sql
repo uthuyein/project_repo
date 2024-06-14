@@ -5,9 +5,9 @@
  insert into address_tbl(city,township,street)values('Mandalay','patheingyi','kantharyar block');
  insert into address_tbl(city,township,street)values('Yangon','kyaukmyaung','thida street');
  
- insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('andrew','1991-05-22','9/pamana(n)765642','FB_IMG_1543729621493.jpg','burma/buddha',null,null,null);
- insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('william','1995-03-11','9/wakana(n)55432','FB_IMG_1552055855156.jpg','burma/buddha',null,null,null);
- insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('john','1998-01-25','9/amaza(n)222121','FB_IMG_1564498021431.jpg','burma/buddha',null,null,null);
+ insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('andrew','1991-05-22','9/pamana(n)765642','cat_img.jpeg','burma/buddha',null,null,null);
+ insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('william','1995-03-11','9/wakana(n)55432','dog_img.jpeg','burma/buddha',null,null,null);
+ insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('john','1998-01-25','9/amaza(n)222121','panda_img.jpeg','burma/buddha',null,null,null);
  
  insert into contact_tbl(id,email,primaryContact,secondaryContact)values(1,'andrew@gmail.com','0998887444','0998887744');
  insert into contact_tbl(id,email,primaryContact,secondaryContact)values(2,'william@gmail.com','099998823','097882332');
@@ -25,12 +25,12 @@ update student_tbl set schoolInfo_id =1 ,parent_id =1, address_id =1  where id =
 update student_tbl set schoolInfo_id =2 ,parent_id =2, address_id =2  where id = 2;
 update student_tbl set schoolInfo_id =3 ,parent_id =3, address_id =3  where id = 3;
 
-insert into university_tbl(student_id,uniOpenYear,rollNumber,uniYear,major) values (1,2022,10,'FIRST','JST');
-insert into university_tbl(student_id,uniOpenYear,rollNumber,uniYear,major) values (1,2023,22,'SECOND','JST');
-insert into university_tbl(student_id,uniOpenYear,rollNumber,uniYear,major) values (1,2024,11,'THIRD','JST');
-insert into university_tbl(student_id,uniOpenYear,rollNumber,uniYear,major) values (2,2022,10,'FIRST','ECE');
-insert into university_tbl(student_id,uniOpenYear,rollNumber,uniYear,major) values (2,2023,22,'SECOND','ECE');
-insert into university_tbl(student_id,uniOpenYear,rollNumber,uniYear,major) values (2,2024,11,'THIRD','ECE');
+insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2022,10,'FIRST','JST');
+insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2023,22,'SECOND','JST');
+insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2024,11,'THIRD','JST');
+insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2022,10,'FIRST','ECE');
+insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2023,22,'SECOND','ECE');
+insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2024,11,'THIRD','ECE');
 
  
  

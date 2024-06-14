@@ -25,20 +25,22 @@
 		</ul>
 	</nav>
 	<div class="row justify-content-center  p-5 message-target">
-		<div class="col col-md-6" tabindex="0">
+		<div class="col col-md-5" tabindex="0">
 			<c:if test="${null ne message }">
-				<span class="message"> <label
-					class="alert d-flex p-2 ${message.getColor() } }">${message.message} Hello</label>
+				<span class="mess"> <label
+					class="alert d-flex p-2 ${message.getColor() } }">${message.message}</label>
 				</span>
 			</c:if>
 		</span>
 			<div class="card">
-				<form action="${register }" method="post">
+				<form action="${account }" method="post">
 					<div class="card-body ">
 
 						<div class="card-header mt-3 mb-4 primary-header-text-color">
 							<figure>
 								<blockquote class="blockquote">
+								<input class="form-check-input" type="checkbox" name="active" hidden  />
+					
 									<i class="bi bi-person-fill "></i>&nbsp; Add Account
 								</blockquote>
 								<figcaption class="blockquote-footer">

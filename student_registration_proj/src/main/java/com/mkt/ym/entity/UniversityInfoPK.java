@@ -24,7 +24,7 @@ public class UniversityInfoPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer uniOpenYear;
+	private Integer openYear;
 	private String rollNumber;
 	
 	@Enumerated(EnumType.STRING)

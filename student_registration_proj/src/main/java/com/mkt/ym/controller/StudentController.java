@@ -35,22 +35,19 @@ public class StudentController extends HttpServlet {
 
 		switch (req.getServletPath()) {
 		case "/student/studentInfo":
-			req.getRequestDispatcher("/student/student-info.jsp").forward(req, resp);
+			req.getRequestDispatcher("/student/studentInfo.jsp").forward(req, resp);
 			break;
 		case "/admin/addStudent":
-			req.getRequestDispatcher("/admin/add-student.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
 			break;
 		case "/admin/studentList":
-//			var studentList = stuService.searchStudentDto(null);
-//			req.setAttribute("listStudent", studentList);
-			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/listStudent.jsp").forward(req, resp);
 			break;
 		}
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		switch (req.getServletPath()) {
 		case "/admin/addStudent":
 			saveStudent(req, resp);
@@ -59,13 +56,12 @@ public class StudentController extends HttpServlet {
 			var dto = searchStudent(req);
 			var studentList = stuService.searchStudentDto(dto);
 			req.setAttribute("listStudent", studentList);
-			req.getRequestDispatcher("/admin/list-student.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/listStudent.jsp").forward(req, resp);
 			break;
 		}
 
 	}
 	private void saveStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("save student ==========================");
 		try {
 			var student = getStudent(req);
 			var school = getSchoolInfo(req);
@@ -75,14 +71,13 @@ public class StudentController extends HttpServlet {
 			student.setParent(parent);
 			student.setAddress(address);
 			stuService.save(student);
-			resp.sendRedirect("/admin/add-student.jsp");
+			resp.sendRedirect("/admin/addStudent.jsp");
 			
 		}catch (Exception e) {
-			System.out.println("Exception ============"+e.getMessage());
-			var message = Message.ERROR;
+			Message message = Message.ERROR;
 			message.setMessage(e.getMessage());
 			req.setAttribute("message", message);
-			req.getRequestDispatcher("/admin/add-student.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
 		}
 		
 		

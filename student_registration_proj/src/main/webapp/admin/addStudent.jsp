@@ -95,11 +95,7 @@
 							<div class="invalid-feedback">Please re-enter student's nrc
 								!</div>
 						</div>
-						<!-- <div class="mb-3">
-						<label for="email" class="form-label primary-text-color ">Email
-							address</label> <input type="email" class="form-control" id="email"
-							name="email">
-					</div> -->
+					
 						<div class="mb-3">
 							<label for="pContact" class="form-label primary-text-color">Primary
 								Contact</label> <input type="text" class="form-control" id="pContact"

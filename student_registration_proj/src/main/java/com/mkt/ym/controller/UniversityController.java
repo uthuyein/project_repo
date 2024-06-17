@@ -86,7 +86,7 @@ public class UniversityController extends HttpServlet {
 			var oYear = req.getParameter("openYear");
 			var maj = req.getParameter("major");
 			var newRoll = req.getParameter("newRollNum");
-			var uYear = req.getParameter("uniyear");
+			var uYear = req.getParameter("uniYear");
 			
 			var major = (null != maj) ? Major.valueOf(maj) : null;
 			var uniYear = (null != uYear) ? UniYear.valueOf(uYear) : null;
@@ -102,8 +102,8 @@ public class UniversityController extends HttpServlet {
 			
 			listUniInfo = uniService
 					.searchUniversityInfo(new UniversityInfoDto(openYear, uniYear, major, stuDto.name()));
-
-			if (null != listUniInfo) {
+			System.out.println("============================================"+listUniInfo);
+			if (null != listUniInfo && listUniInfo.size() > 0 ) {
 				throw new StuRegException("Student name of this university year is already register !");
 			}
 
@@ -114,6 +114,7 @@ public class UniversityController extends HttpServlet {
 			return uniInfo;
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new StuRegException(e.getMessage());
 		}
 	}

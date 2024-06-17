@@ -25,9 +25,9 @@ update student_tbl set schoolInfo_id =1 ,parent_id =1, address_id =1  where id =
 update student_tbl set schoolInfo_id =2 ,parent_id =2, address_id =2  where id = 2;
 update student_tbl set schoolInfo_id =3 ,parent_id =3, address_id =3  where id = 3;
 
-insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2022,10,'FIRST','JST');
-insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2023,22,'SECOND','JST');
-insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2024,11,'THIRD','JST');
+insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2022,10,'FIRST','IST');
+insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2023,22,'SECOND','IST');
+insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2024,11,'THIRD','IST');
 insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2022,10,'FIRST','ECE');
 insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2023,22,'SECOND','ECE');
 insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2024,11,'THIRD','ECE');

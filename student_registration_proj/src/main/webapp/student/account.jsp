@@ -6,7 +6,9 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="register" value="/student/register"></c:url>
 <c:url var="payment" value="/student/payment"></c:url>
-<c:url var="account" value="/student/account"></c:url>
+<c:url var="acc" value="/student/account"></c:url>
+<c:url var="stuUniInfo" value="/student/stuUniversityInfo"></c:url>
+
 
 <%@page import="com.mkt.ym.entity.type.*"%>
 
@@ -16,12 +18,16 @@
 	<nav id="navbar-example"
 		class="navbar navbar-light bg-light px-3 sticky-sm-top">
 		<ul class="nav">
-			<li class="nav-item"><a
-				class="nav-link primary-text-color fs-sm" href="${register }">Register</a></li>
-			<li class="nav-item "><a class="nav-link primary-text-color"
-				href="${payment }">Payment</a></li>
+			<c:if test="${null ne account }">
+
+				<li class="nav-item"><a
+					class="nav-link primary-text-color fs-sm"
+					href="${stuUniInfo }?id=${account.student.id}">Student</a></li>
+				<li class="nav-item "><a class="nav-link primary-text-color"
+					href="${payment }">Payment</a></li>
+			</c:if>
 			<li class="nav-item"><a class="nav-link primary-text-color"
-				href="${account }">Account</a></li>
+				href="${acc }">Account</a></li>
 		</ul>
 	</nav>
 	<div class="row justify-content-center  p-5 message-target">
@@ -31,7 +37,7 @@
 					class="alert d-flex p-2 ${message.getColor() } }">${message.message}</label>
 				</span>
 			</c:if>
-		
+
 			<div class="card">
 				<form action="${account }" method="post">
 					<div class="card-body ">
@@ -39,9 +45,9 @@
 						<div class="card-header mt-3 mb-4 primary-header-text-color">
 							<figure>
 								<blockquote class="blockquote">
-								<input class="form-check-input" type="checkbox" name="active" hidden ="hidden" />
-					
-									<i class="bi bi-person-fill "></i>&nbsp; Add Account
+									<input class="form-check-input" type="checkbox" name="active"
+										hidden="hidden" /> <i class="bi bi-person-fill "></i>&nbsp;
+									Add Account
 								</blockquote>
 								<figcaption class="blockquote-footer">
 									<small>Admin will activate within 48hrs. </small>

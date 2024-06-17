@@ -6,12 +6,25 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="stuInfo" value="/student/studentInfo"></c:url>
 <c:url var="stuUniInfo" value="/student/stuUniversityInfo"></c:url>
+<c:url var="payment" value="/student/payment"></c:url>
+<c:url var="acc" value="/student/account"></c:url>
+
 
 <%@page import="com.mkt.ym.entity.type.*"%>
 
 <jsp:include page="${head }"></jsp:include>
-<div class="row">
-	
+	<div class="row">
+	<nav id="navbar-example"
+		class="navbar navbar-light bg-light px-3 sticky-sm-top">
+		<ul class="nav">
+		<li class="nav-item"><a
+				class="nav-link primary-text-color fs-sm"  href="${stuUniInfo }?id=${account.student.id}" >Student</a></li>
+			<li class="nav-item "><a
+				class="nav-link primary-text-color" href="${payment }">Payment</a></li>
+			<li class="nav-item"><a
+				class="nav-link primary-text-color" href="${acc }">Account</a></li>
+		</ul>
+	</nav>
 	<c:if test="${null ne uniInfoDto }">
 		<div class="row justify-content-center p-5 message-target">
 			<div class="col col-md-6">

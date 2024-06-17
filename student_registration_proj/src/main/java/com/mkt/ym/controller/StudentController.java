@@ -87,7 +87,7 @@ public class StudentController extends HttpServlet {
 			student.setParent(parent);
 			student.setAddress(address);
 			stuService.save(student);
-			resp.sendRedirect("/admin/addStudent.jsp");
+			resp.sendRedirect("/admin/listStudent.jsp");
 
 		} catch (Exception e) {
 			Message message = Message.ERROR;

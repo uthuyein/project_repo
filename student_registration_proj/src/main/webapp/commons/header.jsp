@@ -34,7 +34,9 @@
 
 <link rel="stylesheet" href="${style }" />
 
-<c:set var="role" value="<%=Role.ADMIN%>"></c:set>
+<c:set var="admin" value="<%=Role.ADMIN%>"></c:set>
+<c:set var="student" value="<%=Role.STUDENT%>"></c:set>
+
 
 <body>
 
@@ -53,13 +55,15 @@
 
 
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav w-75 mb-2">
+				<ul class="navbar-nav w-100 mb-2">
 
 					<c:if test="${null ne account }">
-						 <li class="nav-item "><a class="nav-link text-white "
-							href="${stuUniInfo }?id=${account.student.id}"><i class="bi bi-person-lines-fill"></i>&nbsp;Student
-								Information </a></li>
-						<c:if test="${account.role eq role}">
+						<c:if test="${account.role eq student }">
+							<li class="nav-item "><a class="nav-link text-white "
+								href="${stuUniInfo }?id=${account.student.id}"><i
+									class="bi bi-person-lines-fill"></i>&nbsp;Student Information </a></li>
+						</c:if>
+						<c:if test="${account.role eq admin}">
 							<li class="nav-item "><a class="nav-link text-white"
 								href="${listStudent }"><i class="bi bi-person-fill"></i>&nbsp;Student</a></li>
 
@@ -70,14 +74,16 @@
 						</c:if>
 					</c:if>
 
-					<li class="nav-item "><a class="nav-link text-white" href="#"><i
-							class="bi bi-question-circle-fill"></i>&nbsp;About</a></li>
+					<!-- <li class="nav-item "><a class="nav-link text-white" href="#"><i
+							class="bi bi-question-circle-fill"></i>&nbsp;About</a></li> -->
 				</ul>
 
-				<div class="nav-item ">
-					<a class="nav-link text-white" href="${register }"><i
-						class="bi bi-pencil-square"></i>&nbsp;Registration</a>
-				</div>
+				<c:if test="${null eq account }">
+					<div class="nav-item ">
+						<a class="nav-link text-white" href="${register }"><i
+							class="bi bi-pencil-square"></i>&nbsp;SignUp</a>
+					</div>
+				</c:if>
 				<c:choose>
 					<c:when test="${account ne null }">
 						<div class="nav-item ">
@@ -86,14 +92,14 @@
 								var="img"></c:set>
 							<a class="nav-link text-white" data-bs-toggle="modal"
 								data-bs-target="#logoutModal"><img src="/images/${img }"
-								alt="" width="30" height="30" class="rounded-circle">&nbsp;Logout
+								alt="" width="30" height="30" class="rounded-circle">&nbsp;SignOut
 							</a>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="nav-item ">
 							<a class="nav-link text-white" data-bs-toggle="modal"
-								data-bs-target="#loginModal"><i class="bi bi-person-circle"></i>&nbsp;Login
+								data-bs-target="#loginModal"><i class="bi bi-person-circle"></i>&nbsp;SignIn
 							</a>
 						</div>
 					</c:otherwise>
@@ -131,7 +137,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">Cancel</button>
-						<button type="submit" class="btn primary-color">Login</button>
+						<button type="submit" class="btn primary-color">SignIn</button>
 					</div>
 				</div>
 			</div>

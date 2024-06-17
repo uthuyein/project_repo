@@ -16,7 +16,7 @@
 		<lombok-version>1.18.30</lombok-version>
 		<junit-version>5.10.1</junit-version>
 		<mysql-version>8.3.0</mysql-version>
-		<java-version>21</java-version>
+		<java-version>17</java-version>
 	</properties>
 
 	<dependencies>

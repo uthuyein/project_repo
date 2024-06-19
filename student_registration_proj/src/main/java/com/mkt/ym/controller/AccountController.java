@@ -2,9 +2,9 @@ package com.mkt.ym.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import com.mkt.ym.entity.Account;
-import com.mkt.ym.entity.Student;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.Message;
 import com.mkt.ym.entity.type.Role;
@@ -80,9 +80,25 @@ public class AccountController extends HttpServlet {
 			signUpStudent(req, resp);
 			break;
 
-		
+		case "/admin/accountList":
+			var listAccount = searchAccount(req);
+			req.setAttribute("listAccount", listAccount);
+			req.getRequestDispatcher("/admin/listAccount.jsp").forward(req, resp);
+			break;
 
 		}
+	}
+
+	private List<Account> searchAccount(HttpServletRequest req) {
+		var user = req.getParameter("username");
+		var login = req.getParameter("loginId");
+		var r = req.getParameter("role");
+		
+		var role = null != r ? Role.valueOf(r) : null;
+		var acc = new Account(user, login);
+		acc.setRole(role);
+		return accService.search(acc);
+		
 	}
 
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -169,12 +185,6 @@ public class AccountController extends HttpServlet {
 				throw new StuRegException("There is no student for that information ! ");
 			}
 
-//			var uniInfoPk = new UniversityInfoPK(uniInfoDto.openYear(), uniInfoDto.rollNumber(), uniInfoDto.major(),
-//					uniInfoDto.uniYear());
-//			var student = new Student();
-//			student.setId(uniInfoDto.stuId());
-//			
-//			var uniInfo = new UniversityInfo(uniInfoPk, student);
 			var session = req.getSession();
 			session.setAttribute("uniInfoDto", uniInfoDto);
 			req.getRequestDispatcher("/student/detailStudent.jsp").forward(req, resp);

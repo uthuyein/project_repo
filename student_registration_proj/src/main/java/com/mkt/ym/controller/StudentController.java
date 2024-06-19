@@ -30,7 +30,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-@WebServlet(urlPatterns = { "/student/detailStudent", "/admin/studentList", "/admin/addStudent","/student/addPayment" })
+@WebServlet(urlPatterns = { "/student/detailStudent", "/admin/studentList", "/admin/addStudent",
+		"/student/addPayment" })
 @MultipartConfig
 public class StudentController extends HttpServlet {
 
@@ -76,8 +77,8 @@ public class StudentController extends HttpServlet {
 		case "/admin/addStudent":
 			saveStudent(req, resp);
 			break;
-			
-		case "/student/payment":
+
+		case "/student/addPayment":
 			savePayment(req, resp);
 			break;
 
@@ -106,12 +107,50 @@ public class StudentController extends HttpServlet {
 			message.setMessage("Successfully save student !");
 
 		} catch (Exception e) {
-			Message message = Message.ERROR;
+			message = Message.ERROR;
 			message.setMessage(e.getMessage());
 
 		}
 		req.setAttribute("message", message);
 		req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
+
+	}
+
+	private void savePayment(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			var pay = req.getParameter("payment");
+			var tName = req.getParameter("tName");
+			var tNum = req.getParameter("tNum");
+			var amo = req.getParameter("amount");
+			var note = req.getParameter("note");
+
+			if (!amo.matches("[0-9]+")) {
+				throw new StuRegException("Amount must be digit only !");
+			}
+
+			var payType = (null != pay) ? PaymentType.valueOf(pay) : null;
+			var amount = (null != amo) ? Integer.valueOf(amo) : 0;
+
+			var pk = new PaymentPk(payType, LocalDate.now(), LocalTime.now());
+			var payment = new Payment();
+			payment.setId(pk);
+			payment.setTransferFrom(tName);
+			payment.setTransactionNum(tNum);
+			payment.setAmount(amount);
+			payment.setNote(note);
+			payment.setUniInfo(uniInfo);
+			payService.save(payment);
+
+			message = Message.SUCCESS;
+			message.setMessage("Successfully save payment !");
+
+		} catch (Exception e) {
+			message = Message.ERROR;
+			message.setMessage(e.getMessage());
+		}
+
+		req.setAttribute("message", message);
+		req.getRequestDispatcher("/student/addPayment.jsp").forward(req, resp);
 
 	}
 
@@ -208,44 +247,6 @@ public class StudentController extends HttpServlet {
 		var name = req.getParameter("stuName");
 		var dto = new StudentDto(city, township, name);
 		return dto;
-
-	}
-
-	private void savePayment(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			var pay = req.getParameter("payment");
-			var tName = req.getParameter("tName");
-			var tNum = req.getParameter("tNum");
-			var amo = req.getParameter("amount");
-			var note = req.getParameter("note");
-
-			if (!amo.matches("[0-9]+")) {
-				throw new StuRegException("Amount must be digit only !");
-			}
-
-			var payType = (null != pay) ? PaymentType.valueOf(pay) : null;
-			var amount = (null != amo) ? Integer.valueOf(amo) : 0;
-
-			var pk = new PaymentPk(payType, LocalDate.now(), LocalTime.now());
-			var payment = new Payment();
-			payment.setId(pk);
-			payment.setTransferFrom(tName);
-			payment.setTransactionNum(tNum);
-			payment.setAmount(amount);
-			payment.setNote(note);
-			payment.setUniInfo(uniInfo);
-			payService.save(payment);
-
-			Message message = Message.SUCCESS;
-			message.setMessage("Successfully save payment !");
-
-		} catch (Exception e) {
-			Message message = Message.ERROR;
-			message.setMessage(e.getMessage());
-		}
-
-		req.setAttribute("message", message);
-		req.getRequestDispatcher("/student/payment.jsp").forward(req, resp);
 
 	}
 

@@ -17,15 +17,15 @@
 	class="navbar navbar-light bg-light px-3 sticky-sm-top">
 	<ul class="nav">
 		<li class="nav-item"><a href="${addAcc }"
-			class="nav-link primary-text-color"><i class="bi bi-credit-card-2-front"></i>&nbsp;Add
-				Account</a></li>
+			class="nav-link primary-text-color"><i
+				class="bi bi-credit-card-2-front"></i>&nbsp;Add Account</a></li>
 		<li class="nav-item"><a href="${listAcc }"
 			class="nav-link primary-text-color"><i
 				class="bi bi-credit-card-2-front-fill"></i>&nbsp;Account List</a></li>
 	</ul>
 </nav>
 <div class="row p-3 m-3">
-	<form action="#" class="form mt-2 w-75" method="post">
+	<form action="${listAcc }" class="form mt-2 w-75" method="post">
 		<div class="row">
 			<div class="col">
 				<label for="userName" class="form-label primary-text-color">User
@@ -46,7 +46,11 @@
 					</c:forEach>
 				</select>
 			</div>
-
+			<div class="col mt-4 pt-2 ">
+				<button class="btn primary-color " type="submit">
+					<i class="bi bi-search"></i>&nbsp;Search
+				</button>
+			</div>
 		</div>
 	</form>
 	<c:choose>

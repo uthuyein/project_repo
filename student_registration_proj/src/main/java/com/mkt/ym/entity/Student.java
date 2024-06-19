@@ -2,8 +2,8 @@ package com.mkt.ym.entity;
 
 import java.time.LocalDate;
 
-import com.mkt.ym.controller.listener_filter.EnableTimesListener;
-import com.mkt.ym.controller.listener_filter.Times;
+import com.mkt.ym.controller.listener.EnableTimesListener;
+import com.mkt.ym.controller.listener.Times;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -53,8 +53,8 @@ public class Student implements EnableTimesListener{
 	private Parent parent;
 	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private Address address;
-	@Column(columnDefinition = "boolean not null default true")
-	private boolean active;
+	@Column(nullable = false,columnDefinition = "boolean default true")
+	private boolean active = true;
 
 
 	public Student(String name, LocalDate dob,String religion, String image, String nrc, String email, String primaryContact,

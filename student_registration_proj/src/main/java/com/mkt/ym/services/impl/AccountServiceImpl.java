@@ -39,8 +39,9 @@ public class AccountServiceImpl implements AccountService {
 					sb.append(" and c.loginId = :loginId");
 					map.put("loginId", acc.getLoginId());
 				}
-				if (null != acc.getStudent()) {
-
+				if (null != acc.getUsername()) {
+					sb.append(" and c.username = :username");
+					map.put("username", acc.getUsername());
 				}
 			}
 

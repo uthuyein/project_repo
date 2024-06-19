@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import com.mkt.ym.entity.Address;
 import com.mkt.ym.entity.Parent;
+import com.mkt.ym.entity.Payment;
+import com.mkt.ym.entity.PaymentPk;
 import com.mkt.ym.entity.SchoolInfo;
 import com.mkt.ym.entity.Student;
+import com.mkt.ym.entity.UniversityInfo;
 import com.mkt.ym.entity.dto.StudentDto;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.Message;
+import com.mkt.ym.entity.type.PaymentType;
+import com.mkt.ym.services.PaymentService;
 import com.mkt.ym.services.StudentService;
 import com.mkt.ym.utils.StuRegException;
 
@@ -24,21 +30,26 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-@WebServlet(urlPatterns = { "/student/studentInfo", "/admin/studentList", "/admin/addStudent",
-		"/student/stuUniversityInfo" })
+@WebServlet(urlPatterns = { "/student/detailStudent", "/admin/studentList", "/admin/addStudent","/student/addPayment" })
 @MultipartConfig
 public class StudentController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private StudentService stuService;
-	
+	private PaymentService payService;
+	private UniversityInfo uniInfo;
+	private Message message;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		stuService = StudentService.getStudentService();
-		
+		payService = PaymentService.getPaymentService();
+
 		switch (req.getServletPath()) {
-		case "/student/studentInfo":
-			req.getRequestDispatcher("/student/studentInfo.jsp").forward(req, resp);
+		case "/student/detailStudent":
+			var uniInfoDto = getUniInfo(req, Integer.valueOf(req.getParameter("id")));
+			req.setAttribute("uniInfoDto", uniInfoDto);
+			req.getRequestDispatcher("/student/detailStudent.jsp").forward(req, resp);
 			break;
 		case "/admin/addStudent":
 			req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
@@ -46,19 +57,17 @@ public class StudentController extends HttpServlet {
 		case "/admin/studentList":
 			req.getRequestDispatcher("/admin/listStudent.jsp").forward(req, resp);
 			break;
-		case "/student/stuUniversityInfo":
-			var uniInfoDto = getUniInfo(req, Integer.valueOf( req.getParameter("id")));
-			req.setAttribute("uniInfoDto", uniInfoDto);
-			req.getRequestDispatcher("/student/studentUniInfo.jsp").forward(req, resp);
+		case "/student/addPayment":
+			req.getRequestDispatcher("/student/addPayment.jsp").forward(req, resp);
 			break;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private List<UniversityInfoDto> getUniInfo(HttpServletRequest req,Integer stuId) {
+	private UniversityInfoDto getUniInfo(HttpServletRequest req, Integer stuId) {
 		var list = (List<UniversityInfoDto>) req.getAttribute("listUniInfo");
-		return list.stream().filter(u -> u.stuId() == stuId).toList();
-		
+		return list.stream().filter(u -> u.stuId() == stuId).findFirst().orElse(null);
+
 	}
 
 	@Override
@@ -67,6 +76,11 @@ public class StudentController extends HttpServlet {
 		case "/admin/addStudent":
 			saveStudent(req, resp);
 			break;
+			
+		case "/student/payment":
+			savePayment(req, resp);
+			break;
+
 		case "/admin/studentList":
 			var dto = searchStudent(req);
 			var studentList = stuService.searchStudentDto(dto);
@@ -78,6 +92,7 @@ public class StudentController extends HttpServlet {
 	}
 
 	private void saveStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		try {
 			var student = getStudent(req);
 			var school = getSchoolInfo(req);
@@ -87,14 +102,16 @@ public class StudentController extends HttpServlet {
 			student.setParent(parent);
 			student.setAddress(address);
 			stuService.save(student);
-			resp.sendRedirect("/admin/listStudent.jsp");
+			message = Message.SUCCESS;
+			message.setMessage("Successfully save student !");
 
 		} catch (Exception e) {
 			Message message = Message.ERROR;
 			message.setMessage(e.getMessage());
-			req.setAttribute("message", message);
-			req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
+
 		}
+		req.setAttribute("message", message);
+		req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
 
 	}
 
@@ -189,8 +206,46 @@ public class StudentController extends HttpServlet {
 		var city = req.getParameter("city");
 		var township = req.getParameter("township");
 		var name = req.getParameter("stuName");
-		var dto = new StudentDto((city.equals("---")) ? null : city, (township.equals("---")) ? null : township, name);
+		var dto = new StudentDto(city, township, name);
 		return dto;
+
+	}
+
+	private void savePayment(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			var pay = req.getParameter("payment");
+			var tName = req.getParameter("tName");
+			var tNum = req.getParameter("tNum");
+			var amo = req.getParameter("amount");
+			var note = req.getParameter("note");
+
+			if (!amo.matches("[0-9]+")) {
+				throw new StuRegException("Amount must be digit only !");
+			}
+
+			var payType = (null != pay) ? PaymentType.valueOf(pay) : null;
+			var amount = (null != amo) ? Integer.valueOf(amo) : 0;
+
+			var pk = new PaymentPk(payType, LocalDate.now(), LocalTime.now());
+			var payment = new Payment();
+			payment.setId(pk);
+			payment.setTransferFrom(tName);
+			payment.setTransactionNum(tNum);
+			payment.setAmount(amount);
+			payment.setNote(note);
+			payment.setUniInfo(uniInfo);
+			payService.save(payment);
+
+			Message message = Message.SUCCESS;
+			message.setMessage("Successfully save payment !");
+
+		} catch (Exception e) {
+			Message message = Message.ERROR;
+			message.setMessage(e.getMessage());
+		}
+
+		req.setAttribute("message", message);
+		req.getRequestDispatcher("/student/payment.jsp").forward(req, resp);
 
 	}
 

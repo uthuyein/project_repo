@@ -29,8 +29,8 @@ public class Address implements Serializable {
 	private String township;
 	private String city;
 	private String hostelName;
-	@Column(columnDefinition = "boolean not null default true")
-	private boolean active;
+	@Column(nullable = false,columnDefinition = "boolean default true")
+	private boolean active = true;
 	
 	public Address(String street, String township, String city) {
 		super();

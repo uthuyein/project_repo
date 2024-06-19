@@ -29,9 +29,8 @@ public class SchoolInfo implements Serializable{
 	private Integer id;
 	private String rollNum;
 	private Integer totalMarks;
-	
-	@Column(columnDefinition = "boolean not null default true")
-	private boolean active;
+	@Column(nullable = false,columnDefinition = "boolean default true")
+	private boolean active = true;
 	
 	public SchoolInfo(String rollNum, int totalMarks) {
 		super();

@@ -1,5 +1,4 @@
- insert into account_tbl(loginId,password,role)values('admin','admin',1);
- insert into account_tbl(loginId,password,role)values('student','student',2);
+ insert into account_tbl(username,loginId,password,role)values('username','admin','admin',1);
  
  insert into address_tbl(city,township,street)values('Mandalay','aungmyaytharzan','22st');
  insert into address_tbl(city,township,street)values('Mandalay','patheingyi','kantharyar block');

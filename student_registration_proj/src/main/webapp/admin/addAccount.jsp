@@ -39,7 +39,7 @@
 					
 						<i class="bi bi-person-fill "></i>&nbsp; Add Account
 					</div>
-					<div class="mb-3">
+					<%-- <div class="mb-3">
 						<label for="role" class="form-label primary-text-color">Account
 							Role</label> <select id="role" class="form-select" name="role"
 							required="required">
@@ -103,18 +103,30 @@
 									!</div>
 							</div>
 						</div>
-					</div>
+					</div> --%>
 					<div class="mb-3">
-						<label for="username" class="form-label primary-text-color">Account
+						<label for="username" class="form-label primary-text-color">
 							User Name</label> <input type="text" class="form-control" id="username"
 							name="username" required="required">
 						<div class="invalid-feedback">Please re-enter username !</div>
 					</div>
 					<div class="mb-3">
+						<label for="loginId" class="form-label primary-text-color">
+							LoginId</label> <input type="text" class="form-control" id="loginId"
+							name="loginId" required="required">
+						<div class="invalid-feedback">Please re-enter loginId !</div>
+					</div>
+					<div class="mb-3">
 						<label for="password" class="form-label primary-text-color">Password</label>
-						<input type="text" class="form-control" id="password"
+						<input type="password" class="form-control" id="password"
 							name="password" required="required">
 						<div class="invalid-feedback">Please re-enter password !</div>
+					</div>
+					<div class="mb-3">
+						<label for="confirm" class="form-label primary-text-color">Confirm</label>
+						<input type="password" class="form-control" id="confirm"
+							name="confirm" required="required">
+						<div class="invalid-feedback">Please re-enter confirm password !</div>
 					</div>
 					<div class="nav justify-content-end">
 						<button type="submit" class="btn primary-color">Save

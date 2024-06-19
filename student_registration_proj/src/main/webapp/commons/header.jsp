@@ -22,8 +22,7 @@
 <%@ page import="com.mkt.ym.entity.type.*"%>
 
 <c:url var="style" value="/style.css"></c:url>
-<c:url var="register" value="/student/register"></c:url>
-<c:url var="stuUniInfo" value="/student/stuUniversityInfo"></c:url>
+<c:url var="signUp" value="/student/signUp"></c:url>
 <c:url var="listAccount" value="/admin/accountList"></c:url>
 <c:url var="listStudent" value="/admin/studentList"></c:url>
 <c:url var="listStudentfrmUni" value="/admin/studentListfrmUni"></c:url>
@@ -36,8 +35,6 @@
 
 <c:set var="admin" value="<%=Role.ADMIN%>"></c:set>
 <c:set var="student" value="<%=Role.STUDENT%>"></c:set>
-
-
 <body>
 
 	<nav class="navbar navbar-expand-md navbar-light primary-color">
@@ -58,11 +55,6 @@
 				<ul class="navbar-nav w-100 mb-2">
 
 					<c:if test="${null ne account }">
-						<c:if test="${account.role eq student }">
-							<li class="nav-item "><a class="nav-link text-white "
-								href="${stuUniInfo }?id=${account.student.id}"><i
-									class="bi bi-person-lines-fill"></i>&nbsp;Student Information </a></li>
-						</c:if>
 						<c:if test="${account.role eq admin}">
 							<li class="nav-item "><a class="nav-link text-white"
 								href="${listStudent }"><i class="bi bi-person-fill"></i>&nbsp;Student</a></li>
@@ -74,13 +66,13 @@
 						</c:if>
 					</c:if>
 
-					<!-- <li class="nav-item "><a class="nav-link text-white" href="#"><i
-							class="bi bi-question-circle-fill"></i>&nbsp;About</a></li> -->
+					<li class="nav-item "><a class="nav-link text-white" href="#"><i
+							class="bi bi-question-circle-fill"></i>&nbsp;About</a></li>
 				</ul>
 
 				<c:if test="${null eq account }">
 					<div class="nav-item ">
-						<a class="nav-link text-white" href="${register }"><i
+						<a class="nav-link text-white" href="${signUp }"><i
 							class="bi bi-pencil-square"></i>&nbsp;SignUp</a>
 					</div>
 				</c:if>
@@ -88,7 +80,7 @@
 					<c:when test="${account ne null }">
 						<div class="nav-item ">
 							<c:set
-								value="${null ne account.student ? account.student.image:'uni_images/UTYCC.png'}"
+								value="${null ne uniInfo ? uniInfo.student.image:'uni_images/UTYCC.png'}"
 								var="img"></c:set>
 							<a class="nav-link text-white" data-bs-toggle="modal"
 								data-bs-target="#logoutModal"><img src="/images/${img }"
@@ -124,9 +116,9 @@
 					</div>
 					<div class="modal-body">
 						<div class="mb-3">
-							<label for="username" class="form-label primary-text-color">User
-								Name</label> <input type="text" class="form-control" id="username"
-								name="username" value="admin">
+							<label for="loginId" class="form-label primary-text-color">LoginId
+								</label> <input type="text" class="form-control" id="loginId"
+								name="loginId" value="admin">
 						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label primary-text-color">Password</label>

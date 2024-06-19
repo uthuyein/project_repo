@@ -67,19 +67,22 @@ public class UniversityController extends HttpServlet {
 	}
 
 	private void saveUniInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Message message = null;
+
 		try {
 			var uniInfo = getUniInfo(req);
 			uniService.save(uniInfo);
-			resp.sendRedirect(req.getServletPath());
+			message = Message.SUCCESS;
+			message.setMessage("Successfully add to university !");
+
 		} catch (Exception e) {
-			Message message = Message.ERROR;
+			message = Message.ERROR;
 			message.setMessage(e.getMessage());
-			req.setAttribute("message", message);
-			req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);			
+
 		}
+		req.setAttribute("message", message);
+		req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);
 	}
-	
-	
 
 	private UniversityInfo getUniInfo(HttpServletRequest req) {
 		try {
@@ -87,7 +90,7 @@ public class UniversityController extends HttpServlet {
 			var maj = req.getParameter("major");
 			var newRoll = req.getParameter("newRollNum");
 			var uYear = req.getParameter("uniYear");
-			
+
 			var major = (null != maj) ? Major.valueOf(maj) : null;
 			var uniYear = (null != uYear) ? UniYear.valueOf(uYear) : null;
 			var openYear = (oYear != null) ? Integer.valueOf(oYear) : LocalDate.now().getYear();
@@ -99,11 +102,10 @@ public class UniversityController extends HttpServlet {
 			if (null == stuDto) {
 				throw new StuRegException("Student name and student nrc did not match. Please try again !");
 			}
-			
+
 			listUniInfo = uniService
 					.searchUniversityInfo(new UniversityInfoDto(openYear, uniYear, major, stuDto.name()));
-			System.out.println("============================================"+listUniInfo);
-			if (null != listUniInfo && listUniInfo.size() > 0 ) {
+			if (null != listUniInfo && listUniInfo.size() > 0) {
 				throw new StuRegException("Student name of this university year is already register !");
 			}
 
@@ -112,7 +114,7 @@ public class UniversityController extends HttpServlet {
 			student.setId(stuDto.id());
 			uniInfo.setStudent(student);
 			return uniInfo;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new StuRegException(e.getMessage());

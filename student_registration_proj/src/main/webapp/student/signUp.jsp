@@ -4,9 +4,9 @@
 
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
-<c:url var="register" value="/student/register"></c:url>
-<c:url var="payment" value="/student/payment"></c:url>
-<c:url var="account" value="/student/account"></c:url>
+<c:url var="signUp" value="/student/signUp"></c:url>
+<c:url var="payment" value="/student/addPayment"></c:url>
+<c:url var="account" value="/student/addAccount"></c:url>
 
 <%@page import="com.mkt.ym.entity.type.*"%>
 
@@ -29,41 +29,14 @@
 				</span>
 			</c:if>
 			<div class="card">
-				<form action="${register }" method="post" class="needs-validation"
+				<form action="${signUp }" method="post" class="needs-validation"
 					novalidate>
 					<div class="card-body ">
 
 						<div class="card-header  mb-4 primary-header-text-color">
-							<i class="bi bi-person-fill"></i> Registration Form
+							<i class="bi bi-person-fill"></i> SignUp Form
 						</div>
-						<div class="row">
-							<div class="col">
-								<div class="mb-3">
-									<label for="openYear" class="form-label primary-text-color">University
-										Open Year</label> <input type="text" id="openYear"
-										class="form-control" name="openYear" value="2022"
-										required="required">
-									<div class="invalid-feedback">Please re-enter university
-										open year !</div>
-								</div>
-							</div>
-							<div class="col">
-								<div class="mb-3">
-									<label for="uniYear" class="form-label primary-text-color">University
-										Year</label> <select class="form-select" name="uniYear" id="uniYear"
-										required="required">
-										<c:set var="years" value="<%=UniYear.values()%>"></c:set>
-										<option selected disabled value="">---</option>
-										<c:forEach var="y" items="${years }">
-											<option>${y.name()}</option>
-										</c:forEach>
-									</select>
-									<div class="invalid-feedback">Please select university
-										year !</div>
-								</div>
-							</div>
 						
-						</div>
 						<div class="mb-3">
 							<label for="stuName" class="form-label primary-text-color">Student's
 								Name</label> <input type="text" class="form-control" id="stuName"
@@ -121,7 +94,7 @@
 								re-enter school marks birth !</div>
 						</div>
 						<div class="nav justify-content-end">
-							<button type="submit" class="btn primary-color">Register</button>
+							<button type="submit" class="btn primary-color">Confirm</button>
 						</div>
 					</div>
 				</form>

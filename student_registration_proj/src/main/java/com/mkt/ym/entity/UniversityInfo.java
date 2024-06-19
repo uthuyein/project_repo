@@ -1,7 +1,7 @@
 package com.mkt.ym.entity;
 
-import com.mkt.ym.controller.listener_filter.EnableTimesListener;
-import com.mkt.ym.controller.listener_filter.Times;
+import com.mkt.ym.controller.listener.EnableTimesListener;
+import com.mkt.ym.controller.listener.Times;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -29,8 +29,8 @@ public class UniversityInfo implements EnableTimesListener{
 	@ManyToOne
 	@NonNull
 	private Student student;
-	@Column(columnDefinition = "boolean not null default true")
-	private boolean active;
+	@Column(nullable = false,columnDefinition = "boolean default true")
+	private boolean active = true;
 	private Times times;
 
 

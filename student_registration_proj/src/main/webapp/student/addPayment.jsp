@@ -5,9 +5,9 @@
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="register" value="/student/register"></c:url>
-<c:url var="payment" value="/student/payment"></c:url>
-<c:url var="acc" value="/student/account"></c:url>
-<c:url var="stuUniInfo" value="/student/stuUniversityInfo"></c:url>
+<c:url var="payment" value="/student/addPayment"></c:url>
+<c:url var="acc" value="/student/addAccount"></c:url>
+<c:url var="stuDetail" value="/student/detailStudent"></c:url>
 
 
 <%@page import="com.mkt.ym.entity.type.*"%>
@@ -19,7 +19,7 @@
 		class="navbar navbar-light bg-light px-3 sticky-sm-top">
 		<ul class="nav">
 			<li class="nav-item"><a
-				class="nav-link primary-text-color fs-sm"  href="${stuUniInfo }?id=${account.student.id}" >Student</a></li>
+				class="nav-link primary-text-color fs-sm"  href="${stuDetail }?id=${uniInfoDto.stuId()}" >Student</a></li>
 			<li class="nav-item "><a class="nav-link primary-text-color"
 				href="${payment }">Payment</a></li>
 			<li class="nav-item"><a class="nav-link primary-text-color"

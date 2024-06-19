@@ -4,10 +4,9 @@
 
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
-<c:url var="register" value="/student/register"></c:url>
-<c:url var="payment" value="/student/payment"></c:url>
-<c:url var="acc" value="/student/account"></c:url>
-<c:url var="stuUniInfo" value="/student/stuUniversityInfo"></c:url>
+<c:url var="payment" value="/student/addPayment"></c:url>
+<c:url var="acc" value="/student/addAccount"></c:url>
+<c:url var="stuDetail" value="/student/detailStudent"></c:url>
 
 
 <%@page import="com.mkt.ym.entity.type.*"%>
@@ -18,14 +17,12 @@
 	<nav id="navbar-example"
 		class="navbar navbar-light bg-light px-3 sticky-sm-top">
 		<ul class="nav">
-			<c:if test="${null ne account }">
 
-				<li class="nav-item"><a
-					class="nav-link primary-text-color fs-sm"
-					href="${stuUniInfo }?id=${account.student.id}">Student</a></li>
-				<li class="nav-item "><a class="nav-link primary-text-color"
-					href="${payment }">Payment</a></li>
-			</c:if>
+			<li class="nav-item"><a
+				class="nav-link primary-text-color fs-sm"
+				href="${stuDetail }?id=${uniInfoDto.stuId()}">Student</a></li>
+			<li class="nav-item "><a class="nav-link primary-text-color"
+				href="${payment }">Payment</a></li>
 			<li class="nav-item"><a class="nav-link primary-text-color"
 				href="${acc }">Account</a></li>
 		</ul>
@@ -55,10 +52,15 @@
 							</figure>
 						</div>
 
-						<div class="mb-3">
+						<div class="mb-3" hidden>
 							<label for="username" class="form-label primary-text-color">Account
 								User Name</label> <input type="text" class="form-control" id="username"
-								name="username">
+								name="username" value="${uniInfoDto.name() }">
+						</div>
+						<div class="mb-3">
+							<label for="loginId" class="form-label primary-text-color">
+								LoginId</label> <input type="text" class="form-control" id="loginId"
+								name="loginId">
 						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label primary-text-color">Password</label>

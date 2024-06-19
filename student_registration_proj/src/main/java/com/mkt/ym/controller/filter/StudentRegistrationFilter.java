@@ -1,4 +1,4 @@
-package com.mkt.ym.controller.listener_filter;
+package com.mkt.ym.controller.filter;
 
 import java.io.IOException;
 
@@ -13,8 +13,8 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 
-@WebFilter(urlPatterns = "/admin/*")
-public class RegistrationSecurityFilter implements Filter {
+//@WebFilter(urlPatterns = {"/student/addAccount","/student/addPayment","/student/detailStudent"})
+public class StudentRegistrationFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

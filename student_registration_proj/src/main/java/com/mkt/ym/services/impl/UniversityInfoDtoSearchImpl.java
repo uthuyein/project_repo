@@ -64,12 +64,12 @@ public abstract class UniversityInfoDtoSearchImpl {
 					map.put("schMarks", dto.schoolTotalMarks());
 				}
 				
-				if (dto.openYear() != null) {
+				if (dto.openYear() != null ) {
 					sb.append(" and u.id.openYear = :openYear");
 					map.put("openYear", dto.openYear());
 				}
 				
-				if (dto.uniYear() != null) {
+				if (dto.uniYear() != null ) {
 					sb.append(" and u.id.uniYear = :uniYear");
 					map.put("uniYear", dto.uniYear());
 				}

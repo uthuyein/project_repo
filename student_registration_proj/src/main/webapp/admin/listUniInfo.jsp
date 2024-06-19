@@ -82,9 +82,7 @@
 							<th scope="col">Major</th>
 							<th scope="col">Date Of Birth</th>
 							<th scope="col">Nrc Number</th>
-							<th scope="col">City</th>
-							<th scope="col">Township</th>
-							<th scope="col">Street</th>
+							<th></th>
 
 						</tr>
 					</thead>
@@ -92,9 +90,7 @@
 						<c:forEach var="s" items="${listUniInfo }" varStatus="n">
 							<tr>
 								<th scope="row">${n.index+1 }</th>
-								<td><a href="${stuUniInfo }?id=${s.stuId()}" class="nav-link primary-text-color"
-									data-bs-toggle="tooltip" data-bs-placement="top"
-									title="click to edit student university information">${s.name() }</a></td>
+								<td>${s.name() }</td>
 
 								<td>${s.openYear() }</td>
 								<td>${s.uniYear() }</td>
@@ -102,9 +98,8 @@
 								<td>${s.major() }</td>
 								<td>${s.dob() }</td>
 								<td>${s.nrc() }</td>
-								<td>${s.city() }</td>
-								<td>${s.township()}</td>
-								<td>${s.street()}</td>
+								<td><button class="btn btn-outline-primary">Edit</button></td>
+									<td><button class="btn btn-outline-danger">Delete</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>

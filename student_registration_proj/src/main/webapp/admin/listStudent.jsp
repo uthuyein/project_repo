@@ -29,22 +29,13 @@
 		<form action="${studentList }" class="form  mt-2 w-75" method="post">
 			<div class="row">
 				<div class="col">
-					<label for="city" class="form-label primary-text-color">City</label><select
-						name="city" id="city" class="form-select">
-						<option>---</option>
-						<c:forEach var="u" items="${cities }">
-							<option>${u}</option>
-						</c:forEach>
-					</select>
+					<label for="city" class="form-label primary-text-color">City</label><input
+						type="text" class="form-control" name="city" id="city" />
 				</div>
 				<div class="col">
 					<label for="township" class="form-label primary-text-color">Township
-					</label><select name="township" id="township" class="form-select">
-						<option>---</option>
-						<c:forEach var="u" items="${townships }">
-							<option>${u}</option>
-						</c:forEach>
-					</select>
+					</label><input type="text" class="form-control" name="township"
+						id="township" />
 				</div>
 				<div class="col">
 					<label for="stuName" class="form-label primary-text-color">Student
@@ -86,7 +77,7 @@
 							<c:forEach var="s" items="${listStudent }" varStatus="n">
 								<tr>
 									<th scope="row">${n.index+1 }</th>
-									<td><a href=""  class="nav-link primary-text-color" data-bs-toggle="tooltip" data-bs-placement="top" title="click to edit Student info"  >${s.name() }</a></td>
+									<td>${s.name() }</td>
 									<td>${s.email()}</td>
 									<td>${s.primaryContact()}</td>
 									<td>${s.secondaryContact()}</td>
@@ -101,6 +92,8 @@
 									<td>${s.fNrc() }</td>
 									<td>${s.mName() }</td>
 									<td>${s.mNrc() }</td>
+									<td><button class="btn btn-outline-primary">Edit</button></td>
+									<td><button class="btn btn-outline-danger">Delete</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

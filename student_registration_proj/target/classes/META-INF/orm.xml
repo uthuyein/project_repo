@@ -3,5 +3,5 @@
 	<persistence-unit-metadata>
 		<persistence-unit-defaults>
 			<entity-listeners>
-				<entity-listener class="com.mkt.ym.controller.listener_filter.EntityListener"></entity-listener></entity-listeners></persistence-unit-defaults></persistence-unit-metadata>
+				<entity-listener class="com.mkt.ym.controller.listener.EntityListener"></entity-listener></entity-listeners></persistence-unit-defaults></persistence-unit-metadata>
 </entity-mappings>

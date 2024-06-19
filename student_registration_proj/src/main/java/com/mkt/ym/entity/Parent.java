@@ -29,8 +29,8 @@ public class Parent implements Serializable{
 	private String fatherName;
 	private String motherNrc;
 	private String fatherNrc;
-	@Column(columnDefinition = "boolean not null default true")
-	private boolean active;
+	@Column(nullable = false,columnDefinition = "boolean default true")
+	private boolean active = true;
 	
 	public Parent(String motherName, String fatherName, String motherNrc, String fatherNrc) {
 		super();

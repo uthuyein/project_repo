@@ -1,7 +1,7 @@
 package com.mkt.ym.entity;
 
-import com.mkt.ym.controller.listener_filter.EnableTimesListener;
-import com.mkt.ym.controller.listener_filter.Times;
+import com.mkt.ym.controller.listener.EnableTimesListener;
+import com.mkt.ym.controller.listener.Times;
 import com.mkt.ym.entity.type.Role;
 
 import jakarta.persistence.Column;
@@ -28,18 +28,24 @@ public class Account implements EnableTimesListener{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private String username;
 	private String loginId;
 	private String password;
 	private Times times;
+	@Column(nullable = false,columnDefinition = "boolean default true")
+	private boolean active = true;
 	
-	@Column(columnDefinition = "boolean not null default true")
-	private boolean active;
-	
-	@OneToOne
-	private Student student;
-	
+//	@OneToOne
+//	private Student student;
+//	
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	
+	public Account(String username,String loginId) {
+		this.username = username;
+		this.loginId = loginId;
+		
+	}
 	
 	public Account(String loginId) {
 		this.loginId = loginId;

@@ -81,30 +81,14 @@
 						<div class="row">
 							<div class="col">
 								<label for="stuName" class="form-label primary-text-color">Student
-									Name</label> <select id="stuName" class="form-select" name="stuName"
-									required="required">
-									<option selected disabled="disabled" value="">---</option>
-									<c:if test="${listStudent ne null}">
-										<c:forEach var="s" items="${listStudent }">
-											<option>${s.name()}</option>
-										</c:forEach>
-									</c:if>
-								</select>
-								<div class="invalid-feedback">Please select student's name
+									Name</label> <input name="stuName" type="text" class="form-control" />
+								<div class="invalid-feedback">Please type student's name
 									!</div>
 							</div>
 							<div class="col">
 								<label for="nrc" class="form-label primary-text-color">Student
-									Nrc</label> <select id="nrc" class="form-select" name="nrc"
-									required="required">
-									<option selected disabled="disabled" value="">---</option>
-									<c:if test="${listStudent ne null}">
-										<c:forEach var="s" items="${listStudent }">
-											<option>${s.nrc() }</option>
-										</c:forEach>
-									</c:if>
-								</select>
-								<div class="invalid-feedback">Please select student's nrc
+									Nrc</label> <input  name="nrc" type="text" class="form-control" />
+								<div class="invalid-feedback">Please type student's nrc
 									!</div>
 							</div>
 						</div>

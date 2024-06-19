@@ -35,17 +35,16 @@ public abstract class StudentDtoSearchImpl {
 			if (null != dto) {
 				
 				if (dto.name() != null && !dto.name().isEmpty()) {
-					sb.append(" and lower(s.name) like lower(:name)");
-					
-					map.put("name", dto.name());
+					sb.append(" and lower(s.name) like lower(:name)");		
+					map.put("name", dto.name().concat("%"));
 				}
 				if(null != dto.city() && !dto.city().isEmpty()) {
 					sb.append(" and lower(a.city) like lower(:city)");
-					map.put("city", dto.city());
+					map.put("city", dto.city().concat("%"));
 				}
 				if(null != dto.township() && !dto.township().isEmpty()) {
 					sb.append(" and lower(a.township) like lower(:township)");
-					map.put("township", dto.township());
+					map.put("township", dto.township().concat("%"));
 				}
 				if(null != dto.dob()) {
 					sb.append(" and s.dob = :dob");

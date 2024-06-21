@@ -23,7 +23,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/admin/addStudentToUni", "/admin/studentListfrmUni", })
+@WebServlet(urlPatterns = { "/admin/addStudentToUni", "/admin/studentListfrmUni","/admin/editUniversityInfo","/admin/deleteUniversityInfo",})
 public class UniversityController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

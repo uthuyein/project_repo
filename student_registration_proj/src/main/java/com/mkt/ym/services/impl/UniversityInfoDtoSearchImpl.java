@@ -33,7 +33,7 @@ public abstract class UniversityInfoDtoSearchImpl {
 			if (null != dto) {
 				if(null != dto.rollNumber()) {
 					sb.append(" and u.id.rollNumber = :roll");
-					map.put("roll", dto.name());
+					map.put("roll", dto.rollNumber());
 				}
 				if (dto.name() != null && !dto.name().isEmpty()) {
 					sb.append(" and s.name = :name");
@@ -65,16 +65,17 @@ public abstract class UniversityInfoDtoSearchImpl {
 				}
 				
 				if (dto.openYear() != null ) {
-					sb.append(" and u.id.openYear = :openYear");
+					sb.append(" and u.id.openYear = :openYear");	
 					map.put("openYear", dto.openYear());
 				}
 				
 				if (dto.uniYear() != null ) {
 					sb.append(" and u.id.uniYear = :uniYear");
+					
 					map.put("uniYear", dto.uniYear());
 				}
 				if (dto.major() != null) {
-					sb.append(" and u.id.major = :major");
+					sb.append(" and u.id.major = :major");	
 					map.put("major", dto.major());
 				}			
 			}

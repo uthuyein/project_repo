@@ -6,7 +6,7 @@ import com.mkt.ym.controller.listener.Times;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +27,7 @@ public class Payment implements EnableTimesListener{
 	private Integer amount;
 	private String note;
 	private Times times;
-	@ManyToOne
+	@OneToOne
 	private UniversityInfo uniInfo;
 	@Column(nullable = false,columnDefinition = "boolean default true")
 	private boolean active  = true;

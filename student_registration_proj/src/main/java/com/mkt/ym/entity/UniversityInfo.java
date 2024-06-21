@@ -23,11 +23,12 @@ import lombok.Setter;
 public class UniversityInfo implements EnableTimesListener{
 	
 	private static final long serialVersionUID = 1L;
+	@NonNull
 	@EmbeddedId
-	@NonNull
+	@Column(unique = true ,nullable = false)
 	private UniversityInfoPK id;
-	@ManyToOne
 	@NonNull
+	@ManyToOne
 	private Student student;
 	@Column(nullable = false,columnDefinition = "boolean default true")
 	private boolean active = true;

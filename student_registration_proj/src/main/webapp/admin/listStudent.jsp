@@ -8,6 +8,9 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="addStudent" value="/admin/addStudent"></c:url>
 <c:url var="studentList" value="/admin/studentList"></c:url>
+<c:url var="editStudent" value="/admin/editStudent"></c:url>
+<c:url var="deleteStudent" value="/admin/deleteStudent"></c:url>
+
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="uniYears" value="<%=UniYear.values()%>"></c:set>
 
@@ -92,8 +95,8 @@
 									<td>${s.fNrc() }</td>
 									<td>${s.mName() }</td>
 									<td>${s.mNrc() }</td>
-									<td><button class="btn btn-outline-primary">Edit</button></td>
-									<td><button class="btn btn-outline-danger">Delete</button></td>
+									<td><a href="${editStudent }?id=${s.id()}" class="btn btn-outline-primary">Edit</a></td>
+									<td><a href="${deleteStudent }?id=${s.id()}"  class="btn btn-outline-danger">Delete</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

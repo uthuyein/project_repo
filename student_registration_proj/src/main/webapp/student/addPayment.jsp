@@ -11,6 +11,11 @@
 
 
 <%@page import="com.mkt.ym.entity.type.*"%>
+<c:set var="majors" value="<%=Major.values()%>"></c:set>
+<c:set var="uniYears" value="<%=UniYear.values()%>"></c:set>
+	<c:set var="pays" value="<%=PaymentType.values()%>"></c:set>
+							
+
 
 <jsp:include page="${head }"></jsp:include>
 <div class="row">
@@ -19,7 +24,8 @@
 		class="navbar navbar-light bg-light px-3 sticky-sm-top">
 		<ul class="nav">
 			<li class="nav-item"><a
-				class="nav-link primary-text-color fs-sm"  href="${stuDetail }?id=${uniInfoDto.stuId()}" >Student</a></li>
+				class="nav-link primary-text-color fs-sm"
+				href="${stuDetail }?id=${uniInfoDto.stuId()}">Student</a></li>
 			<li class="nav-item "><a class="nav-link primary-text-color"
 				href="${payment }">Payment</a></li>
 			<li class="nav-item"><a class="nav-link primary-text-color"
@@ -42,12 +48,57 @@
 						<div class="card-header mt-3 mb-4 primary-header-text-color">
 							<i class="bi bi-wallet "></i> &nbsp;Add Payment Information
 						</div>
+						<div class="row">
+							<div class="col col-md-4">
+								<label for="payment" class="form-label primary-text-color">Open
+									Year </label> <select class="form-select" name="openYear"
+									required="required">
+									<option selected disabled="disabled" value="">---</option>
+									<c:forEach var="year" items="${openYears }">
+										<option>${year}</option>
+									</c:forEach>
+								</select>
+								<div class="invalid-feedback">Please select university open year  !</div>
+
+							</div>
+							<div class="col col-md-4">
+							<label for="payment" class="form-label primary-text-color">University
+								Year</label> <select class="form-select" name="uniYear"
+								required="required">
+								<option selected disabled="disabled" value="">---</option>
+								<c:forEach var="u" items="${uniYears }">
+									<option>${u.name()}</option>
+								</c:forEach>
+							</select>
+							<div class="invalid-feedback">Please select university year !</div>
+
+						</div>
+						<div class="col col-md-4">
+							<label for="payment" class="form-label primary-text-color">Major
+								</label> <select class="form-select" name="major"
+								required="required">
+								<option selected disabled="disabled" value="">---</option>
+								<c:forEach var="m" items="${majors }">
+									<option>${m.name()}</option>
+								</c:forEach>
+							</select>
+							<div class="invalid-feedback">Please select Major type !</div>
+
+						</div>
+						
+						</div>
 						<div class="mb-3">
+							<label for="rollNumber" class="form-label primary-text-color">Roll Number
+								</label> <input type="text" class="form-control" id="rollNumber"
+								name="rollNumber" required="required">
+							<div class="invalid-feedback">Please re-enter university roll number
+								number !</div>
+						</div>
+						<div class="mt-2 mb-3">
 							<label for="payment" class="form-label primary-text-color">Payment
 								Type</label> <select class="form-select" name="payment"
 								required="required">
 								<option selected disabled="disabled" value="">---</option>
-								<c:set var="pays" value="<%=PaymentType.values()%>"></c:set>
 								<c:forEach var="m" items="${pays }">
 									<option>${m.name()}</option>
 								</c:forEach>

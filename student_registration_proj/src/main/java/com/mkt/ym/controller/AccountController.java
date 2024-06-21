@@ -18,8 +18,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/student/login", "/student/logout", "/admin/addAccount", "/admin/accountList",
-		"/student/addAccount" ,"/student/signUp",}, loadOnStartup = 1)
+@WebServlet(urlPatterns = {  
+		"/admin/addAccount", "/admin/accountList","/admin/editAccount","/admin/deleteAccount",
+		"/student/addAccount" ,"/student/signUp","/student/login", "/student/logout"}, loadOnStartup = 1)
 
 public class AccountController extends HttpServlet {
 

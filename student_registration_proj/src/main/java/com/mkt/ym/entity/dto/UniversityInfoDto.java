@@ -34,6 +34,10 @@ public record UniversityInfoDto (
 		){
 	
 	
+	public UniversityInfoDto(Integer openYear,UniYear uniYear,Major major,String rollNumber,String name) {
+		this(openYear, uniYear, major, rollNumber,null, name, null, null,null,null,null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+	}
+	
 	public UniversityInfoDto(Integer openYear,UniYear uniYear,Major major,String name) {
 		this(openYear, uniYear, major, null,null, name, null, null,null,null,null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	}

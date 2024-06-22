@@ -29,10 +29,15 @@ public abstract class StudentDtoSearchImpl {
 					join s.schoolInfo si
 					join s.parent p
 					join s.address a
-					where 1=1
+					where s.active = true
 					""");
 
 			if (null != dto) {
+				
+				if(null != dto.id()) {
+					sb.append(" and s.id = :id");
+					map.put("id", dto.id());
+				}
 				
 				if (dto.name() != null && !dto.name().isEmpty()) {
 					sb.append(" and lower(s.name) like lower(:name)");		

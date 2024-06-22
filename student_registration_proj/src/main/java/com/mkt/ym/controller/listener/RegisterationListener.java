@@ -19,7 +19,7 @@ public class RegisterationListener implements ServletRequestListener {
 	private UniversityInfoService uniService;
 	private StudentService stuService;
 	private List<UniversityInfoDto> listUniInfo;
-	private List<StudentDto> listStudent;
+	private List<StudentDto> listStudentDto;
 
 
 	@Override
@@ -30,13 +30,12 @@ public class RegisterationListener implements ServletRequestListener {
 		stuService = StudentService.getStudentService();
 		
 		listUniInfo = uniService.searchUniversityInfo(null);
-		listStudent = stuService.searchStudentDto(null);
+		listStudentDto = stuService.searchStudentDto(null);
 		
-		if (null != listStudent) {
-			req.setAttribute("listStudent", listStudent);
+		if (null != listStudentDto) {
+			req.setAttribute("listStudentDto", listStudentDto);
 		}
-
-			
+		
 			req.setAttribute("openYears", getYear());
 			req.setAttribute("listUniInfo", listUniInfo);
 			req.setAttribute("cities", getCities());
@@ -51,10 +50,10 @@ public class RegisterationListener implements ServletRequestListener {
 	}
 	
 	private List<String> getCities() {
-		return  listStudent.stream().map(StudentDto::city).distinct().collect(Collectors.toList());
+		return  listStudentDto.stream().map(StudentDto::city).distinct().collect(Collectors.toList());
 	}
 	private List<String> getTownships() {
-		return  listStudent.stream().map(StudentDto::township).distinct().collect(Collectors.toList());
+		return  listStudentDto.stream().map(StudentDto::township).distinct().collect(Collectors.toList());
 	}
 
 }

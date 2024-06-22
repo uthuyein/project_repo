@@ -3,6 +3,7 @@ package com.mkt.ym.entity;
 import com.mkt.ym.controller.listener.EnableTimesListener;
 import com.mkt.ym.controller.listener.Times;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -28,7 +29,7 @@ public class UniversityInfo implements EnableTimesListener{
 	@Column(unique = true ,nullable = false)
 	private UniversityInfoPK id;
 	@NonNull
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Student student;
 	@Column(nullable = false,columnDefinition = "boolean default true")
 	private boolean active = true;

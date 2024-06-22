@@ -18,23 +18,22 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {  
-		"/admin/addAccount", "/admin/accountList","/admin/editAccount","/admin/deleteAccount",
-		"/student/addAccount" ,"/student/signUp","/student/login", "/student/logout"}, loadOnStartup = 1)
+@WebServlet(urlPatterns = { "/admin/addAccount", "/admin/accountList", "/admin/editAccount", "/admin/deleteAccount",
+		"/student/addAccount", "/student/signUp", "/student/login", "/student/logout" }, loadOnStartup = 1)
 
 public class AccountController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private AccountService accService =  AccountService.getAccountService();
+	private AccountService accService = AccountService.getAccountService();
 	private UniversityInfoService uniService;
+
 	private Message message;
-	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		uniService = UniversityInfoService.getUniversityInfoService();
-		
+
 		switch (req.getServletPath()) {
 		case "/student/logout":
 			req.getSession().invalidate();
@@ -44,15 +43,36 @@ public class AccountController extends HttpServlet {
 		case "/admin/addAccount":
 			req.getRequestDispatcher("/admin/addAccount.jsp").forward(req, resp);
 			break;
-		case"/student/addAccount":
+
+		case "/admin/editAccount":
+			var id = Integer.valueOf(req.getParameter("id"));
+			var acc = new Account();
+			acc.setId(id);
+			var updAcc = accService.search(acc).get(0);
+			req.setAttribute("updAcc", updAcc);
+			req.getRequestDispatcher("/admin/addAccount.jsp").forward(req, resp);
+			break;
+
+		case "/admin/deleteAccount":
+			id = Integer.valueOf(req.getParameter("id"));
+			acc = new Account();
+			acc.setId(id);
+			accService.delete(acc);
+			var listAccount = accService.search(null);
+			req.setAttribute("listAccount", listAccount);
+			req.getRequestDispatcher("/admin/listAccount.jsp").forward(req, resp);
+			break;
+
+		case "/student/addAccount":
 			req.getRequestDispatcher("/student/addAccount.jsp").forward(req, resp);
 			break;
+
 		case "/student/signUp":
 			req.getRequestDispatcher("/student/signUp.jsp").forward(req, resp);
 			break;
 
 		case "/admin/accountList":
-			var listAccount = accService.search(null);
+			listAccount = accService.search(null);
 			req.setAttribute("listAccount", listAccount);
 			req.getRequestDispatcher("/admin/listAccount.jsp").forward(req, resp);
 			break;
@@ -68,14 +88,15 @@ public class AccountController extends HttpServlet {
 
 		switch (req.getServletPath()) {
 		case "/student/login":
-			login(req,resp);		
+			login(req, resp);
 			break;
 
 		case "/admin/addAccount":
-			addAccount(req, resp,Role.ADMIN);
+		case "/admin/updateAccount":
+			addAccount(req, resp);
 			break;
 		case "/student/addAccount":
-			addAccount(req, resp,Role.STUDENT);
+			addAccount(req, resp);
 			break;
 		case "/student/signUp":
 			signUpStudent(req, resp);
@@ -91,19 +112,19 @@ public class AccountController extends HttpServlet {
 	}
 
 	private List<Account> searchAccount(HttpServletRequest req) {
-		var user = req.getParameter("username");
+		var user = req.getParameter("userName");
 		var login = req.getParameter("loginId");
 		var r = req.getParameter("role");
-		
+
 		var role = null != r ? Role.valueOf(r) : null;
 		var acc = new Account(user, login);
 		acc.setRole(role);
 		return accService.search(acc);
-		
+
 	}
 
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		accService = AccountService.getAccountService();
 
 		var loginId = req.getParameter("loginId").toLowerCase();
@@ -118,35 +139,35 @@ public class AccountController extends HttpServlet {
 			if (!acc.getPassword().equals(pass)) {
 				throw new StuRegException("Please re-enter your password !");
 			}
-			
-			if(acc.getRole() == Role.ADMIN) {
+
+			if (acc.getRole() == Role.ADMIN) {
 				link = "/index.jsp";
-			}else {
+			} else {
 				link = "/student/detailStudent.jsp";
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		req.getSession(true).setAttribute("account",list.get(0));
+		req.getSession(true).setAttribute("account", list.get(0));
 		req.getRequestDispatcher(link).forward(req, resp);
 
 	}
 
-	private void addAccount(HttpServletRequest req, HttpServletResponse resp,Role role) throws IOException, ServletException {
+	private void addAccount(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		var username = req.getParameter("username");
+		var role = req.getParameter("role");
 		var loginId = req.getParameter("loginId");
 		var password = req.getParameter("password");
 		var confirm = req.getParameter("confirm");
-		var acc = new Account(username,loginId);
+		var id = req.getParameter("id");
 		
-	
+		var acc = new Account(username, loginId);
+		var sessionAcc = (Account)req.getSession().getAttribute("account");
 		try {
 
-			var list = accService.search(acc);
-			if (null != list && list.size() > 0) {
-				throw new StuRegException("Aleardy create account for this username !");
-			}
+			acc.setId(null != id ? Integer.valueOf(id) : null);
+			acc.setRole(null != role ? Role.valueOf(role) : null);
 			
 			if (!password.equals(confirm)) {
 				throw new StuRegException("Password did not match confirm password and try again !");
@@ -155,22 +176,33 @@ public class AccountController extends HttpServlet {
 			acc.setUsername(username.toLowerCase());
 			acc.setLoginId(loginId.toLowerCase());
 			acc.setPassword(password);
-			acc.setRole(role);
-			accService.save(acc);
-			message = Message.SUCCESS;
-			message.setMessage("Successfully create account!");
 			
+			if (null != acc.getId()) {
+				accService.update(acc);
+				message = Message.SUCCESS;
+				message.setMessage("Successfully update account!");
+			} else {
+				var list = accService.search(acc);
+				if (null != list && list.size() > 0) {
+					throw new StuRegException("Aleardy create account for this username !");
+				}
+				accService.save(acc);
+				message = Message.SUCCESS;
+				message.setMessage("Successfully create account!");
+			}
+
 		} catch (StuRegException e) {
 			message = Message.ERROR;
 			message.setMessage(e.getMessage());
 		}
 		req.setAttribute("message", message);
-		req.getRequestDispatcher(((role == Role.ADMIN ) ? "/admin" : "/student").concat("/addAccount.jsp")).forward(req, resp);
+		req.getRequestDispatcher(((null != sessionAcc && sessionAcc.getRole() == Role.ADMIN) ? "/admin" : "/student").concat("/addAccount.jsp")).forward(req,
+				resp);
 
 	}
 
 	private void signUpStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			
+
 		try {
 			var stuName = req.getParameter("stuName");
 			var dob = LocalDate.parse(req.getParameter("dob"));

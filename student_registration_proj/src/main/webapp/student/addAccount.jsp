@@ -37,8 +37,8 @@
 
 			<div class="card">
 				<form action="${account }" method="post">
+					<input class="form-check-input" type="text" name="role"  value="${Role.STUDENT }"  hidden/>				
 					<div class="card-body ">
-
 						<div class="card-header mt-3 mb-4 primary-header-text-color">
 							<figure>
 								<blockquote class="blockquote">

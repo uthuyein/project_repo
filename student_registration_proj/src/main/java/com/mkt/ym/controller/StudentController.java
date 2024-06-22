@@ -24,7 +24,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-@WebServlet(urlPatterns = { "/student/detailStudent", "/admin/studentList","/admin/editStudent","/admin/deleteStudent", "/admin/addStudent" })
+@WebServlet(urlPatterns = { "/student/detailStudent", "/admin/studentList", "/admin/editStudent",
+		"/admin/deleteStudent", "/admin/addStudent" ,"/admin/paymentList"})
 @MultipartConfig
 public class StudentController extends HttpServlet {
 
@@ -42,11 +43,30 @@ public class StudentController extends HttpServlet {
 			req.setAttribute("uniInfoDto", uniInfoDto);
 			req.getRequestDispatcher("/student/detailStudent.jsp").forward(req, resp);
 			break;
-			
+		case "/admin/paymentList":
+			req.getRequestDispatcher("/admin/listPayment.jsp").forward(req, resp);
+			break;
 		case "/admin/addStudent":
 			req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
 			break;
-			
+		case "/admin/editStudent":
+			var id = Integer.valueOf(req.getParameter("id"));
+			var stuDto = new StudentDto(id);
+			var listStudentDto = stuService.searchStudentDto(stuDto);
+			req.setAttribute("studentDto", listStudentDto.get(0));
+			req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
+			break;
+
+		case "/admin/deleteStudent":
+			id = Integer.valueOf(req.getParameter("id"));
+			var student = new Student();
+			student.setId(id);
+			stuService.delete(student);
+			listStudentDto = stuService.searchStudentDto(null);
+			req.setAttribute("listStudentDto", listStudentDto);
+			req.getRequestDispatcher("/admin/listStudent.jsp").forward(req, resp);
+			break;
+
 		case "/admin/studentList":
 			req.getRequestDispatcher("/admin/listStudent.jsp").forward(req, resp);
 			break;
@@ -62,15 +82,17 @@ public class StudentController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		switch (req.getServletPath()) {
 		case "/admin/addStudent":
+		case "/admin/editStudent":
 			saveStudent(req, resp);
 			break;
-			
+
 		case "/admin/studentList":
 			var dto = searchStudent(req);
-			var studentList = stuService.searchStudentDto(dto);
-			req.setAttribute("listStudent", studentList);
+			var listStudentDto = stuService.searchStudentDto(dto);
+			req.setAttribute("listStudentDto", listStudentDto);
 			req.getRequestDispatcher("/admin/listStudent.jsp").forward(req, resp);
 			break;
 		}
@@ -80,6 +102,7 @@ public class StudentController extends HttpServlet {
 	private void saveStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
+
 			var student = getStudent(req);
 			var school = getSchoolInfo(req);
 			var parent = getParent(req);
@@ -87,9 +110,15 @@ public class StudentController extends HttpServlet {
 			student.setSchoolInfo(school);
 			student.setParent(parent);
 			student.setAddress(address);
-			stuService.save(student);
 			message = Message.SUCCESS;
-			message.setMessage("Successfully save student !");
+
+			if (null == student.getId()) {
+				stuService.save(student);
+				message.setMessage("Successfully save student !");
+			} else {
+				stuService.update(student);
+				message.setMessage("Successfully update student !");
+			}
 
 		} catch (Exception e) {
 			message = Message.ERROR;
@@ -103,6 +132,7 @@ public class StudentController extends HttpServlet {
 
 	private Student getStudent(HttpServletRequest req) {
 		try {
+			var id = req.getParameter("stuId");
 			var name = req.getParameter("stuName");
 			var religion = req.getParameter("religion").toLowerCase().replaceAll(" ", "");
 			var date = LocalDate.parse(req.getParameter("dob"));
@@ -117,7 +147,9 @@ public class StudentController extends HttpServlet {
 			}
 
 			var image = getFile(req).getFileName().toString();
-			return new Student(name, date, religion, image, nrc, email, pContact, sContact);
+			var student = new Student(name, date, religion, image, nrc, email, pContact, sContact);
+			student.setId(null != id ? Integer.valueOf(id) : null);
+			return student;
 
 		} catch (Exception e) {
 			throw new StuRegException(e.getMessage());

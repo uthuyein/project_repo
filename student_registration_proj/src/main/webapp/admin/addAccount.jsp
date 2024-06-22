@@ -31,79 +31,61 @@
 			</c:if>
 
 		<div class="card ">
-			<form action="${addAccount }" method="post" class="needs-validation"
+		<c:choose>
+		<c:when test="${null != updAcc }">
+		<form action="${addAccount }" method="post" class="needs-validation"
 				novalidate>
+				<div class="card-body ">
+				<input class="form-check-input" type="text" name="id"  value="${updAcc.id }"  hidden/>
+				<input class="form-check-input" type="text" name="role"  value="${updAcc.role }"  hidden/>
+				
+					<div class="card-header mt-2 mb-3 primary-header-text-color">			
+						<i class="bi bi-person-fill "></i>&nbsp; Update Account
+					</div>
+					<div class="mb-3">
+						<label for="username" class="form-label primary-text-color">
+							User Name</label> <input type="text" class="form-control" id="username"
+							name="username" value="${updAcc.username }" >
+						<div class="invalid-feedback">Please re-enter username !</div>
+					</div>
+					<div class="mb-3">
+						<label for="loginId" class="form-label primary-text-color">
+							LoginId</label> <input type="text" class="form-control" id="loginId"
+							name="loginId" required="required" value="${updAcc.loginId }">
+						<div class="invalid-feedback">Please re-enter loginId !</div>
+					</div>
+					<div class="mb-3">
+						<label for="password" class="form-label primary-text-color">Password</label>
+						<input type="password" class="form-control" id="password"
+							name="password" required="required" value="${updAcc.password }">
+						<div class="invalid-feedback">Please re-enter password !</div>
+					</div>
+					<div class="mb-3">
+						<label for="confirm" class="form-label primary-text-color">Confirm</label>
+						<input type="password" class="form-control" id="confirm"
+							name="confirm" required="required" >
+						<div class="invalid-feedback">Please re-enter confirm password !</div>
+					</div>
+					<div class="nav justify-content-end">
+						<button type="submit" class="btn primary-color">Update
+							Account</button>
+					</div>
+
+
+				</div>
+			</form>
+		</c:when>
+		<c:otherwise>
+		<form action="${addAccount }" method="post" class="needs-validation"
+				novalidate>
+				<input class="form-check-input" type="text" name="role"  value="${Role.ADMIN }"  hidden/>
+				
 				<div class="card-body ">
 					<div class="card-header mt-2 mb-3 primary-header-text-color">
 					<input class="form-check-input" type="checkbox" name="active" checked  />
 					
 						<i class="bi bi-person-fill "></i>&nbsp; Add Account
 					</div>
-					<%-- <div class="mb-3">
-						<label for="role" class="form-label primary-text-color">Account
-							Role</label> <select id="role" class="form-select" name="role"
-							required="required">
-							<c:set var="roles" value="<%=Role.values()%>"></c:set>
-							<option selected disabled="disabled" value="">---</option>
-							<c:forEach var="role" items="${roles }">
-								<option>${ role.name()}</option>
-							</c:forEach>
-						</select>
-						<div class="invalid-feedback">Please select account role !</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="mb-3">
-								<label for="uniYear" class="form-label primary-text-color">University
-									Year</label> <select class="form-select" id="uniYear" name="uniYear"
-									required="required">
-									<c:set var="years" value="<%=UniYear.values()%>"></c:set>
-									<option selected disabled="disabled" value="">---</option>
-
-									<c:forEach var="y" items="${years }">
-										<option>${y.name()}</option>
-
-									</c:forEach>
-								</select>
-								<div class="invalid-feedback">Please select university
-									year</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="mb-3">
-								<label for="major" class="form-label primary-text-color">Major
-									Name</label> <select id="major" class="form-select" name="major"
-									required="required">
-									<c:set var="majors" value="<%=Major.values()%>"></c:set>
-									<option selected disabled="disabled" value="">---</option>
-									<c:forEach var="m" items="${majors }">
-										<option>${m.name()}</option>
-									</c:forEach>
-								</select>
-								<div class="invalid-feedback">Please select major !</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="mb-3">
-								<label for="uniRollNum" class="form-label primary-text-color">University
-									Roll Number </label> <input type="text" class="form-control"
-									id="uniRollNum" name="uniRollNum" required="required">
-								<div class="invalid-feedback">Please re-enter university
-									roll number !</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="mb-3">
-								<label for="stuName" class="form-label primary-text-color">Student
-									Name</label> <input type="text" class="form-control" id="stuName"
-									name="stuName" required="required">
-								<div class="invalid-feedback">Please re-enter student name
-									!</div>
-							</div>
-						</div>
-					</div> --%>
 					<div class="mb-3">
 						<label for="username" class="form-label primary-text-color">
 							User Name</label> <input type="text" class="form-control" id="username"
@@ -136,6 +118,9 @@
 
 				</div>
 			</form>
+		</c:otherwise>
+		</c:choose>
+			
 		</div>
 	</div>
 </div>

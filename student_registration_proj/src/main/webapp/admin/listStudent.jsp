@@ -53,7 +53,7 @@
 			</div>
 		</form>
 		<c:choose>
-			<c:when test="${null ne listStudent }">
+			<c:when test="${null ne listStudentDto }">
 				<div class="table-responsive mt-4">
 					<table class="table table-hover w-auto">
 						<thead>
@@ -77,7 +77,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="s" items="${listStudent }" varStatus="n">
+							<c:forEach var="s" items="${listStudentDto }" varStatus="n">
 								<tr>
 									<th scope="row">${n.index+1 }</th>
 									<td>${s.name() }</td>

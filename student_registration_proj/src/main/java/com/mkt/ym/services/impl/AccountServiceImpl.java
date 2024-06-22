@@ -24,6 +24,10 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public int update(Account t) {
+		var em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(t);
+		em.getTransaction().commit();
 		return 0;
 	}
 
@@ -31,15 +35,23 @@ public class AccountServiceImpl implements AccountService {
 	public List<Account> search(Account acc) {
 		try (var em = emf.createEntityManager()) {
 
-			StringBuilder sb = new StringBuilder("select c from Account c where 1=1");
+			StringBuilder sb = new StringBuilder("select c from Account c where c.active = true");
 			Map<String, Object> map = new HashMap<String, Object>();
 
 			if (null != acc) {
-				if (null != acc.getLoginId()) {
+				if(null != acc.getId()) {
+					sb.append(" and c.id = :id");
+					map.put("id", acc.getId());
+				}
+				if(null != acc.getRole()) {
+					sb.append(" and c.role = :role");
+					map.put("role", acc.getRole());
+				}
+				if (null != acc.getLoginId() && !acc.getLoginId().isEmpty()) {
 					sb.append(" and c.loginId = :loginId");
 					map.put("loginId", acc.getLoginId());
 				}
-				if (null != acc.getUsername()) {
+				if (null != acc.getUsername() && !acc.getUsername().isEmpty()) {
 					sb.append(" and c.username = :username");
 					map.put("username", acc.getUsername());
 				}
@@ -55,6 +67,16 @@ public class AccountServiceImpl implements AccountService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public int delete(Account t) {
+		var em = emf.createEntityManager();
+		em.getTransaction().begin();
+		var acc = em.find(Account.class, t.getId());
+		acc.setActive(false);
+		em.getTransaction().commit();
+		return 0;
 	}
 
 }

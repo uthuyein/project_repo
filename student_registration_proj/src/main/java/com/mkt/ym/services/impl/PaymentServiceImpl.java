@@ -28,4 +28,10 @@ public class PaymentServiceImpl implements PaymentService {
 		return null;
 	}
 
+	@Override
+	public int delete(Payment t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

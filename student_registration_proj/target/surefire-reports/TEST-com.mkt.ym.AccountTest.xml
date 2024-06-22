@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mkt.ym.AccountTest" time="3.522" tests="1" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mkt.ym.AccountTest" time="9.296" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="MM"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/target/surefire/surefirebooter-20240619165842468_3.jar /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/target/surefire 2024-06-19T16-58-41_279-jvmRun1 surefire-20240619165842468_1tmp surefire_0-20240619165842468_2tmp"/>
+    <property name="sun.java.command" value="/Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/target/surefire/surefirebooter-20240622132101841_3.jar /Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/target/surefire 2024-06-22T13-21-01_226-jvmRun1 surefire-20240622132101841_1tmp surefire_0-20240622132101841_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/target/test-classes:/Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/target/classes:/Users/MKT/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar:/Users/MKT/.m2/repository/com/mysql/mysql-connector-j/8.3.0/mysql-connector-j-8.3.0.jar:/Users/MKT/.m2/repository/com/google/protobuf/protobuf-java/3.25.1/protobuf-java-3.25.1.jar:/Users/MKT/.m2/repository/org/hibernate/orm/hibernate-core/6.5.0.Final/hibernate-core-6.5.0.Final.jar:/Users/MKT/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/Users/MKT/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Users/MKT/.m2/repository/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar:/Users/MKT/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Users/MKT/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Users/MKT/.m2/repository/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar:/Users/MKT/.m2/repository/net/bytebuddy/byte-buddy/1.14.12/byte-buddy-1.14.12.jar:/Users/MKT/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar:/Users/MKT/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar:/Users/MKT/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar:/Users/MKT/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar:/Users/MKT/.m2/repository/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar:/Users/MKT/.m2/repository/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar:/Users/MKT/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar:/Users/MKT/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/MKT/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Users/MKT/.m2/repository/jakarta/servlet/jakarta.servlet-api/6.1.0-M2/jakarta.servlet-api-6.1.0-M2.jar:/Users/MKT/.m2/repository/jakarta/servlet/jsp/jakarta.servlet.jsp-api/4.0.0-M2/jakarta.servlet.jsp-api-4.0.0-M2.jar:/Users/MKT/.m2/repository/jakarta/servlet/jsp/jstl/jakarta.servlet.jsp.jstl-api/3.0.0/jakarta.servlet.jsp.jstl-api-3.0.0.jar:/Users/MKT/.m2/repository/jakarta/el/jakarta.el-api/5.0.0/jakarta.el-api-5.0.0.jar:/Users/MKT/.m2/repository/org/glassfish/web/jakarta.servlet.jsp.jstl/3.0.0/jakarta.servlet.jsp.jstl-3.0.0.jar:/Users/MKT/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.1/junit-jupiter-5.10.1.jar:/Users/MKT/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.1/junit-jupiter-api-5.10.1.jar:/Users/MKT/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/MKT/.m2/repository/org/junit/platform/junit-platform-commons/1.10.1/junit-platform-commons-1.10.1.jar:/Users/MKT/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/MKT/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.1/junit-jupiter-params-5.10.1.jar:/Users/MKT/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.1/junit-jupiter-engine-5.10.1.jar:/Users/MKT/.m2/repository/org/junit/platform/junit-platform-engine/1.10.1/junit-platform-engine-1.10.1.jar:"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/target/surefire/surefirebooter-20240619165842468_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/MKT/Documents/JDC_WorkSpace/Eclipse_Projects/mkt-projects/servlet-projects/project_repo/student_registration_proj/target/surefire/surefirebooter-20240622132101841_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="17.0.10+7-adhoc.admin.jdk17u"/>
@@ -57,85 +57,762 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="" classname="com.mkt.ym.AccountTest" time="3.522">
-    <error message="Unable to load class [com.mkt.ym.controller.listener_filter.EntityListener]" type="org.hibernate.boot.registry.classloading.spi.ClassLoadingException"><![CDATA[org.hibernate.boot.registry.classloading.spi.ClassLoadingException: Unable to load class [com.mkt.ym.controller.listener_filter.EntityListener]
-	at org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl.classForName(ClassLoaderServiceImpl.java:126)
-	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.toXClass(AnnotationMetadataSourceProcessorImpl.java:175)
-	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.<init>(AnnotationMetadataSourceProcessorImpl.java:97)
-	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess$1.<init>(MetadataBuildingProcess.java:206)
-	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:200)
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1431)
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1502)
-	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
-	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
-	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55)
-	at com.mkt.ym.CommonEntityManager.init(CommonEntityManager.java:20)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	Suppressed: java.lang.NullPointerException: Cannot invoke "jakarta.persistence.EntityManagerFactory.isOpen()" because "com.mkt.ym.CommonEntityManager.emf" is null
-		at com.mkt.ym.CommonEntityManager.closeEmf(CommonEntityManager.java:25)
-		at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-		at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-		at java.base/java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1092)
-		... 1 more
-Caused by: java.lang.ClassNotFoundException: Could not load requested class : com.mkt.ym.controller.listener_filter.EntityListener
-	at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:216)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:592)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-	at java.base/java.lang.Class.forName0(Native Method)
-	at java.base/java.lang.Class.forName(Class.java:467)
-	at org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl.classForName(ClassLoaderServiceImpl.java:123)
-	... 12 more
-Caused by: java.lang.Throwable
-	at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:209)
-	... 17 more
-	Suppressed: java.lang.ClassNotFoundException: com.mkt.ym.controller.listener_filter.EntityListener
-		at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-		at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-		at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:206)
-		... 17 more
-	Suppressed: java.lang.ClassNotFoundException: com.mkt.ym.controller.listener_filter.EntityListener
-		at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-		at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-		at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:206)
-		... 17 more
-	Suppressed: java.lang.ClassNotFoundException: com.mkt.ym.controller.listener_filter.EntityListener
-		at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-		at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-		at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:206)
-		... 17 more
-]]></error>
-    <system-err><![CDATA[Jun 19, 2024 4:58:44 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+  <testcase name="testStudent" classname="com.mkt.ym.AccountTest" time="0.082">
+    <system-out><![CDATA[Hibernate: 
+    alter table contact_tbl 
+       drop 
+       foreign key FKtpncn8uavgj2aw2qncoy48f5h
+Hibernate: 
+    alter table payment_tbl 
+       drop 
+       foreign key FKlbm615a1w11kut2jb7tr837e9
+Hibernate: 
+    alter table student_tbl 
+       drop 
+       foreign key FKq8dkl19ax3wkfy7fcn1ovjp2n
+Hibernate: 
+    alter table student_tbl 
+       drop 
+       foreign key FK5s39ln0waejh6a4w1htdojw1v
+Hibernate: 
+    alter table student_tbl 
+       drop 
+       foreign key FKbkijufv8mthc2ogy8wv0j1hpj
+Hibernate: 
+    alter table subject_mark_tbl 
+       drop 
+       foreign key FKe7vdamn3ckthael49b6ixfk3
+Hibernate: 
+    alter table university_tbl 
+       drop 
+       foreign key FK1grt5j1lbgfblpti16grg5d62
+Hibernate: 
+    drop table if exists account_tbl
+Hibernate: 
+    drop table if exists address_tbl
+Hibernate: 
+    drop table if exists contact_tbl
+Hibernate: 
+    drop table if exists parent_tbl
+Hibernate: 
+    drop table if exists payment_tbl
+Hibernate: 
+    drop table if exists school_info_tbl
+Hibernate: 
+    drop table if exists student_tbl
+Hibernate: 
+    drop table if exists subject_mark_tbl
+Hibernate: 
+    drop table if exists university_tbl
+Hibernate: 
+    create table account_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        createTime datetime(6),
+        updateTime datetime(6),
+        loginId varchar(255),
+        password varchar(255),
+        username varchar(255),
+        role enum ('ADMIN','STUDENT'),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table address_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        city varchar(255),
+        hostelName varchar(255),
+        street varchar(255),
+        township varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table contact_tbl (
+        id integer not null,
+        email varchar(255),
+        primaryContact varchar(255),
+        secondaryContact varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table parent_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        fatherName varchar(255),
+        fatherNrc varchar(255),
+        motherName varchar(255),
+        motherNrc varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table payment_tbl (
+        active boolean default true not null,
+        amount integer,
+        transactionDate date not null,
+        transactionTime time(6) not null,
+        uniInfo_openYear integer,
+        createTime datetime(6),
+        updateTime datetime(6),
+        note varchar(255),
+        transactionNum varchar(255),
+        transferFrom varchar(255),
+        uniInfo_rollNumber varchar(255),
+        paymentType enum ('AYA','KBZ','WAVE') not null,
+        uniInfo_major enum ('AME','CE','ECE','IST','PRE'),
+        uniInfo_uniYear enum ('FIFTH','FIRST','FOURTH','SECOND','THIRD'),
+        primary key (transactionDate, transactionTime, paymentType)
+    ) engine=InnoDB
+Hibernate: 
+    create table school_info_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        totalMarks integer,
+        rollNum varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table student_tbl (
+        active boolean default true not null,
+        address_id integer,
+        dob date not null,
+        id integer not null auto_increment,
+        parent_id integer,
+        schoolInfo_id integer,
+        createTime datetime(6),
+        updateTime datetime(6),
+        name varchar(45) not null,
+        image varchar(255),
+        nrc varchar(255) not null,
+        religion varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table subject_mark_tbl (
+        id integer not null,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table university_tbl (
+        active boolean default true not null,
+        openYear integer not null,
+        student_id integer,
+        createTime datetime(6),
+        updateTime datetime(6),
+        rollNumber varchar(255) not null,
+        major enum ('AME','CE','ECE','IST','PRE') not null,
+        uniYear enum ('FIFTH','FIRST','FOURTH','SECOND','THIRD') not null,
+        primary key (openYear, rollNumber, major, uniYear)
+    ) engine=InnoDB
+Hibernate: 
+    alter table payment_tbl 
+       add constraint UK7ylrl0vs9xu3ixa0ow9ccpqei unique (uniInfo_major, uniInfo_openYear, uniInfo_rollNumber, uniInfo_uniYear)
+Hibernate: 
+    alter table student_tbl 
+       add constraint UKnbjhoas13rlolq6sjmu18f0qt unique (address_id)
+Hibernate: 
+    alter table contact_tbl 
+       add constraint FKtpncn8uavgj2aw2qncoy48f5h 
+       foreign key (id) 
+       references student_tbl (id)
+Hibernate: 
+    alter table payment_tbl 
+       add constraint FKlbm615a1w11kut2jb7tr837e9 
+       foreign key (uniInfo_openYear, uniInfo_rollNumber, uniInfo_major, uniInfo_uniYear) 
+       references university_tbl (openYear, rollNumber, major, uniYear)
+Hibernate: 
+    alter table student_tbl 
+       add constraint FKq8dkl19ax3wkfy7fcn1ovjp2n 
+       foreign key (address_id) 
+       references address_tbl (id)
+Hibernate: 
+    alter table student_tbl 
+       add constraint FK5s39ln0waejh6a4w1htdojw1v 
+       foreign key (parent_id) 
+       references parent_tbl (id)
+Hibernate: 
+    alter table student_tbl 
+       add constraint FKbkijufv8mthc2ogy8wv0j1hpj 
+       foreign key (schoolInfo_id) 
+       references school_info_tbl (id)
+Hibernate: 
+    alter table subject_mark_tbl 
+       add constraint FKe7vdamn3ckthael49b6ixfk3 
+       foreign key (id) 
+       references school_info_tbl (id)
+Hibernate: 
+    alter table university_tbl 
+       add constraint FK1grt5j1lbgfblpti16grg5d62 
+       foreign key (student_id) 
+       references student_tbl (id)
+Hibernate: insert into account_tbl(username,loginId,password,role)values('username','admin','admin',1)
+Hibernate: insert into address_tbl(city,township,street)values('Mandalay','aungmyaytharzan','22st')
+Hibernate: insert into address_tbl(city,township,street)values('Mandalay','patheingyi','kantharyar block')
+Hibernate: insert into address_tbl(city,township,street)values('Yangon','kyaukmyaung','thida street')
+Hibernate: insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('andrew','1991-05-22','9/pamana(n)765642','cat_img.jpeg','burma/buddha',null,null,null)
+Hibernate: insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('william','1995-03-11','9/wakana(n)55432','dog_img.jpeg','burma/buddha',null,null,null)
+Hibernate: insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('john','1998-01-25','9/amaza(n)222121','panda_img.jpeg','burma/buddha',null,null,null)
+Hibernate: insert into contact_tbl(id,email,primaryContact,secondaryContact)values(1,'andrew@gmail.com','0998887444','0998887744')
+Hibernate: insert into contact_tbl(id,email,primaryContact,secondaryContact)values(2,'william@gmail.com','099998823','097882332')
+Hibernate: insert into contact_tbl(id,email,primaryContact,secondaryContact)values(3,'john@gmail.com','099110222','0998887744')
+Hibernate: insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(1,'joeseaph','malarwii','5/pakaka(n)982342','6/yatata(F)0942342')
+Hibernate: insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(2,'soeudum','kara','6/pakaka(n)223242','6/yatata(F)0455342')
+Hibernate: insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(3,'sandra','kaythi','7/wanapa(n)322122','4/samasa(F)9882342')
+Hibernate: insert into school_info_tbl(id,rollNum,totalMarks) values (1,10,405)
+Hibernate: insert into school_info_tbl(id,rollNum,totalMarks) values (2,22,380)
+Hibernate: insert into school_info_tbl(id,rollNum,totalMarks) values (3,5,455)
+Hibernate: update student_tbl set schoolInfo_id =1 ,parent_id =1, address_id =1  where id = 1
+Hibernate: update student_tbl set schoolInfo_id =2 ,parent_id =2, address_id =2  where id = 2
+Hibernate: update student_tbl set schoolInfo_id =3 ,parent_id =3, address_id =3  where id = 3
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2022,10,'FIRST','IST')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2023,22,'SECOND','IST')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2024,11,'THIRD','IST')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2022,10,'FIRST','ECE')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2023,22,'SECOND','ECE')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2024,11,'THIRD','ECE')
+Hibernate: 
+    alter table contact_tbl 
+       drop 
+       foreign key FKtpncn8uavgj2aw2qncoy48f5h
+Hibernate: 
+    alter table payment_tbl 
+       drop 
+       foreign key FKlbm615a1w11kut2jb7tr837e9
+Hibernate: 
+    alter table student_tbl 
+       drop 
+       foreign key FKq8dkl19ax3wkfy7fcn1ovjp2n
+Hibernate: 
+    alter table student_tbl 
+       drop 
+       foreign key FK5s39ln0waejh6a4w1htdojw1v
+Hibernate: 
+    alter table student_tbl 
+       drop 
+       foreign key FKbkijufv8mthc2ogy8wv0j1hpj
+Hibernate: 
+    alter table subject_mark_tbl 
+       drop 
+       foreign key FKe7vdamn3ckthael49b6ixfk3
+Hibernate: 
+    alter table university_tbl 
+       drop 
+       foreign key FK1grt5j1lbgfblpti16grg5d62
+Hibernate: 
+    drop table if exists account_tbl
+Hibernate: 
+    drop table if exists address_tbl
+Hibernate: 
+    drop table if exists contact_tbl
+Hibernate: 
+    drop table if exists parent_tbl
+Hibernate: 
+    drop table if exists payment_tbl
+Hibernate: 
+    drop table if exists school_info_tbl
+Hibernate: 
+    drop table if exists student_tbl
+Hibernate: 
+    drop table if exists subject_mark_tbl
+Hibernate: 
+    drop table if exists university_tbl
+Hibernate: 
+    create table account_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        createTime datetime(6),
+        updateTime datetime(6),
+        loginId varchar(255),
+        password varchar(255),
+        username varchar(255),
+        role enum ('ADMIN','STUDENT'),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table address_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        city varchar(255),
+        hostelName varchar(255),
+        street varchar(255),
+        township varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table contact_tbl (
+        id integer not null,
+        email varchar(255),
+        primaryContact varchar(255),
+        secondaryContact varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table parent_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        fatherName varchar(255),
+        fatherNrc varchar(255),
+        motherName varchar(255),
+        motherNrc varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table payment_tbl (
+        active boolean default true not null,
+        amount integer,
+        transactionDate date not null,
+        transactionTime time(6) not null,
+        uniInfo_openYear integer,
+        createTime datetime(6),
+        updateTime datetime(6),
+        note varchar(255),
+        transactionNum varchar(255),
+        transferFrom varchar(255),
+        uniInfo_rollNumber varchar(255),
+        paymentType enum ('AYA','KBZ','WAVE') not null,
+        uniInfo_major enum ('AME','CE','ECE','IST','PRE'),
+        uniInfo_uniYear enum ('FIFTH','FIRST','FOURTH','SECOND','THIRD'),
+        primary key (transactionDate, transactionTime, paymentType)
+    ) engine=InnoDB
+Hibernate: 
+    create table school_info_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        totalMarks integer,
+        rollNum varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table student_tbl (
+        active boolean default true not null,
+        address_id integer,
+        dob date not null,
+        id integer not null auto_increment,
+        parent_id integer,
+        schoolInfo_id integer,
+        createTime datetime(6),
+        updateTime datetime(6),
+        name varchar(45) not null,
+        image varchar(255),
+        nrc varchar(255) not null,
+        religion varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table subject_mark_tbl (
+        id integer not null,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table university_tbl (
+        active boolean default true not null,
+        openYear integer not null,
+        student_id integer,
+        createTime datetime(6),
+        updateTime datetime(6),
+        rollNumber varchar(255) not null,
+        major enum ('AME','CE','ECE','IST','PRE') not null,
+        uniYear enum ('FIFTH','FIRST','FOURTH','SECOND','THIRD') not null,
+        primary key (openYear, rollNumber, major, uniYear)
+    ) engine=InnoDB
+Hibernate: 
+    alter table payment_tbl 
+       add constraint UK7ylrl0vs9xu3ixa0ow9ccpqei unique (uniInfo_major, uniInfo_openYear, uniInfo_rollNumber, uniInfo_uniYear)
+Hibernate: 
+    alter table student_tbl 
+       add constraint UKnbjhoas13rlolq6sjmu18f0qt unique (address_id)
+Hibernate: 
+    alter table contact_tbl 
+       add constraint FKtpncn8uavgj2aw2qncoy48f5h 
+       foreign key (id) 
+       references student_tbl (id)
+Hibernate: 
+    alter table payment_tbl 
+       add constraint FKlbm615a1w11kut2jb7tr837e9 
+       foreign key (uniInfo_openYear, uniInfo_rollNumber, uniInfo_major, uniInfo_uniYear) 
+       references university_tbl (openYear, rollNumber, major, uniYear)
+Hibernate: 
+    alter table student_tbl 
+       add constraint FKq8dkl19ax3wkfy7fcn1ovjp2n 
+       foreign key (address_id) 
+       references address_tbl (id)
+Hibernate: 
+    alter table student_tbl 
+       add constraint FK5s39ln0waejh6a4w1htdojw1v 
+       foreign key (parent_id) 
+       references parent_tbl (id)
+Hibernate: 
+    alter table student_tbl 
+       add constraint FKbkijufv8mthc2ogy8wv0j1hpj 
+       foreign key (schoolInfo_id) 
+       references school_info_tbl (id)
+Hibernate: 
+    alter table subject_mark_tbl 
+       add constraint FKe7vdamn3ckthael49b6ixfk3 
+       foreign key (id) 
+       references school_info_tbl (id)
+Hibernate: 
+    alter table university_tbl 
+       add constraint FK1grt5j1lbgfblpti16grg5d62 
+       foreign key (student_id) 
+       references student_tbl (id)
+Hibernate: insert into account_tbl(username,loginId,password,role)values('username','admin','admin',1)
+Hibernate: insert into address_tbl(city,township,street)values('Mandalay','aungmyaytharzan','22st')
+Hibernate: insert into address_tbl(city,township,street)values('Mandalay','patheingyi','kantharyar block')
+Hibernate: insert into address_tbl(city,township,street)values('Yangon','kyaukmyaung','thida street')
+Hibernate: insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('andrew','1991-05-22','9/pamana(n)765642','cat_img.jpeg','burma/buddha',null,null,null)
+Hibernate: insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('william','1995-03-11','9/wakana(n)55432','dog_img.jpeg','burma/buddha',null,null,null)
+Hibernate: insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('john','1998-01-25','9/amaza(n)222121','panda_img.jpeg','burma/buddha',null,null,null)
+Hibernate: insert into contact_tbl(id,email,primaryContact,secondaryContact)values(1,'andrew@gmail.com','0998887444','0998887744')
+Hibernate: insert into contact_tbl(id,email,primaryContact,secondaryContact)values(2,'william@gmail.com','099998823','097882332')
+Hibernate: insert into contact_tbl(id,email,primaryContact,secondaryContact)values(3,'john@gmail.com','099110222','0998887744')
+Hibernate: insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(1,'joeseaph','malarwii','5/pakaka(n)982342','6/yatata(F)0942342')
+Hibernate: insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(2,'soeudum','kara','6/pakaka(n)223242','6/yatata(F)0455342')
+Hibernate: insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(3,'sandra','kaythi','7/wanapa(n)322122','4/samasa(F)9882342')
+Hibernate: insert into school_info_tbl(id,rollNum,totalMarks) values (1,10,405)
+Hibernate: insert into school_info_tbl(id,rollNum,totalMarks) values (2,22,380)
+Hibernate: insert into school_info_tbl(id,rollNum,totalMarks) values (3,5,455)
+Hibernate: update student_tbl set schoolInfo_id =1 ,parent_id =1, address_id =1  where id = 1
+Hibernate: update student_tbl set schoolInfo_id =2 ,parent_id =2, address_id =2  where id = 2
+Hibernate: update student_tbl set schoolInfo_id =3 ,parent_id =3, address_id =3  where id = 3
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2022,10,'FIRST','IST')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2023,22,'SECOND','IST')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2024,11,'THIRD','IST')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2022,10,'FIRST','ECE')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2023,22,'SECOND','ECE')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2024,11,'THIRD','ECE')
+]]></system-out>
+    <system-err><![CDATA[Jun 22, 2024 1:21:03 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
 INFO: HHH000204: Processing PersistenceUnitInfo [name: student_registration]
-Jun 19, 2024 4:58:44 PM org.hibernate.Version logVersion
+Jun 22, 2024 1:21:03 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version 6.5.0.Final
-Jun 19, 2024 4:58:44 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl lambda$normalizeConnectionAccessUserAndPass$6
+Jun 22, 2024 1:21:03 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl lambda$normalizeConnectionAccessUserAndPass$6
 WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
-Jun 19, 2024 4:58:44 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl lambda$normalizeConnectionAccessUserAndPass$12
+Jun 22, 2024 1:21:03 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl lambda$normalizeConnectionAccessUserAndPass$12
 WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
-Jun 19, 2024 4:58:44 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl normalizeDataAccess
+Jun 22, 2024 1:21:03 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl normalizeDataAccess
 WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
-Jun 19, 2024 4:58:44 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl normalizeDataAccess
+Jun 22, 2024 1:21:03 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl normalizeDataAccess
 WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
-Jun 19, 2024 4:58:44 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+Jun 22, 2024 1:21:03 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
 INFO: HHH000026: Second-level cache disabled
-Jun 19, 2024 4:58:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+Jun 22, 2024 1:21:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using built-in connection pool (not intended for production use)
-Jun 19, 2024 4:58:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 22, 2024 1:21:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
-Jun 19, 2024 4:58:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 22, 2024 1:21:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/student_registration_db]
-Jun 19, 2024 4:58:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 22, 2024 1:21:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, user=root}
-Jun 19, 2024 4:58:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 22, 2024 1:21:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-Jun 19, 2024 4:58:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+Jun 22, 2024 1:21:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
 INFO: HHH10001115: Connection pool size: 20 (min=1)
-Jun 19, 2024 4:58:47 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
-INFO: HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost:3306/student_registration_db]
+Jun 22, 2024 1:21:07 PM org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator$ActionGrouping determineJpaDbActionSetting
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.schema-generation.database.action], use [jakarta.persistence.schema-generation.database.action] instead
+Jun 22, 2024 1:21:08 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Jun 22, 2024 1:21:08 PM org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator$ActionGrouping determineJpaDbActionSetting
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.schema-generation.database.action], use [jakarta.persistence.schema-generation.database.action] instead
+Jun 22, 2024 1:21:08 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@772f3a3f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+Jun 22, 2024 1:21:08 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2d73767e] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+Jun 22, 2024 1:21:09 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH000204: Processing PersistenceUnitInfo [name: student_registration]
+Jun 22, 2024 1:21:09 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl lambda$normalizeConnectionAccessUserAndPass$6
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+Jun 22, 2024 1:21:09 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl lambda$normalizeConnectionAccessUserAndPass$12
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+Jun 22, 2024 1:21:09 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl normalizeDataAccess
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+Jun 22, 2024 1:21:09 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl normalizeDataAccess
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+Jun 22, 2024 1:21:09 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+INFO: HHH000026: Second-level cache disabled
+Jun 22, 2024 1:21:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Jun 22, 2024 1:21:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+Jun 22, 2024 1:21:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/student_registration_db]
+Jun 22, 2024 1:21:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=root}
+Jun 22, 2024 1:21:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Jun 22, 2024 1:21:09 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH10001115: Connection pool size: 20 (min=1)
+Jun 22, 2024 1:21:09 PM org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator$ActionGrouping determineJpaDbActionSetting
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.schema-generation.database.action], use [jakarta.persistence.schema-generation.database.action] instead
+Jun 22, 2024 1:21:10 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Jun 22, 2024 1:21:10 PM org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator$ActionGrouping determineJpaDbActionSetting
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.schema-generation.database.action], use [jakarta.persistence.schema-generation.database.action] instead
+Jun 22, 2024 1:21:10 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@20be793a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+Jun 22, 2024 1:21:10 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@9763e61] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+]]></system-err>
+  </testcase>
+  <testcase name="test" classname="com.mkt.ym.AccountTest" time="0.524">
+    <system-out><![CDATA[Hibernate: 
+    alter table contact_tbl 
+       drop 
+       foreign key FKtpncn8uavgj2aw2qncoy48f5h
+Hibernate: 
+    alter table payment_tbl 
+       drop 
+       foreign key FKlbm615a1w11kut2jb7tr837e9
+Hibernate: 
+    alter table student_tbl 
+       drop 
+       foreign key FKq8dkl19ax3wkfy7fcn1ovjp2n
+Hibernate: 
+    alter table student_tbl 
+       drop 
+       foreign key FK5s39ln0waejh6a4w1htdojw1v
+Hibernate: 
+    alter table student_tbl 
+       drop 
+       foreign key FKbkijufv8mthc2ogy8wv0j1hpj
+Hibernate: 
+    alter table subject_mark_tbl 
+       drop 
+       foreign key FKe7vdamn3ckthael49b6ixfk3
+Hibernate: 
+    alter table university_tbl 
+       drop 
+       foreign key FK1grt5j1lbgfblpti16grg5d62
+Hibernate: 
+    drop table if exists account_tbl
+Hibernate: 
+    drop table if exists address_tbl
+Hibernate: 
+    drop table if exists contact_tbl
+Hibernate: 
+    drop table if exists parent_tbl
+Hibernate: 
+    drop table if exists payment_tbl
+Hibernate: 
+    drop table if exists school_info_tbl
+Hibernate: 
+    drop table if exists student_tbl
+Hibernate: 
+    drop table if exists subject_mark_tbl
+Hibernate: 
+    drop table if exists university_tbl
+Hibernate: 
+    create table account_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        createTime datetime(6),
+        updateTime datetime(6),
+        loginId varchar(255),
+        password varchar(255),
+        username varchar(255),
+        role enum ('ADMIN','STUDENT'),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table address_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        city varchar(255),
+        hostelName varchar(255),
+        street varchar(255),
+        township varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table contact_tbl (
+        id integer not null,
+        email varchar(255),
+        primaryContact varchar(255),
+        secondaryContact varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table parent_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        fatherName varchar(255),
+        fatherNrc varchar(255),
+        motherName varchar(255),
+        motherNrc varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table payment_tbl (
+        active boolean default true not null,
+        amount integer,
+        transactionDate date not null,
+        transactionTime time(6) not null,
+        uniInfo_openYear integer,
+        createTime datetime(6),
+        updateTime datetime(6),
+        note varchar(255),
+        transactionNum varchar(255),
+        transferFrom varchar(255),
+        uniInfo_rollNumber varchar(255),
+        paymentType enum ('AYA','KBZ','WAVE') not null,
+        uniInfo_major enum ('AME','CE','ECE','IST','PRE'),
+        uniInfo_uniYear enum ('FIFTH','FIRST','FOURTH','SECOND','THIRD'),
+        primary key (transactionDate, transactionTime, paymentType)
+    ) engine=InnoDB
+Hibernate: 
+    create table school_info_tbl (
+        active boolean default true not null,
+        id integer not null auto_increment,
+        totalMarks integer,
+        rollNum varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table student_tbl (
+        active boolean default true not null,
+        address_id integer,
+        dob date not null,
+        id integer not null auto_increment,
+        parent_id integer,
+        schoolInfo_id integer,
+        createTime datetime(6),
+        updateTime datetime(6),
+        name varchar(45) not null,
+        image varchar(255),
+        nrc varchar(255) not null,
+        religion varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table subject_mark_tbl (
+        id integer not null,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table university_tbl (
+        active boolean default true not null,
+        openYear integer not null,
+        student_id integer,
+        createTime datetime(6),
+        updateTime datetime(6),
+        rollNumber varchar(255) not null,
+        major enum ('AME','CE','ECE','IST','PRE') not null,
+        uniYear enum ('FIFTH','FIRST','FOURTH','SECOND','THIRD') not null,
+        primary key (openYear, rollNumber, major, uniYear)
+    ) engine=InnoDB
+Hibernate: 
+    alter table payment_tbl 
+       add constraint UK7ylrl0vs9xu3ixa0ow9ccpqei unique (uniInfo_major, uniInfo_openYear, uniInfo_rollNumber, uniInfo_uniYear)
+Hibernate: 
+    alter table student_tbl 
+       add constraint UKnbjhoas13rlolq6sjmu18f0qt unique (address_id)
+Hibernate: 
+    alter table contact_tbl 
+       add constraint FKtpncn8uavgj2aw2qncoy48f5h 
+       foreign key (id) 
+       references student_tbl (id)
+Hibernate: 
+    alter table payment_tbl 
+       add constraint FKlbm615a1w11kut2jb7tr837e9 
+       foreign key (uniInfo_openYear, uniInfo_rollNumber, uniInfo_major, uniInfo_uniYear) 
+       references university_tbl (openYear, rollNumber, major, uniYear)
+Hibernate: 
+    alter table student_tbl 
+       add constraint FKq8dkl19ax3wkfy7fcn1ovjp2n 
+       foreign key (address_id) 
+       references address_tbl (id)
+Hibernate: 
+    alter table student_tbl 
+       add constraint FK5s39ln0waejh6a4w1htdojw1v 
+       foreign key (parent_id) 
+       references parent_tbl (id)
+Hibernate: 
+    alter table student_tbl 
+       add constraint FKbkijufv8mthc2ogy8wv0j1hpj 
+       foreign key (schoolInfo_id) 
+       references school_info_tbl (id)
+Hibernate: 
+    alter table subject_mark_tbl 
+       add constraint FKe7vdamn3ckthael49b6ixfk3 
+       foreign key (id) 
+       references school_info_tbl (id)
+Hibernate: 
+    alter table university_tbl 
+       add constraint FK1grt5j1lbgfblpti16grg5d62 
+       foreign key (student_id) 
+       references student_tbl (id)
+Hibernate: insert into account_tbl(username,loginId,password,role)values('username','admin','admin',1)
+Hibernate: insert into address_tbl(city,township,street)values('Mandalay','aungmyaytharzan','22st')
+Hibernate: insert into address_tbl(city,township,street)values('Mandalay','patheingyi','kantharyar block')
+Hibernate: insert into address_tbl(city,township,street)values('Yangon','kyaukmyaung','thida street')
+Hibernate: insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('andrew','1991-05-22','9/pamana(n)765642','cat_img.jpeg','burma/buddha',null,null,null)
+Hibernate: insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('william','1995-03-11','9/wakana(n)55432','dog_img.jpeg','burma/buddha',null,null,null)
+Hibernate: insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('john','1998-01-25','9/amaza(n)222121','panda_img.jpeg','burma/buddha',null,null,null)
+Hibernate: insert into contact_tbl(id,email,primaryContact,secondaryContact)values(1,'andrew@gmail.com','0998887444','0998887744')
+Hibernate: insert into contact_tbl(id,email,primaryContact,secondaryContact)values(2,'william@gmail.com','099998823','097882332')
+Hibernate: insert into contact_tbl(id,email,primaryContact,secondaryContact)values(3,'john@gmail.com','099110222','0998887744')
+Hibernate: insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(1,'joeseaph','malarwii','5/pakaka(n)982342','6/yatata(F)0942342')
+Hibernate: insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(2,'soeudum','kara','6/pakaka(n)223242','6/yatata(F)0455342')
+Hibernate: insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(3,'sandra','kaythi','7/wanapa(n)322122','4/samasa(F)9882342')
+Hibernate: insert into school_info_tbl(id,rollNum,totalMarks) values (1,10,405)
+Hibernate: insert into school_info_tbl(id,rollNum,totalMarks) values (2,22,380)
+Hibernate: insert into school_info_tbl(id,rollNum,totalMarks) values (3,5,455)
+Hibernate: update student_tbl set schoolInfo_id =1 ,parent_id =1, address_id =1  where id = 1
+Hibernate: update student_tbl set schoolInfo_id =2 ,parent_id =2, address_id =2  where id = 2
+Hibernate: update student_tbl set schoolInfo_id =3 ,parent_id =3, address_id =3  where id = 3
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2022,10,'FIRST','IST')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2023,22,'SECOND','IST')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (1,2024,11,'THIRD','IST')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2022,10,'FIRST','ECE')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2023,22,'SECOND','ECE')
+Hibernate: insert into university_tbl(student_id,openYear,rollNumber,uniYear,major) values (2,2024,11,'THIRD','ECE')
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.active,
+        a1_0.loginId,
+        a1_0.password,
+        a1_0.role,
+        a1_0.createTime,
+        a1_0.updateTime,
+        a1_0.username 
+    from
+        account_tbl a1_0
+admin	admin
+]]></system-out>
+    <system-err><![CDATA[Jun 22, 2024 1:21:10 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH000204: Processing PersistenceUnitInfo [name: student_registration]
+Jun 22, 2024 1:21:10 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl lambda$normalizeConnectionAccessUserAndPass$6
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+Jun 22, 2024 1:21:10 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl lambda$normalizeConnectionAccessUserAndPass$12
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+Jun 22, 2024 1:21:10 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl normalizeDataAccess
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+Jun 22, 2024 1:21:10 PM org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl normalizeDataAccess
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+Jun 22, 2024 1:21:10 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+INFO: HHH000026: Second-level cache disabled
+Jun 22, 2024 1:21:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Jun 22, 2024 1:21:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+Jun 22, 2024 1:21:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/student_registration_db]
+Jun 22, 2024 1:21:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=root}
+Jun 22, 2024 1:21:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Jun 22, 2024 1:21:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH10001115: Connection pool size: 20 (min=1)
+Jun 22, 2024 1:21:11 PM org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator$ActionGrouping determineJpaDbActionSetting
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.schema-generation.database.action], use [jakarta.persistence.schema-generation.database.action] instead
+Jun 22, 2024 1:21:11 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Jun 22, 2024 1:21:11 PM org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator$ActionGrouping determineJpaDbActionSetting
+WARN: HHH90000021: Encountered deprecated setting [javax.persistence.schema-generation.database.action], use [jakarta.persistence.schema-generation.database.action] instead
+Jun 22, 2024 1:21:11 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4866e0a7] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+Jun 22, 2024 1:21:11 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@70b1028d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 ]]></system-err>
   </testcase>
 </testsuite>

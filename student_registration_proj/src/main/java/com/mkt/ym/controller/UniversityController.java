@@ -23,7 +23,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/admin/addStudentToUni", "/admin/studentListfrmUni","/admin/editUniversityInfo","/admin/deleteUniversityInfo",})
+@WebServlet(urlPatterns = { "/admin/addStudentToUni", "/admin/studentListfrmUni", "/admin/editUniversityInfo",
+		"/admin/deleteUniversityInfo", })
 public class UniversityController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -43,6 +44,20 @@ public class UniversityController extends HttpServlet {
 		case "/admin/addStudentToUni":
 			req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);
 			break;
+		case "/admin/editUniversityInfo":
+			var uniInfo = findUniInfoByIndexFromAttributeList(req);
+			req.setAttribute("uniInfo", uniInfo);
+			req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);
+			break;
+			
+		case "/admin/deleteUniversityInfo":
+			uniInfo = findUniInfoByIndexFromAttributeList(req);
+			uniService.delete(uniInfo);
+			listUniInfo = uniService.searchUniversityInfo(null);
+			req.setAttribute("listUniInfo", listUniInfo);
+			req.getRequestDispatcher("/admin/listUniInfo.jsp").forward(req, resp);
+			break;
+
 		case "/admin/studentListfrmUni":
 			req.getRequestDispatcher("/admin/listUniInfo.jsp").forward(req, resp);
 			break;
@@ -64,6 +79,16 @@ public class UniversityController extends HttpServlet {
 			req.getRequestDispatcher("/admin/listUniInfo.jsp").forward(req, resp);
 			break;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private UniversityInfo findUniInfoByIndexFromAttributeList(HttpServletRequest req) {
+		listUniInfo = (List<UniversityInfoDto>) req.getAttribute("listUniInfo");
+		var uni = listUniInfo.get(Integer.valueOf(req.getParameter("index")));
+		var uniInfoPk = new UniversityInfoPK(uni.openYear(), uni.rollNumber(), uni.major(), uni.uniYear());
+		var university = new UniversityInfo();
+		university.setId(uniInfoPk);
+		return university;
 	}
 
 	private void saveUniInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

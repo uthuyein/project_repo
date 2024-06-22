@@ -36,7 +36,7 @@
 			</div>
 			<div class="col">
 				<label for="loginId" class="form-label primary-text-color">LoginId
-					Year</label><input name="loginId" id="loginId" type="text"
+					</label><input name="loginId" id="loginId" type="text"
 					class="form-control" />
 			</div>
 			<div class="col">

@@ -27,6 +27,16 @@ public class UniversityInfoServiceImpl extends UniversityInfoDtoSearchImpl imple
 		return null;
 	}
 
+	@Override
+	public int delete(UniversityInfo u) {
+		var em = emf.createEntityManager();
+		em.getTransaction().begin();
+		var uni = em.find(UniversityInfo.class, u.getId());
+		uni.setActive(false);
+		em.getTransaction().commit();
+		return 0;
+	}
+
 	
 
 }

@@ -25,6 +25,10 @@ public class StudentServiceImpl extends StudentDtoSearchImpl implements StudentS
 	
 	@Override
 	public int update(Student t) {
+		var em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(t);
+		em.getTransaction().commit();
 		return 0;
 	}
 
@@ -50,6 +54,16 @@ public class StudentServiceImpl extends StudentDtoSearchImpl implements StudentS
 		}
 		return null;
 	
+	}
+
+	@Override
+	public int delete(Student t) {
+		var em = emf.createEntityManager();
+		em.getTransaction().begin();
+		var stu = em.find(Student.class, t.getId());
+		stu.setActive(false);
+		em.getTransaction().commit();
+		return 0;
 	}
 
 

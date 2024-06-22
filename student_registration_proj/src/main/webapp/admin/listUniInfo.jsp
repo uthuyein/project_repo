@@ -8,7 +8,10 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="addUniInfo" value="/admin/addStudentToUni"></c:url>
 <c:url var="listStudentUni" value="/admin/studentListfrmUni"></c:url>
+<c:url var="editStuUni" value="/admin/editUniversityInfo"></c:url>
+<c:url var="deleteStuUni" value="/admin/deleteUniversityInfo"></c:url>
 <c:url var="stuUniInfo" value="/student/stuUniversityInfo"></c:url>
+<c:url var="listPayment" value="/admin/paymentList"></c:url>
 
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="uniYears" value="<%=UniYear.values()%>"></c:set>
@@ -24,6 +27,9 @@
 		<li class="nav-item"><a href="${listStudentUni }"
 			class="nav-link primary-text-color"><i
 				class="bi bi-collection-fill"></i>&nbsp;Student List From University</a></li>
+				<li class="nav-item"><a href="${listPayment }"
+			class="nav-link primary-text-color"><i
+				class="bi bi-collection-fill"></i>&nbsp;Payments</a></li>
 	</ul>
 </nav>
 <div class="row p-3 m-3">
@@ -91,15 +97,16 @@
 							<tr>
 								<th scope="row">${n.index+1 }</th>
 								<td>${s.name() }</td>
-
 								<td>${s.openYear() }</td>
 								<td>${s.uniYear() }</td>
 								<td>${s.rollNumber()}</td>
 								<td>${s.major() }</td>
 								<td>${s.dob() }</td>
 								<td>${s.nrc() }</td>
-								<td><button class="btn btn-outline-primary">Edit</button></td>
-									<td><button class="btn btn-outline-danger">Delete</button></td>
+								<td><a href="${editStuUni }?index=${n.index}"
+									class="btn btn-outline-primary">Edit</a></td>
+								<td><a href="${deleteStuUni }?index=${n.index}"
+									class="btn btn-outline-danger">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

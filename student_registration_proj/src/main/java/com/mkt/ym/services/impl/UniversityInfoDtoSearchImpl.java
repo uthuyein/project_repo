@@ -24,17 +24,33 @@ public abstract class UniversityInfoDtoSearchImpl {
 				join s.schoolInfo si
 				join s.parent p
 				join s.address a
-				where 1=1
+				where u.active = true
 				""");
 		
 		Map<String, Object> map = new HashMap<String, Object>();	
 		try (var em = emf.createEntityManager()) {
 			
 			if (null != dto) {
+				
 				if(null != dto.rollNumber()) {
 					sb.append(" and u.id.rollNumber = :roll");
 					map.put("roll", dto.rollNumber());
 				}
+				if (dto.openYear() != null ) {
+					sb.append(" and u.id.openYear = :openYear");	
+					map.put("openYear", dto.openYear());
+				}
+				
+				if (dto.uniYear() != null ) {
+					sb.append(" and u.id.uniYear = :uniYear");
+					
+					map.put("uniYear", dto.uniYear());
+				}
+				if (dto.major() != null) {
+					sb.append(" and u.id.major = :major");	
+					map.put("major", dto.major());
+				}
+				
 				if (dto.name() != null && !dto.name().isEmpty()) {
 					sb.append(" and s.name = :name");
 					map.put("name", dto.name());
@@ -64,20 +80,7 @@ public abstract class UniversityInfoDtoSearchImpl {
 					map.put("schMarks", dto.schoolTotalMarks());
 				}
 				
-				if (dto.openYear() != null ) {
-					sb.append(" and u.id.openYear = :openYear");	
-					map.put("openYear", dto.openYear());
-				}
-				
-				if (dto.uniYear() != null ) {
-					sb.append(" and u.id.uniYear = :uniYear");
-					
-					map.put("uniYear", dto.uniYear());
-				}
-				if (dto.major() != null) {
-					sb.append(" and u.id.major = :major");	
-					map.put("major", dto.major());
-				}			
+							
 			}
 			
 			TypedQuery<UniversityInfoDto> query = em.createQuery(sb.toString(), UniversityInfoDto.class);

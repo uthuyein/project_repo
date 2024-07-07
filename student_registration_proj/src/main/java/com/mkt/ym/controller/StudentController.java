@@ -15,7 +15,6 @@ import com.mkt.ym.entity.dto.StudentDto;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.services.MessengerService;
-import com.mkt.ym.services.PaymentService;
 import com.mkt.ym.services.StudentService;
 import com.mkt.ym.utils.StuRegException;
 
@@ -36,15 +35,13 @@ public class StudentController extends HttpServlet {
 	private StudentService stuService;
 	private MessengerService mService;
 	private MessageType message;
-	private PaymentService payService;
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		stuService = StudentService.getStudentService();
 		mService = MessengerService.getMessengerService();
-		payService = PaymentService.getPaymentService();
-
+	
 		var session = req.getSession(true);
 		var sId = req.getParameter("id");
 		var id = (null != sId && !sId.isEmpty()) ? Integer.valueOf(sId) : null;
@@ -89,7 +86,6 @@ public class StudentController extends HttpServlet {
 			var messengers = (List<Messenger>) req.getSession().getAttribute("messengers");
 			var messenger = messengers.get(index);
 			mService.delete(messenger);
-		//	payService.delete(messenger.getPayment());
 			req.getSession(true).setAttribute("messengers", mService.search(messenger));
 			req.getRequestDispatcher("/student/messenger.jsp").forward(req, resp);
 			break;

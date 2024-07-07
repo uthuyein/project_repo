@@ -25,11 +25,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = { "/admin/addAccount", "/admin/accountList", "/admin/editAccount", "/admin/deleteAccount",
 		"/student/addAccount", "/student/signUp", "/student/login", "/student/logout" }, loadOnStartup = 1)
-
 public class AccountController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-
 	private AccountService accService = AccountService.getAccountService();
 	private UniversityInfoService uniService = UniversityInfoService.getUniversityInfoService();
 	private MessengerService mSerivice = MessengerService.getMessengerService();

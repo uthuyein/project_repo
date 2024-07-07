@@ -27,7 +27,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = { "/student/addPayment", "/admin/paymentList", "/admin/updatePayment" })
 public class PaymentController extends HttpServlet {
-
+	
 	private static final long serialVersionUID = 1L;
 	private PaymentService payService;
 	private UniversityInfoService uniService;

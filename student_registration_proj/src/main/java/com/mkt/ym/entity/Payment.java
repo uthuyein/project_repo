@@ -10,8 +10,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +35,7 @@ public class Payment implements EnableTimesListener {
 	private Boolean status;
 	@OneToMany(mappedBy = "payment",orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Messenger> messengers = new ArrayList<Messenger>();
-	@OneToOne
+	@ManyToOne
 	private UniversityInfo uniInfo;
 	@Column(nullable = false, columnDefinition = "boolean default true")
 	private boolean active = true;

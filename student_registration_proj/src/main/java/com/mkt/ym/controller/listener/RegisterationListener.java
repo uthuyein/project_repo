@@ -23,12 +23,10 @@ public class RegisterationListener implements ServletRequestListener {
 
 
 	@Override
-	public void requestInitialized(ServletRequestEvent sre) {
-		
+	public void requestInitialized(ServletRequestEvent sre) {		
 		HttpServletRequest req = (HttpServletRequest) sre.getServletRequest();
 		uniService = UniversityInfoService.getUniversityInfoService();
-		stuService = StudentService.getStudentService();
-		
+		stuService = StudentService.getStudentService();	
 		listUniInfo = uniService.searchUniversityInfo(null);
 		listStudentDto = stuService.searchStudentDto(null);
 		

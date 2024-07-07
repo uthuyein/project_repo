@@ -23,13 +23,14 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class PaymentPk implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;	
 	@Enumerated(EnumType.STRING)
-	private PaymentType paymentType;
-	
+	private PaymentType paymentType;	
 	private LocalDate transactionDate;
 	private LocalTime transactionTime;
 	
-	
+	@Override
+	public String toString() {
+		return "type="+paymentType+"&date="+transactionDate+"&time="+transactionTime;
+	}
 }

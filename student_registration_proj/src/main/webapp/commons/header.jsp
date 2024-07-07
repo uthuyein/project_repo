@@ -28,6 +28,7 @@
 <c:url var="listStudentfrmUni" value="/admin/studentListfrmUni"></c:url>
 
 <c:url var="home" value="/index.jsp"></c:url>
+<c:url var="about" value="/about.jsp"></c:url>
 <c:url var="login" value="/student/login"></c:url>
 <c:url var="logout" value="/student/logout"></c:url>
 
@@ -66,13 +67,13 @@
 						</c:if>
 					</c:if>
 
-					<li class="nav-item "><a class="nav-link text-white" href="#"><i
+					<li class="nav-item "><a class="nav-link text-white" href="${about }"><i
 							class="bi bi-question-circle-fill"></i>&nbsp;About</a></li>
 				</ul>
 
 				<c:if test="${null eq account }">
 					<div class="nav-item ">
-						<a class="nav-link text-white" href="${signUp }"><i
+						<a class="nav-link text-white" href="${signUp }?id=${uniInfo.id}"><i
 							class="bi bi-pencil-square"></i>&nbsp;SignUp</a>
 					</div>
 				</c:if>

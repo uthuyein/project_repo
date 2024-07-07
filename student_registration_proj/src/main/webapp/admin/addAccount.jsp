@@ -10,6 +10,8 @@
 <%@page import="com.mkt.ym.entity.type.*"%>
 
 <jsp:include page="${head }"></jsp:include>
+
+
 <nav id="navbar-example"
 	class="navbar navbar-light bg-light px-3 sticky-sm-top">
 	<ul class="nav">
@@ -82,8 +84,6 @@
 				
 				<div class="card-body ">
 					<div class="card-header mt-2 mb-3 primary-header-text-color">
-					<input class="form-check-input" type="checkbox" name="active" checked  />
-					
 						<i class="bi bi-person-fill "></i>&nbsp; Add Account
 					</div>
 					<div class="mb-3">

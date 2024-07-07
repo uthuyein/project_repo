@@ -28,32 +28,35 @@
 </nav>
 <div class="row p-3 m-3">
 	<form action="${listAcc }" class="form mt-2 w-75" method="post">
-		<div class="row">
-			<div class="col">
-				<label for="userName" class="form-label primary-text-color">User
-					Name </label><input id="userName" name="userName" type="text"
-					class="form-control" />
+		<fieldset class="border p-2 mb-2">
+			<legend class="float-none w-auto primary-text-color">&nbsp;Search
+				By &nbsp;</legend>
+			<div class="row">
+				<div class="col">
+					<label for="userName" class="form-label primary-text-color">User
+						Name </label><input id="userName" name="userName" type="text"
+						class="form-control" />
+				</div>
+				<div class="col">
+					<label for="loginId" class="form-label primary-text-color">LoginId
+					</label><input name="loginId" id="loginId" type="text" class="form-control" />
+				</div>
+				<div class="col">
+					<label for="role" class="form-label primary-text-color">Role</label><select
+						name="role" id="role" class="form-select">
+						<option selected disabled value="">---</option>
+						<c:forEach var="r" items="${roles }">
+							<option>${r.name()}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="col mt-4 pt-2 ">
+					<button class="btn primary-color " type="submit">
+						<i class="bi bi-search"></i>&nbsp;Search
+					</button>
+				</div>
 			</div>
-			<div class="col">
-				<label for="loginId" class="form-label primary-text-color">LoginId
-					</label><input name="loginId" id="loginId" type="text"
-					class="form-control" />
-			</div>
-			<div class="col">
-				<label for="role" class="form-label primary-text-color">Role</label><select
-					name="role" id="role" class="form-select">
-					<option selected disabled value="">---</option>
-					<c:forEach var="r" items="${roles }">
-						<option>${r.name()}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="col mt-4 pt-2 ">
-				<button class="btn primary-color " type="submit">
-					<i class="bi bi-search"></i>&nbsp;Search
-				</button>
-			</div>
-		</div>
+		</fieldset>
 	</form>
 	<c:choose>
 		<c:when test="${null ne listAccount }">
@@ -76,8 +79,10 @@
 								<td>${a.username}</td>
 								<td>${a.loginId }</td>
 								<td>${a.password }</td>
-								<td><a href="${editAcc }?id=${a.id}" class="btn btn-outline-primary">Edit</a></td>
-								<td><a href="${editAcc }?id=${a.id}" class="btn btn-outline-danger">Delete</a></td>
+								<td><a href="${editAcc }?id=${a.id}"
+									class="btn btn-outline-primary">Edit</a></td>
+								<td><a href="${editAcc }?id=${a.id}"
+									class="btn btn-outline-danger">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

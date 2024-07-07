@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<c:url var="home" value="/index.jsp"></c:url>
 
 <nav class=" relative-bottom navbar-expand-lg bg-light ">
 	<div class="card text-center ">
@@ -12,7 +12,7 @@
 				City</h5>
 			<p class="card-text">This project is used for student
 				registration</p>
-			<a href="#" class="btn primary-color">Go somewhere</a>
+			<a href="${home }" class="btn primary-color">Go Home Page</a>
 		</div>
 	</div>
 </nav>

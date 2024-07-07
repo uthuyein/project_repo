@@ -23,16 +23,16 @@ import lombok.Setter;
 public class UniversityInfoPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	private Integer openYear;
-	private String rollNumber;
-	
+	private String rollNumber;	
 	@Enumerated(EnumType.STRING)
 	private Major major;
-
 	@Enumerated(EnumType.STRING)
 	private UniYear uniYear;
 
-	
+	@Override
+	public String toString() {
+		return "year="+openYear+"&roll="+rollNumber+"&major="+major+"&uni="+uniYear;
+	}
 
 }

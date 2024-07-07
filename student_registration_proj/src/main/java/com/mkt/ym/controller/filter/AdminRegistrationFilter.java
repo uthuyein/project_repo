@@ -19,7 +19,6 @@ public class AdminRegistrationFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
 		HttpServletRequest req = (HttpServletRequest) request;
 		var session = req.getSession();
 		Account account = (Account) session.getAttribute("account");

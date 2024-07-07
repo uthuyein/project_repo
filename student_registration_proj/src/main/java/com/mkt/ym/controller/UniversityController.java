@@ -12,7 +12,7 @@ import com.mkt.ym.entity.UniversityInfoPK;
 import com.mkt.ym.entity.dto.StudentDto;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.Major;
-import com.mkt.ym.entity.type.Message;
+import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.entity.type.UniYear;
 import com.mkt.ym.services.UniversityInfoService;
 import com.mkt.ym.utils.StuRegException;
@@ -23,35 +23,30 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/admin/addStudentToUni", "/admin/studentListfrmUni", "/admin/editUniversityInfo",
-		"/admin/deleteUniversityInfo", })
+@WebServlet(urlPatterns = { "/admin/addStudentToUni", 
+		"/admin/studentListfrmUni", 
+		"/admin/deleteUniversityInfo" })
 public class UniversityController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private UniversityInfoService uniService;
 	private List<UniversityInfoDto> listUniInfo;
-	private static List<StudentDto> listStudent;
+	private static List<StudentDto> listStudentDto;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		listUniInfo = new ArrayList<UniversityInfoDto>();
-
 		uniService = UniversityInfoService.getUniversityInfoService();
-		listStudent = (List<StudentDto>) req.getAttribute("listStudent");
+		listStudentDto = (List<StudentDto>) req.getAttribute("listStudentDto");
 
 		switch (req.getServletPath()) {
 		case "/admin/addStudentToUni":
 			req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);
 			break;
-		case "/admin/editUniversityInfo":
-			var uniInfo = findUniInfoByIndexFromAttributeList(req);
-			req.setAttribute("uniInfo", uniInfo);
-			req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);
-			break;
 			
 		case "/admin/deleteUniversityInfo":
-			uniInfo = findUniInfoByIndexFromAttributeList(req);
+			var uniInfo = findUniInfoByIndexFromAttributeList(req);
 			uniService.delete(uniInfo);
 			listUniInfo = uniService.searchUniversityInfo(null);
 			req.setAttribute("listUniInfo", listUniInfo);
@@ -67,10 +62,12 @@ public class UniversityController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		switch (req.getServletPath()) {
 		case "/admin/addStudentToUni":
 			saveUniInfo(req, resp);
+			break;
+		case "/admin/editUniversityInfo":
+			
 			break;
 		case "/admin/studentListfrmUni":
 			var info = searchStudentFromUni(req);
@@ -87,23 +84,27 @@ public class UniversityController extends HttpServlet {
 		var uni = listUniInfo.get(Integer.valueOf(req.getParameter("index")));
 		var uniInfoPk = new UniversityInfoPK(uni.openYear(), uni.rollNumber(), uni.major(), uni.uniYear());
 		var university = new UniversityInfo();
+		var student = new Student();
+		student.setId(uni.stuId());
+		student.setName(uni.name());
+		student.setNrc(uni.nrc());
 		university.setId(uniInfoPk);
+		
+		university.setStudent(student);
 		return university;
 	}
 
 	private void saveUniInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Message message = null;
-
+		MessageType message = null;
 		try {
 			var uniInfo = getUniInfo(req);
 			uniService.save(uniInfo);
-			message = Message.SUCCESS;
+			message = MessageType.SUCCESS;
 			message.setMessage("Successfully add to university !");
 
 		} catch (Exception e) {
-			message = Message.ERROR;
+			message = MessageType.ERROR;
 			message.setMessage(e.getMessage());
-
 		}
 		req.setAttribute("message", message);
 		req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);
@@ -162,7 +163,7 @@ public class UniversityController extends HttpServlet {
 	}
 
 	private Optional<StudentDto> getStudent(String name, String nrc) {
-		return listStudent.stream().filter(s -> s.name().equalsIgnoreCase(name) && s.nrc().equalsIgnoreCase(nrc))
+		return listStudentDto.stream().filter(s -> s.name().equalsIgnoreCase(name) && s.nrc().equalsIgnoreCase(nrc))
 				.findFirst();
 	}
 

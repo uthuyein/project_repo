@@ -7,6 +7,8 @@
 <c:url var="stuDetail" value="/student/detailStudent"></c:url>
 <c:url var="payment" value="/student/addPayment"></c:url>
 <c:url var="acc" value="/student/addAccount"></c:url>
+<c:url var="messager" value="/student/messenger"></c:url>
+
 
 
 <%@page import="com.mkt.ym.entity.type.*"%>
@@ -19,9 +21,22 @@
 		<li class="nav-item"><a
 				class="nav-link primary-text-color fs-sm"  href="${stuDetail }?id=${uniInfoDto.stuId()}" >Student</a></li>
 			<li class="nav-item "><a
-				class="nav-link primary-text-color" href="${payment }">Payment</a></li>
-			<li class="nav-item"><a
-				class="nav-link primary-text-color" href="${acc }">Account</a></li>
+				class="nav-link primary-text-color" href="${payment }?id=${uniInfoDto.stuId()}">Payment</a></li>
+			<c:if test="${null == account }">
+				<li class="nav-item"><a class="nav-link primary-text-color"
+					href="${acc }?id=${uniInfoDto.stuId()}">Account</a></li>
+			</c:if>
+				<li class="nav-item"><a
+				class="nav-link primary-text-color position-relative"
+				href="${messager }?id=${uniInfoDto.stuId()}">Messager <c:if
+						test="${null ne messengers && messengers.size() > 0 }">
+						<span
+							class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
+							${messengers.size()}
+						</span>
+					</c:if>
+			</a></li>
+
 		</ul>
 	</nav>
 	<c:if test="${null ne uniInfoDto }">

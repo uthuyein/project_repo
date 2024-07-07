@@ -30,8 +30,7 @@ public abstract class UniversityInfoDtoSearchImpl {
 		Map<String, Object> map = new HashMap<String, Object>();	
 		try (var em = emf.createEntityManager()) {
 			
-			if (null != dto) {
-				
+			if (null != dto) {				
 				if(null != dto.rollNumber()) {
 					sb.append(" and u.id.rollNumber = :roll");
 					map.put("roll", dto.rollNumber());
@@ -39,18 +38,15 @@ public abstract class UniversityInfoDtoSearchImpl {
 				if (dto.openYear() != null ) {
 					sb.append(" and u.id.openYear = :openYear");	
 					map.put("openYear", dto.openYear());
-				}
-				
+				}			
 				if (dto.uniYear() != null ) {
-					sb.append(" and u.id.uniYear = :uniYear");
-					
+					sb.append(" and u.id.uniYear = :uniYear");				
 					map.put("uniYear", dto.uniYear());
 				}
 				if (dto.major() != null) {
 					sb.append(" and u.id.major = :major");	
 					map.put("major", dto.major());
-				}
-				
+				}			
 				if (dto.name() != null && !dto.name().isEmpty()) {
 					sb.append(" and s.name = :name");
 					map.put("name", dto.name());
@@ -78,9 +74,7 @@ public abstract class UniversityInfoDtoSearchImpl {
 				if(null != dto.schoolTotalMarks()) {
 					sb.append(" and si.totalMarks = :schMarks");
 					map.put("schMarks", dto.schoolTotalMarks());
-				}
-				
-							
+				}							
 			}
 			
 			TypedQuery<UniversityInfoDto> query = em.createQuery(sb.toString(), UniversityInfoDto.class);

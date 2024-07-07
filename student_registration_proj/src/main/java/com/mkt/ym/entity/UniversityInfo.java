@@ -11,8 +11,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -20,20 +18,21 @@ import lombok.Setter;
 @Entity
 @Table(name = "university_tbl")
 @NoArgsConstructor
-@RequiredArgsConstructor
-public class UniversityInfo implements EnableTimesListener{
-	
+public class UniversityInfo implements EnableTimesListener {
+
 	private static final long serialVersionUID = 1L;
-	@NonNull
 	@EmbeddedId
-	@Column(unique = true ,nullable = false)
+	@Column(unique = true, nullable = false)
 	private UniversityInfoPK id;
-	@NonNull
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Student student;
-	@Column(nullable = false,columnDefinition = "boolean default true")
+	@Column(nullable = false, columnDefinition = "boolean default true")
 	private boolean active = true;
 	private Times times;
 
+	public UniversityInfo(UniversityInfoPK id, Student student) {
+		this.id = id;
+		this.student = student;
+	}
 
 }

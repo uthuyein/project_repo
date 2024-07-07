@@ -5,10 +5,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.mkt.ym.entity.Account;
+import com.mkt.ym.entity.Messenger;
+import com.mkt.ym.entity.Student;
+import com.mkt.ym.entity.UniversityInfo;
+import com.mkt.ym.entity.UniversityInfoPK;
 import com.mkt.ym.entity.dto.UniversityInfoDto;
-import com.mkt.ym.entity.type.Message;
+import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.entity.type.Role;
 import com.mkt.ym.services.AccountService;
+import com.mkt.ym.services.MessengerService;
 import com.mkt.ym.services.UniversityInfoService;
 import com.mkt.ym.utils.StuRegException;
 
@@ -26,14 +31,13 @@ public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private AccountService accService = AccountService.getAccountService();
-	private UniversityInfoService uniService;
-
-	private Message message;
+	private UniversityInfoService uniService = UniversityInfoService.getUniversityInfoService();
+	private MessengerService mSerivice = MessengerService.getMessengerService();
+	private MessageType message;
+	
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		uniService = UniversityInfoService.getUniversityInfoService();
-
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {	
 		switch (req.getServletPath()) {
 		case "/student/logout":
 			req.getSession().invalidate();
@@ -85,29 +89,29 @@ public class AccountController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		switch (req.getServletPath()) {
 		case "/student/login":
 			login(req, resp);
 			break;
-
+			
 		case "/admin/addAccount":
 		case "/admin/updateAccount":
 			addAccount(req, resp);
 			break;
+			
 		case "/student/addAccount":
 			addAccount(req, resp);
 			break;
+			
 		case "/student/signUp":
 			signUpStudent(req, resp);
 			break;
-
+			
 		case "/admin/accountList":
 			var listAccount = searchAccount(req);
 			req.setAttribute("listAccount", listAccount);
 			req.getRequestDispatcher("/admin/listAccount.jsp").forward(req, resp);
 			break;
-
 		}
 	}
 
@@ -115,22 +119,20 @@ public class AccountController extends HttpServlet {
 		var user = req.getParameter("userName");
 		var login = req.getParameter("loginId");
 		var r = req.getParameter("role");
-
 		var role = null != r ? Role.valueOf(r) : null;
 		var acc = new Account(user, login);
 		acc.setRole(role);
 		return accService.search(acc);
-
 	}
 
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		accService = AccountService.getAccountService();
-
 		var loginId = req.getParameter("loginId").toLowerCase();
 		var pass = req.getParameter("password");
 		var list = accService.search(new Account(loginId));
 		String link = null;
+		var session = req.getSession(true);
+		
 		try {
 			if (null == list || list.isEmpty()) {
 				throw new StuRegException("Please re-enter your loginId !");
@@ -145,12 +147,21 @@ public class AccountController extends HttpServlet {
 			} else {
 				link = "/student/detailStudent.jsp";
 			}
+			if (acc.getRole() == Role.STUDENT) {
+				var uniInfo = acc.getUniInfo();
+				var dto = new UniversityInfoDto(uniInfo.getId().getOpenYear(), uniInfo.getId().getUniYear(),
+						uniInfo.getId().getMajor(), uniInfo.getStudent().getName());
+				var uniInfoDto = uniService.searchUniversityInfo(dto).get(0);
+				var messengers = mSerivice.search(new Messenger(new Student(uniInfoDto.stuId())));
+				session.setAttribute("messengers", messengers);
+				session.setAttribute("uniInfoDto", uniInfoDto);
+			}
+			session.setAttribute("account", list.get(0));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		req.getSession(true).setAttribute("account", list.get(0));
-		req.getRequestDispatcher(link).forward(req, resp);
+		req.getRequestDispatcher(null != link ? link : "/index.jsp").forward(req, resp);
 
 	}
 
@@ -161,14 +172,18 @@ public class AccountController extends HttpServlet {
 		var password = req.getParameter("password");
 		var confirm = req.getParameter("confirm");
 		var id = req.getParameter("id");
-		
 		var acc = new Account(username, loginId);
-		var sessionAcc = (Account)req.getSession().getAttribute("account");
-		try {
+		var session = req.getSession(true);
+		Account sessionAcc = (Account) session.getAttribute("account");
+		UniversityInfoDto uniInfoDto = (UniversityInfoDto) session.getAttribute("uniInfoDto");
 
+		try {
 			acc.setId(null != id ? Integer.valueOf(id) : null);
 			acc.setRole(null != role ? Role.valueOf(role) : null);
-			
+
+			if (null != uniInfoDto && acc.getRole() != Role.ADMIN) {
+				acc.setUniInfo(getUniInfo(uniInfoDto));
+			}
 			if (!password.equals(confirm)) {
 				throw new StuRegException("Password did not match confirm password and try again !");
 			}
@@ -176,10 +191,10 @@ public class AccountController extends HttpServlet {
 			acc.setUsername(username.toLowerCase());
 			acc.setLoginId(loginId.toLowerCase());
 			acc.setPassword(password);
-			
+
 			if (null != acc.getId()) {
 				accService.update(acc);
-				message = Message.SUCCESS;
+				message = MessageType.SUCCESS;
 				message.setMessage("Successfully update account!");
 			} else {
 				var list = accService.search(acc);
@@ -187,22 +202,32 @@ public class AccountController extends HttpServlet {
 					throw new StuRegException("Aleardy create account for this username !");
 				}
 				accService.save(acc);
-				message = Message.SUCCESS;
+				message = MessageType.SUCCESS;
 				message.setMessage("Successfully create account!");
 			}
 
 		} catch (StuRegException e) {
-			message = Message.ERROR;
+			message = MessageType.ERROR;
 			message.setMessage(e.getMessage());
 		}
 		req.setAttribute("message", message);
-		req.getRequestDispatcher(((null != sessionAcc && sessionAcc.getRole() == Role.ADMIN) ? "/admin" : "/student").concat("/addAccount.jsp")).forward(req,
-				resp);
+		req.getRequestDispatcher(((null != sessionAcc && sessionAcc.getRole() == Role.ADMIN) ? "/admin" : "/student")
+				.concat("/addAccount.jsp")).forward(req, resp);
 
 	}
 
-	private void signUpStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private UniversityInfo getUniInfo(UniversityInfoDto dto) {
+		var uniPk = new UniversityInfoPK();
+		uniPk.setMajor(dto.major());
+		uniPk.setOpenYear(dto.openYear());
+		uniPk.setUniYear(dto.uniYear());
+		uniPk.setRollNumber(dto.rollNumber());
+		var uniInfo = new UniversityInfo(uniPk, new Student(dto.stuId()));
+		return uniInfo;
+	}
 
+	private void signUpStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		var mService = MessengerService.getMessengerService();
 		try {
 			var stuName = req.getParameter("stuName");
 			var dob = LocalDate.parse(req.getParameter("dob"));
@@ -217,13 +242,14 @@ public class AccountController extends HttpServlet {
 			if (null == uniInfoDto) {
 				throw new StuRegException("There is no student for that information ! ");
 			}
-
 			var session = req.getSession();
+			var messenger = new Messenger(new Student(uniInfoDto.stuId()));
+			session.setAttribute("messengers", mService.search(messenger));
 			session.setAttribute("uniInfoDto", uniInfoDto);
 			req.getRequestDispatcher("/student/detailStudent.jsp").forward(req, resp);
 
 		} catch (Exception e) {
-			message = Message.ERROR;
+			message = MessageType.ERROR;
 			message.setMessage(e.getMessage());
 			req.setAttribute("message", message);
 			req.getRequestDispatcher("/student/signUp.jsp").forward(req, resp);

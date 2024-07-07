@@ -13,9 +13,7 @@ import jakarta.persistence.TypedQuery;
 public abstract class StudentDtoSearchImpl {
 
 	public List<StudentDto> searchStudentDto(StudentDto dto) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		
+		Map<String, Object> map = new HashMap<String, Object>();	
 		try (var em = emf.createEntityManager()) {
 
 			StringBuilder sb = new StringBuilder("""
@@ -32,13 +30,11 @@ public abstract class StudentDtoSearchImpl {
 					where s.active = true
 					""");
 
-			if (null != dto) {
-				
+			if (null != dto) {			
 				if(null != dto.id()) {
 					sb.append(" and s.id = :id");
 					map.put("id", dto.id());
-				}
-				
+				}			
 				if (dto.name() != null && !dto.name().isEmpty()) {
 					sb.append(" and lower(s.name) like lower(:name)");		
 					map.put("name", dto.name().concat("%"));

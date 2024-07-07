@@ -16,9 +16,9 @@
  insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(2,'soeudum','kara','6/pakaka(n)223242','6/yatata(F)0455342');
  insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(3,'sandra','kaythi','7/wanapa(n)322122','4/samasa(F)9882342');
  
- insert into school_info_tbl(id,rollNum,totalMarks) values (1,10,405);
- insert into school_info_tbl(id,rollNum,totalMarks) values (2,22,380);
- insert into school_info_tbl(id,rollNum,totalMarks) values (3,5,455);
+ insert into school_tbl(id,rollNum,totalMarks) values (1,10,405);
+ insert into school_tbl(id,rollNum,totalMarks) values (2,22,380);
+ insert into school_tbl(id,rollNum,totalMarks) values (3,5,455);
  
 update student_tbl set schoolInfo_id =1 ,parent_id =1, address_id =1  where id = 1;
 update student_tbl set schoolInfo_id =2 ,parent_id =2, address_id =2  where id = 2;

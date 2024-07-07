@@ -22,7 +22,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "account_tbl")
 @NoArgsConstructor
-public class Account implements EnableTimesListener{
+public class Account implements EnableTimesListener {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -32,23 +32,21 @@ public class Account implements EnableTimesListener{
 	private String loginId;
 	private String password;
 	private Times times;
-	@Column(nullable = false,columnDefinition = "boolean default true")
+	@Column(nullable = false, columnDefinition = "boolean default true")
 	private boolean active = true;
-	
-//	@OneToOne
-//	private Student student;
-//	
+	@OneToOne
+	private UniversityInfo uniInfo;
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
-	public Account(String username,String loginId) {
+
+	public Account(String username, String loginId) {
 		this.username = username;
 		this.loginId = loginId;
-		
+
 	}
-	
+
 	public Account(String loginId) {
 		this.loginId = loginId;
-		
+
 	}
 }

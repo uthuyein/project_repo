@@ -17,6 +17,7 @@ public class FooterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.getRequestDispatcher("/commons/footer.jsp").include(req, resp);
+		
 	}
 
 }

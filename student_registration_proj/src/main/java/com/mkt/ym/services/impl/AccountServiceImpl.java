@@ -34,7 +34,6 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public List<Account> search(Account acc) {
 		try (var em = emf.createEntityManager()) {
-
 			StringBuilder sb = new StringBuilder("select c from Account c where c.active = true");
 			Map<String, Object> map = new HashMap<String, Object>();
 
@@ -61,6 +60,7 @@ public class AccountServiceImpl implements AccountService {
 			for (Map.Entry<String, Object> m : map.entrySet()) {
 				query.setParameter(m.getKey(), m.getValue());
 			}
+			
 			return query.getResultList();
 
 		} catch (Exception e) {

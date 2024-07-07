@@ -46,7 +46,6 @@ public class Student implements EnableTimesListener{
 	private String primaryContact;
 	@Column(table = "contact_tbl")
 	private String secondaryContact;
-
 	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private SchoolInfo schoolInfo;	
 	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
@@ -56,7 +55,10 @@ public class Student implements EnableTimesListener{
 	@Column(nullable = false,columnDefinition = "boolean default true")
 	private boolean active = true;
 
-
+	
+	public Student(Integer id) {
+		this.id = id;
+	}
 	public Student(String name, LocalDate dob,String religion, String image, String nrc, String email, String primaryContact,
 			String secondaryContact) {
 		super();
@@ -69,5 +71,6 @@ public class Student implements EnableTimesListener{
 		this.primaryContact = primaryContact;
 		this.secondaryContact = secondaryContact;
 	}
-
+	
+	
 }

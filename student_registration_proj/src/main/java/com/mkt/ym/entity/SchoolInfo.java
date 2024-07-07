@@ -8,7 +8,6 @@ import jakarta.persistence.ExcludeDefaultListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "school_info_tbl")
-@SecondaryTable(name = "subject_mark_tbl")
+@Table(name = "school_tbl")
 @NoArgsConstructor
 @ExcludeDefaultListeners
 public class SchoolInfo implements Serializable{

@@ -37,7 +37,8 @@
 				novalidate>
 				<div class="card-body ">
 				<input class="form-check-input" type="text" name="id"  value="${updAcc.id }"  hidden/>
-					
+				<input class="form-check-input" type="text" name="role"  value="${updAcc.role }"  hidden/>
+				
 					<div class="card-header mt-2 mb-3 primary-header-text-color">			
 						<i class="bi bi-person-fill "></i>&nbsp; Update Account
 					</div>
@@ -77,6 +78,8 @@
 		<c:otherwise>
 		<form action="${addAccount }" method="post" class="needs-validation"
 				novalidate>
+				<input class="form-check-input" type="text" name="role"  value="${Role.ADMIN }"  hidden/>
+				
 				<div class="card-body ">
 					<div class="card-header mt-2 mb-3 primary-header-text-color">
 					<input class="form-check-input" type="checkbox" name="active" checked  />

@@ -22,57 +22,59 @@
 	class="navbar navbar-light bg-light px-3 sticky-sm-top">
 	<ul class="nav">
 		<li class="nav-item"><a href="${addUniInfo }"
-			class="nav-link primary-text-color"><i class="bi bi-collection"></i>&nbsp;Add
+			class="nav-link primary-text-color"><i class="bi bi-person-fill"></i>&nbsp;Add
 				Student To University</a></li>
 		<li class="nav-item"><a href="${listStudentUni }"
-			class="nav-link primary-text-color"><i
-				class="bi bi-collection-fill"></i>&nbsp;Student List From University</a></li>
-				<li class="nav-item"><a href="${listPayment }"
-			class="nav-link primary-text-color"><i
-				class="bi bi-collection-fill"></i>&nbsp;Payments</a></li>
+			class="nav-link primary-text-color"><i class="bi bi-person-lines-fill"></i>&nbsp;Student List From University</a></li>
+		<li class="nav-item"><a href="${listPayment }"
+			class="nav-link primary-text-color"><i class="bi bi-person-badge-fill"></i>&nbsp;Payments</a></li>
 	</ul>
 </nav>
 <div class="row p-3 m-3">
 	<form action="${listStudentUni }" class="form mt-2 w-75" method="post">
-		<div class="row">
-			<div class="col">
-				<label for="openYear" class="form-label primary-text-color">University
-					Open Year</label><select name="openYear" id="openYear" class="form-select">
-					<option>---</option>
-					<c:forEach var="u" items="${openYears }">
-						<option>${u}</option>
-					</c:forEach>
-				</select>
+		<fieldset class="border p-2 mb-2">
+			<legend class="float-none w-auto primary-text-color">&nbsp;Search
+				By &nbsp;</legend>
+			<div class="row">
+				<div class="col">
+					<label for="openYear" class="form-label primary-text-color">University
+						Open Year</label><select name="openYear" id="openYear" class="form-select">
+						<option>---</option>
+						<c:forEach var="u" items="${openYears }">
+							<option>${u}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="col">
+					<label for="uniYear" class="form-label primary-text-color">Unversity
+						Year</label><select name="uniYear" id="uniYear" class="form-select">
+						<option>---</option>
+						<c:forEach var="u" items="${uniYears }">
+							<option>${u.name()}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="col">
+					<label for="major" class="form-label primary-text-color">Major</label><select
+						name="major" id="major" class="form-select">
+						<option>---</option>
+						<c:forEach var="u" items="${majors }">
+							<option>${u.name()}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="col">
+					<label for="stuName" class="form-label primary-text-color">Student
+						Name</label><input type="text" name="stuName" id="stuName"
+						class="form-control" />
+				</div>
+				<div class="col mt-4 pt-2 ">
+					<button class="btn primary-color " type="submit">
+						<i class="bi bi-search"></i>&nbsp;Search
+					</button>
+				</div>
 			</div>
-			<div class="col">
-				<label for="uniYear" class="form-label primary-text-color">Unversity
-					Year</label><select name="uniYear" id="uniYear" class="form-select">
-					<option>---</option>
-					<c:forEach var="u" items="${uniYears }">
-						<option>${u.name()}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="col">
-				<label for="major" class="form-label primary-text-color">Major</label><select
-					name="major" id="major" class="form-select">
-					<option>---</option>
-					<c:forEach var="u" items="${majors }">
-						<option>${u.name()}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="col">
-				<label for="stuName" class="form-label primary-text-color">Student
-					Name</label><input type="text" name="stuName" id="stuName"
-					class="form-control" />
-			</div>
-			<div class="col mt-4 pt-2 ">
-				<button class="btn primary-color " type="submit">
-					<i class="bi bi-search"></i>&nbsp;Search
-				</button>
-			</div>
-		</div>
+		</fieldset>
 	</form>
 	<c:choose>
 		<c:when test="${null ne listUniInfo }">
@@ -103,8 +105,8 @@
 								<td>${s.major() }</td>
 								<td>${s.dob() }</td>
 								<td>${s.nrc() }</td>
-								<td><a href="${editStuUni }?index=${n.index}"
-									class="btn btn-outline-primary">Edit</a></td>
+								<%-- <td><a href="${editStuUni }?index=${n.index}"
+									class="btn btn-outline-primary">Edit</a></td> --%>
 								<td><a href="${deleteStuUni }?index=${n.index}"
 									class="btn btn-outline-danger">Delete</a></td>
 							</tr>

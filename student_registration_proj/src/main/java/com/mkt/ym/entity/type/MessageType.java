@@ -1,21 +1,21 @@
 package com.mkt.ym.entity.type;
 
-public enum Message {
+public enum MessageType {
 
 	ERROR {
 		@Override
 		public String getColor() {
-			return "alert-danger";
+			return "text-danger";
 		}
 	},WARNING {
 		@Override
 		public String getColor() {
-			return "alert-warn";
+			return "text-warn";
 		}
 	},SUCCESS {
 		@Override
 		public String getColor() {
-			return "alert-success";
+			return "text-success";
 		}
 	};
 	

@@ -35,20 +35,17 @@ public class StudentServiceImpl extends StudentDtoSearchImpl implements StudentS
 	@Override
 	public List<Student> search(Student t) {		
 		try (var em = emf.createEntityManager()) {
-
 			StringBuilder sb = new StringBuilder("""
-					select s from Student s 
-					where 1=1
+					select s from Student s where 1=1
 					""");
 			Map<String, Object> map = new HashMap<String, Object>();		
 			TypedQuery<Student> query = em.createQuery(sb.toString(), Student.class);
-
 			for (Map.Entry<String, Object> m : map.entrySet()) {
 				query.setParameter(m.getKey(), m.getValue());
 			}
 			var list =  query.getResultList();
 			return list;
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

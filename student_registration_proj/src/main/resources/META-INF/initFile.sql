@@ -4,17 +4,17 @@
  insert into address_tbl(city,township,street)values('Mandalay','patheingyi','kantharyar block');
  insert into address_tbl(city,township,street)values('Yangon','kyaukmyaung','thida street');
  
- insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('andrew','1991-05-22','9/pamana(n)765642','cat_img.jpeg','burma/buddha',null,null,null);
- insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('william','1995-03-11','9/wakana(n)55432','dog_img.jpeg','burma/buddha',null,null,null);
- insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('john','1998-01-25','9/amaza(n)222121','panda_img.jpeg','burma/buddha',null,null,null);
+ insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('andrew','1991-05-22','1/KhaLaPha (N)765642','cat_img.jpeg','burma/buddha',null,null,null);
+ insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('william','1995-03-11','6/TaNaTha (N)55432','dog_img.jpeg','burma/buddha',null,null,null);
+ insert into student_tbl(name,dob,nrc,image,religion,schoolInfo_id,parent_id,address_id)values('john','1998-01-25','7/YaKaNa (N)222121','panda_img.jpeg','burma/buddha',null,null,null);
  
  insert into contact_tbl(id,email,primaryContact,secondaryContact)values(1,'andrew@gmail.com','0998887444','0998887744');
  insert into contact_tbl(id,email,primaryContact,secondaryContact)values(2,'william@gmail.com','099998823','097882332');
  insert into contact_tbl(id,email,primaryContact,secondaryContact)values(3,'john@gmail.com','099110222','0998887744');
  
- insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(1,'joeseaph','malarwii','5/pakaka(n)982342','6/yatata(F)0942342');
- insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(2,'soeudum','kara','6/pakaka(n)223242','6/yatata(F)0455342');
- insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(3,'sandra','kaythi','7/wanapa(n)322122','4/samasa(F)9882342');
+ insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(1,'joeseaph','malarwii','1/KhaLaPha (N)982342','1/KhaLaPha (N)0942342');
+ insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(2,'soeudum','kara','6/TaNaTha (N)223242','7/YaKaNa (N)0455342');
+ insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(3,'sandra','kaythi','7/YaKaNa (N)322122','7/YaKaNa (N)9882342');
  
  insert into school_tbl(id,rollNum,totalMarks) values (1,10,405);
  insert into school_tbl(id,rollNum,totalMarks) values (2,22,380);

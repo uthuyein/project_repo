@@ -25,9 +25,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import static com.mkt.ym.utils.NrcConverter.getNrc;
+import static com.mkt.ym.utils.NrcConverter.setNrc;;
+
 
 @WebServlet(urlPatterns = { "/student/detailStudent", "/admin/studentList", "/admin/editStudent",
-		"/admin/deleteStudent", "/admin/addStudent", "/student/messenger", "/student/deleteMessenges" })
+		"/admin/deleteStudent", "/admin/addStudent", "/student/messenger", "/student/deleteMessenges"})
 @MultipartConfig
 public class StudentController extends HttpServlet {
 
@@ -35,13 +38,13 @@ public class StudentController extends HttpServlet {
 	private StudentService stuService;
 	private MessengerService mService;
 	private MessageType message;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		stuService = StudentService.getStudentService();
 		mService = MessengerService.getMessengerService();
-	
+
 		var session = req.getSession(true);
 		var sId = req.getParameter("id");
 		var id = (null != sId && !sId.isEmpty()) ? Integer.valueOf(sId) : null;
@@ -63,8 +66,11 @@ public class StudentController extends HttpServlet {
 
 		case "/admin/editStudent":
 			var stuDto = new StudentDto(id);
-			var listStudentDto = stuService.searchStudentDto(stuDto);
-			req.setAttribute("studentDto", listStudentDto.get(0));
+			var studentDto = stuService.searchStudentDto(stuDto).get(0);
+			setNrc("", studentDto.nrc(), req);
+			setNrc("f", studentDto.fNrc(), req);
+			setNrc("m", studentDto.mNrc(), req);
+			req.setAttribute("studentDto", studentDto);
 			req.getRequestDispatcher("/admin/addStudent.jsp").forward(req, resp);
 			break;
 
@@ -72,7 +78,7 @@ public class StudentController extends HttpServlet {
 			var student = new Student();
 			student.setId(id);
 			stuService.delete(student);
-			listStudentDto = stuService.searchStudentDto(null);
+			var listStudentDto = stuService.searchStudentDto(null);
 			req.setAttribute("listStudentDto", listStudentDto);
 			req.getRequestDispatcher("/admin/listStudent.jsp").forward(req, resp);
 			break;
@@ -152,8 +158,6 @@ public class StudentController extends HttpServlet {
 			var name = req.getParameter("stuName");
 			var religion = req.getParameter("religion").toLowerCase().replaceAll(" ", "");
 			var date = LocalDate.parse(req.getParameter("dob"));
-			var nrc = req.getParameter("nrc").toLowerCase().replaceAll(" ", "");
-			;
 			var email = req.getParameter("email");
 			var pContact = req.getParameter("pContact").toLowerCase().replaceAll(" ", "");
 			var sContact = req.getParameter("sContact").toLowerCase().replaceAll(" ", "");
@@ -161,7 +165,14 @@ public class StudentController extends HttpServlet {
 			if (!pContact.matches("[0-9]+") || !sContact.matches("[0-9]+")) {
 				throw new StuRegException("Phone number must be digit only");
 			}
+			if (pContact.length() < 6 && pContact.length() > 12) {
+				throw new StuRegException("Phone number must between 6 and 12 !");
+			}
+			if (sContact.length() < 6 && sContact.length() > 12) {
+				throw new StuRegException("Phone number must between 6 and 12 !");
+			}
 
+			var nrc = getNrc("", req);
 			var image = getFile(req).getFileName().toString();
 			var student = new Student(name, date, religion, image, nrc, email, pContact, sContact);
 			student.setId(null != id ? Integer.valueOf(id) : null);
@@ -188,8 +199,8 @@ public class StudentController extends HttpServlet {
 		try {
 			var fName = req.getParameter("fName");
 			var mName = req.getParameter("mName");
-			var fNrc = req.getParameter("fNrc");
-			var mNrc = req.getParameter("mNrc");
+			var fNrc = getNrc("f", req);
+			var mNrc = getNrc("m", req);
 			return new Parent(mName, fName, mNrc, fNrc);
 		} catch (Exception e) {
 			throw new StuRegException(e.getMessage());
@@ -235,7 +246,6 @@ public class StudentController extends HttpServlet {
 		var name = req.getParameter("stuName");
 		var dto = new StudentDto(city, township, name);
 		return dto;
-
 	}
 
 }

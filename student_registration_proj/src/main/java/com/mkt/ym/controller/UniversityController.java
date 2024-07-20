@@ -22,6 +22,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import static com.mkt.ym.utils.NrcConverter.getNrc;
+
 
 @WebServlet(urlPatterns = { "/admin/addStudentToUni", 
 		"/admin/studentListfrmUni", 
@@ -124,7 +126,7 @@ public class UniversityController extends HttpServlet {
 			var uniInfo = new UniversityInfo();
 			var uniPk = new UniversityInfoPK(openYear, newRoll, major, uniYear);
 
-			var stuDto = getStudent(req.getParameter("stuName"), req.getParameter("nrc")).get();
+			var stuDto = getStudent(req.getParameter("stuName"),getNrc("", req)).get();
 			if (null == stuDto) {
 				throw new StuRegException("Student name and student nrc did not match. Please try again !");
 			}

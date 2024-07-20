@@ -22,6 +22,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import static com.mkt.ym.utils.NrcConverter.getNrc;
+
 
 @WebServlet(urlPatterns = { "/admin/addAccount", "/admin/accountList", "/admin/editAccount", "/admin/deleteAccount",
 		"/student/addAccount", "/student/signUp", "/student/login", "/student/logout" }, loadOnStartup = 1)
@@ -229,9 +231,9 @@ public class AccountController extends HttpServlet {
 		try {
 			var stuName = req.getParameter("stuName");
 			var dob = LocalDate.parse(req.getParameter("dob"));
-			var nrc = req.getParameter("nrc");
-			var fNrc = req.getParameter("fNrc");
-			var mNrc = req.getParameter("mNrc");
+			var nrc = getNrc("", req);
+			var fNrc = getNrc("f", req);
+			var mNrc = getNrc("m", req);
 			var schEnroll = req.getParameter("schEnroll");
 			var schMarks = Integer.parseInt(req.getParameter("schMarks"));
 			var dto = new UniversityInfoDto(null, null, null, stuName, dob, nrc, fNrc, mNrc, schEnroll, schMarks);

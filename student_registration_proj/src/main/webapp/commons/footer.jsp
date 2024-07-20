@@ -18,6 +18,26 @@
 </nav>
 
 <script>
+/* for nrc data binding */
+function fetchNrc(code,codeName) {
+    const selectedcode = document.getElementById(code).value;
+    console.log('test ;;;;;;;;;;;;;;;;'+ selectedcode);
+    fetch("/nrc.json")
+    .then(response => response.json())
+    .then(({data}) => {
+        const nrcs = data.filter(region => region.nrc_code === selectedcode)
+        const resultsDropdown = document.getElementById(codeName);
+              resultsDropdown.innerHTML = ''; 
+	
+            nrcs.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.name_en;
+                option.text = item.name_en;
+                resultsDropdown.add(option);
+                console.log('test ;;;;;;;;;;;;;;;;'+ item.name_en);
+            });
+      });
+}
 	/* for image upload */
 	function displaySelectedImage(event, elementId) {
 		const selectedImage = document.getElementById(elementId);
@@ -58,6 +78,8 @@
 			message.style.display = 'none';
 		});
 	});
+	
+	
 </script>
 
 </body>

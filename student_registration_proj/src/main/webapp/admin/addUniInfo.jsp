@@ -201,6 +201,7 @@
 									<div class="col col-sm-2">
 										<select id="code" name="code" class="form-select"
 											onchange="fetchNrc('code','codeName')">
+												<option selected="selected" disabled="disabled" value="">---</option>						
 											<c:forEach var="n" items="${nrcCodes }">
 												<option>${n}</option>
 											</c:forEach>

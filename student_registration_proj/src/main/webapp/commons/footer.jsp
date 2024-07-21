@@ -21,7 +21,6 @@
 /* for nrc data binding */
 function fetchNrc(code,codeName) {
     const selectedcode = document.getElementById(code).value;
-    console.log('test ;;;;;;;;;;;;;;;;'+ selectedcode);
     fetch("/nrc.json")
     .then(response => response.json())
     .then(({data}) => {
@@ -34,7 +33,6 @@ function fetchNrc(code,codeName) {
                 option.value = item.name_en;
                 option.text = item.name_en;
                 resultsDropdown.add(option);
-                console.log('test ;;;;;;;;;;;;;;;;'+ item.name_en);
             });
       });
 }

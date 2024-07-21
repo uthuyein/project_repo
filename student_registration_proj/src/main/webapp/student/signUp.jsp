@@ -57,6 +57,7 @@
 								<div class="col col-sm-2">
 									<select id="code" name="code" class="form-select"
 										onchange="fetchNrc('code','codeName')">
+									<option selected="selected" disabled="disabled" value="">---</option>
 										<c:forEach var="n" items="${nrcCodes }">
 											<option>${n}</option>
 										</c:forEach>
@@ -81,6 +82,7 @@
 								<div class="col col-sm-2">
 									<select id="fcode" name="fcode" class="form-select"
 										onchange="fetchNrc('fcode','fcodeName')">
+										<option selected="selected" disabled="disabled" value="">---</option>
 										<c:forEach var="n" items="${nrcCodes }">
 											<option>${n}</option>
 										</c:forEach>
@@ -105,6 +107,7 @@
 								<div class="col col-sm-2">
 									<select id="mcode" name="mcode" class="form-select"
 										onchange="fetchNrc('mcode','mcodeName')">
+										<option selected="selected" disabled="disabled" value="">---</option>
 										<c:forEach var="n" items="${nrcCodes }">
 											<option>${n}</option>
 										</c:forEach>

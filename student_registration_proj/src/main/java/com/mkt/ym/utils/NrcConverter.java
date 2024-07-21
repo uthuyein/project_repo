@@ -8,6 +8,9 @@ public class NrcConverter {
 		var code = req.getParameter(name + "code");
 		var codeName = req.getParameter(name + "codeName");
 		var codeNum = req.getParameter(name + "codeNum");
+		if(codeNum.length() != 6) {
+			throw new StuRegException("Nrc number length must be 6 !");
+		}
 		var nrc = code + "/" + codeName + " (N)" + codeNum;
 		return nrc;
 	}

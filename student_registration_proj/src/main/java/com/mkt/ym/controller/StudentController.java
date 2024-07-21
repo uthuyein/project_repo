@@ -165,10 +165,11 @@ public class StudentController extends HttpServlet {
 			if (!pContact.matches("[0-9]+") || !sContact.matches("[0-9]+")) {
 				throw new StuRegException("Phone number must be digit only");
 			}
-			if (pContact.length() < 6 && pContact.length() > 12) {
+			if (pContact.length() < 6 || pContact.length() > 12) {
+				System.out.println(" primary number 6 Testing");
 				throw new StuRegException("Phone number must between 6 and 12 !");
 			}
-			if (sContact.length() < 6 && sContact.length() > 12) {
+			if (sContact.length() < 6 || sContact.length() > 12) {
 				throw new StuRegException("Phone number must between 6 and 12 !");
 			}
 

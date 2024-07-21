@@ -29,8 +29,8 @@
 <div class="row p-3 m-3">
 	<form action="${listAcc }" class="form mt-2 w-75" method="post">
 		<fieldset class="border p-2 mb-2">
-			<legend class="float-none w-auto primary-text-color">&nbsp;Search
-				By &nbsp;</legend>
+			<legend class="float-none w-auto primary-text-color">&nbsp;  Search
+				By&nbsp;</legend>
 			<div class="row">
 				<div class="col">
 					<label for="userName" class="form-label primary-text-color">User

@@ -32,6 +32,8 @@ public class Messenger implements EnableTimesListener {
 	private Payment payment;
 	@ManyToOne
 	private Student student;
+	@ManyToOne
+	private Account account;
 	
 	public Messenger(Student student) {
 		this.student = student;

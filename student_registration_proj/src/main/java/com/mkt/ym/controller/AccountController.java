@@ -24,7 +24,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import static com.mkt.ym.utils.NrcConverter.getNrc;
 
-
 @WebServlet(urlPatterns = { "/admin/addAccount", "/admin/accountList", "/admin/editAccount", "/admin/deleteAccount",
 		"/student/addAccount", "/student/signUp", "/student/login", "/student/logout" }, loadOnStartup = 1)
 public class AccountController extends HttpServlet {
@@ -34,10 +33,9 @@ public class AccountController extends HttpServlet {
 	private UniversityInfoService uniService = UniversityInfoService.getUniversityInfoService();
 	private MessengerService mSerivice = MessengerService.getMessengerService();
 	private MessageType message;
-	
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		switch (req.getServletPath()) {
 		case "/student/logout":
 			req.getSession().invalidate();
@@ -93,20 +91,20 @@ public class AccountController extends HttpServlet {
 		case "/student/login":
 			login(req, resp);
 			break;
-			
+
 		case "/admin/addAccount":
 		case "/admin/updateAccount":
 			addAccount(req, resp);
 			break;
-			
+
 		case "/student/addAccount":
 			addAccount(req, resp);
 			break;
-			
+
 		case "/student/signUp":
 			signUpStudent(req, resp);
 			break;
-			
+
 		case "/admin/accountList":
 			var listAccount = searchAccount(req);
 			req.setAttribute("listAccount", listAccount);
@@ -132,7 +130,7 @@ public class AccountController extends HttpServlet {
 		var list = accService.search(new Account(loginId));
 		String link = null;
 		var session = req.getSession(true);
-		
+
 		try {
 			if (null == list || list.isEmpty()) {
 				throw new StuRegException("Please re-enter your loginId !");
@@ -162,7 +160,7 @@ public class AccountController extends HttpServlet {
 			message = MessageType.ERROR;
 			message.setMessage(e.getMessage());
 			req.setAttribute("message", message);
-			
+
 		}
 		req.getRequestDispatcher(null != link ? link : "/index.jsp").forward(req, resp);
 
@@ -196,6 +194,22 @@ public class AccountController extends HttpServlet {
 			acc.setPassword(password);
 
 			if (null != acc.getId()) {
+
+				MessageType m = null;
+				m = MessageType.WARNING;
+				m.setMessage(
+						"""
+							Dear %s , your account information was updated  with user name of %s and password is  %s 
+						"""
+						.formatted(acc.getUniInfo().getStudent().getName(),
+						acc.getUsername(),
+						acc.getPassword()));
+
+				var messenger = new Messenger();
+				messenger.setMessage(m);
+				messenger.setText(m.getMessage());
+				messenger.setStudent(acc.getUniInfo().getStudent());
+				acc.addMessage(messenger);
 				accService.update(acc);
 				message = MessageType.SUCCESS;
 				message.setMessage("Successfully update account!");

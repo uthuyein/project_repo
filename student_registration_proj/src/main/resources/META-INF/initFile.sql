@@ -12,7 +12,7 @@
  insert into contact_tbl(id,email,primaryContact,secondaryContact)values(2,'william@gmail.com','099998823','097882332');
  insert into contact_tbl(id,email,primaryContact,secondaryContact)values(3,'john@gmail.com','099110222','0998887744');
  
- insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(1,'joeseaph','malarwii','1/KhaLaPha (N)982342','1/KhaLaPha (N)0942342');
+ insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(1,'joeseaph','malarwii','1/KhaLaPha (N)982342','1/KhaLaPha (N)942342');
  insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(2,'soeudum','kara','6/TaNaTha (N)223242','7/YaKaNa (N)0455342');
  insert into parent_tbl(id,fatherName,motherName,fatherNrc,motherNrc)values(3,'sandra','kaythi','7/YaKaNa (N)322122','7/YaKaNa (N)9882342');
  

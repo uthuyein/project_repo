@@ -15,6 +15,7 @@ import com.mkt.ym.entity.type.Major;
 import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.entity.type.PaymentType;
 import com.mkt.ym.entity.type.UniYear;
+import com.mkt.ym.services.MessengerService;
 import com.mkt.ym.services.PaymentService;
 import com.mkt.ym.services.UniversityInfoService;
 import com.mkt.ym.utils.StuRegException;
@@ -37,9 +38,13 @@ public class PaymentController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		payService = PaymentService.getPaymentService();
 		uniService = UniversityInfoService.getUniversityInfoService();
-
+		var mService = MessengerService.getMessengerService();
+		
 		switch (req.getServletPath()) {
 		case "/student/addPayment":
+			Messenger mm = new Messenger(new Student(null != req.getParameter("id")? Integer.valueOf(req.getParameter("id")): null));
+			var messengers = mService.search(mm);
+			req.setAttribute("messengers", messengers);		
 			req.getRequestDispatcher("/student/addPayment.jsp").forward(req, resp);
 			break;
 		case "/admin/updatePayment":

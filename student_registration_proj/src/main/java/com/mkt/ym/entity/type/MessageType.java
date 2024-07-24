@@ -10,7 +10,7 @@ public enum MessageType {
 	},WARNING {
 		@Override
 		public String getColor() {
-			return "text-warn";
+			return "text-warning";
 		}
 	},SUCCESS {
 		@Override

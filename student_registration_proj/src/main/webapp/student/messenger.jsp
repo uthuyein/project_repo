@@ -24,7 +24,7 @@
 				class="nav-link primary-text-color fs-sm"
 				href="${stuDetail }?id=${uniInfoDto.stuId()}">Student</a></li>
 			<li class="nav-item "><a class="nav-link primary-text-color"
-				href="${payment }">Payment</a></li>
+				href="${payment }?id=${uniInfoDto.stuId()}">Payment</a></li>
 			<c:if test="${null == account }">
 				<li class="nav-item"><a class="nav-link primary-text-color"
 					href="${acc }?id=${uniInfoDto.stuId()}">Account</a></li>
@@ -49,10 +49,7 @@
 
 			<c:choose>
 				<c:when test="${null ne messengers && messengers.size() > 0}">
-					<%-- <div class="col col-md-4 mb-2">
-						<a href="${deleteMessage }" class="btn btn-primary">Clear All
-							Messages</a>
-					</div> --%>
+	
 					<c:forEach var="m" items="${messengers }" varStatus="s">
 
 						<div class="card text-start mb-2">
@@ -61,7 +58,7 @@
 							</div>
 							<div class="card-body">
 								<p class="card-text">${m.text }</p>
-								<a href="${deleteMessage }?index=${s.index}"
+								<a href="${deleteMessage }?messengerId=${m.id}&id=${m.student.id}"
 									class="btn btn-primary">Delete message</a>
 							</div>
 							<div class="card-footer text-muted text-end">

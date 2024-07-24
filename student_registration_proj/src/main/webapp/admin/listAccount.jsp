@@ -8,7 +8,7 @@
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="addAcc" value="/admin/addAccount"></c:url>
 <c:url var="listAcc" value="/admin/accountList"></c:url>
-<c:url var="editAcc" value="/admin/editAccount"></c:url>
+<c:url var="updateAcc" value="/admin/updateAccount"></c:url>
 <c:url var="deleteAcc" value="/admin/deleteAccount"></c:url>
 
 <c:set var="roles" value="<%=Role.values()%>"></c:set>
@@ -79,9 +79,9 @@
 								<td>${a.username}</td>
 								<td>${a.loginId }</td>
 								<td>${a.password }</td>
-								<td><a href="${editAcc }?id=${a.id}"
+								<td><a href="${updateAcc }?id=${a.id}"
 									class="btn btn-outline-primary">Edit</a></td>
-								<td><a href="${editAcc }?id=${a.id}"
+								<td><a href="${deleteAcc }?id=${a.id}"
 									class="btn btn-outline-danger">Delete</a></td>
 							</tr>
 						</c:forEach>

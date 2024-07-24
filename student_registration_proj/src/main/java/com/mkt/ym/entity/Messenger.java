@@ -38,4 +38,8 @@ public class Messenger implements EnableTimesListener {
 	public Messenger(Student student) {
 		this.student = student;
 	}
+	
+	public Messenger(Integer id) {
+		this.id = id;
+	}
 }

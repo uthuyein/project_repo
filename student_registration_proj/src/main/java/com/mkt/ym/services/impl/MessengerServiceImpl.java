@@ -30,8 +30,9 @@ public class MessengerServiceImpl implements MessengerService {
 	public int delete(Messenger m) {
 		var em = emf.createEntityManager();
 		em.getTransaction().begin();
-		var messenger = em.find(Messenger.class, m.getId());
-		em.remove(messenger);
+		var query = em.createQuery("delete from Messenger m where m.id = :id");
+		query.setParameter("id", m.getId());
+		query.executeUpdate();
 		em.getTransaction().commit();
 		return 0;
 	}
@@ -46,8 +47,8 @@ public class MessengerServiceImpl implements MessengerService {
 		if (null != m) {
 			if (null != m.getStudent()) {
 				if (m.getStudent().getId() > 0) {
-					sb.append(" and m.student.id = :id");
-					temp.put("id", m.getStudent().getId());
+					sb.append(" and m.student.id = :sId");
+					temp.put("sId", m.getStudent().getId());
 				}
 			}
 		}

@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.mkt.ym.entity.Account;
+import com.mkt.ym.entity.Messenger;
 import com.mkt.ym.services.AccountService;
+import com.mkt.ym.services.MessengerService;
 
 import jakarta.persistence.TypedQuery;
 
@@ -24,25 +26,54 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public int update(Account t) {
+		if (null != t.getMessengers() && t.getMessengers().size() > 0) {
+			System.out.println(
+					"Messager :::::::::::::::::::::::::::::::::::::::::::::::::::::::::: " + t.getMessengers().size());
+			var messService = MessengerService.getMessengerService();
+			for (Messenger m : t.getMessengers()) {
+				var mm = messService.search(m);
+				if (null == mm) {
+					messService.save(m);
+				}
+			}
+		}
 		var em = emf.createEntityManager();
+
 		em.getTransaction().begin();
 		em.merge(t);
 		em.getTransaction().commit();
 		return 0;
+
+//		em.getTransaction().begin();
+//		var sb = new StringBuilder("update Account a set a.loginId = :loginId,a.password = :password where 1=1");
+//		if(t.getRole() == Role.STUDENT) {
+//			sb.append(" and a.uniInfo.openYear = :openYear and  a.uniInfo.rollNumber = :roll and a.uniInfo.uniYear = :year");
+//			query.setParameter("openYear", t.getUniInfo().getId().getOpenYear());
+//			query.setParameter("roll", t.getUniInfo().getId().getRollNumber());
+//			query.setParameter("year", t.getUniInfo().getId().getUniYear());
+//			
+//		}
+//		var query = em.createQuery();
+//		query.setParameter("loginId", t.getLoginId());
+//		query.setParameter("password", t.getPassword());
+//		query.executeUpdate();
 	}
 
 	@Override
 	public List<Account> search(Account acc) {
 		try (var em = emf.createEntityManager()) {
-			StringBuilder sb = new StringBuilder("select c from Account c where c.active = true");
+			StringBuilder sb = new StringBuilder("select c from Account c where 1=1");
 			Map<String, Object> map = new HashMap<String, Object>();
 
 			if (null != acc) {
-				if(null != acc.getId()) {
+				if (acc.isActive()) {
+					sb.append(" and c.active = true");
+				}
+				if (null != acc.getId()) {
 					sb.append(" and c.id = :id");
 					map.put("id", acc.getId());
 				}
-				if(null != acc.getRole()) {
+				if (null != acc.getRole()) {
 					sb.append(" and c.role = :role");
 					map.put("role", acc.getRole());
 				}
@@ -60,7 +91,7 @@ public class AccountServiceImpl implements AccountService {
 			for (Map.Entry<String, Object> m : map.entrySet()) {
 				query.setParameter(m.getKey(), m.getValue());
 			}
-			
+
 			return query.getResultList();
 
 		} catch (Exception e) {

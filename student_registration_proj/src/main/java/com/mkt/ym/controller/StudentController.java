@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mkt.ym.entity.Address;
@@ -28,9 +29,8 @@ import jakarta.servlet.http.Part;
 import static com.mkt.ym.utils.NrcConverter.getNrc;
 import static com.mkt.ym.utils.NrcConverter.setNrc;;
 
-
 @WebServlet(urlPatterns = { "/student/detailStudent", "/admin/studentList", "/admin/editStudent",
-		"/admin/deleteStudent", "/admin/addStudent", "/student/messenger", "/student/deleteMessenges"})
+		"/admin/deleteStudent", "/admin/addStudent", "/student/messenger", "/student/deleteMessenges" })
 @MultipartConfig
 public class StudentController extends HttpServlet {
 
@@ -38,25 +38,24 @@ public class StudentController extends HttpServlet {
 	private StudentService stuService;
 	private MessengerService mService;
 	private MessageType message;
+	private static List<Messenger> messengers = new ArrayList<Messenger>();
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		stuService = StudentService.getStudentService();
 		mService = MessengerService.getMessengerService();
 
-		var session = req.getSession(true);
-		var sId = req.getParameter("id");
+		var sId = req.getParameter("id");		
 		var id = (null != sId && !sId.isEmpty()) ? Integer.valueOf(sId) : null;
-
+		
 		switch (req.getServletPath()) {
 		case "/student/detailStudent":
-			var uniInfoDto = getUniInfo(req, id);
-			session.setAttribute("uniInfoDto", uniInfoDto);
+			setAttributeMessage(req, id);
 			req.getRequestDispatcher("/student/detailStudent.jsp").forward(req, resp);
 			break;
 
 		case "/student/messenger":
+			setAttributeMessage(req, id);
 			req.getRequestDispatcher("/student/messenger.jsp").forward(req, resp);
 			break;
 
@@ -88,24 +87,22 @@ public class StudentController extends HttpServlet {
 			break;
 
 		case "/student/deleteMessenges":
-			var index = (null != req.getParameter("index")) ? Integer.valueOf(req.getParameter("index")) : null;
-			var messengers = (List<Messenger>) req.getSession().getAttribute("messengers");
-			var messenger = messengers.get(index);
-			mService.delete(messenger);
-			req.getSession(true).setAttribute("messengers", mService.search(messenger));
+			var mId = (null != req.getParameter("messengerId")) ? Integer.valueOf(req.getParameter("messengerId")) : null;
+			mService.delete(new Messenger(mId));
+			setAttributeMessage(req, id);
 			req.getRequestDispatcher("/student/messenger.jsp").forward(req, resp);
+			
 			break;
-
 		}
 	}
-
-	@SuppressWarnings("unchecked")
-	private UniversityInfoDto getUniInfo(HttpServletRequest req, Integer stuId) {
-		var list = (List<UniversityInfoDto>) req.getAttribute("listUniInfo");
-		return list.stream().filter(u -> u.stuId() == stuId).findFirst().orElse(null);
-
+	
+	private void setAttributeMessage(HttpServletRequest req,Integer StudentId) {
+		Messenger m = new Messenger(new Student(StudentId));
+		messengers = mService.search(m);
+		req.setAttribute("messengers", messengers);		
+		
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		switch (req.getServletPath()) {
@@ -233,10 +230,8 @@ public class StudentController extends HttpServlet {
 				}
 				return file;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ServletException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new StuRegException(e.getMessage());
 		}
 		return null;
 	}

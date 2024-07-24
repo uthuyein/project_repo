@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import static com.mkt.ym.utils.NrcConverter.getNrc;
 
-@WebServlet(urlPatterns = { "/admin/addAccount", "/admin/accountList", "/admin/editAccount", "/admin/deleteAccount",
+@WebServlet(urlPatterns = { "/admin/addAccount", "/admin/accountList", "/admin/updateAccount", "/admin/deleteAccount",
 		"/student/addAccount", "/student/signUp", "/student/login", "/student/logout" }, loadOnStartup = 1)
 public class AccountController extends HttpServlet {
 
@@ -46,20 +46,20 @@ public class AccountController extends HttpServlet {
 			req.getRequestDispatcher("/admin/addAccount.jsp").forward(req, resp);
 			break;
 
-		case "/admin/editAccount":
+		case "/admin/updateAccount":
 			var id = Integer.valueOf(req.getParameter("id"));
-			var acc = new Account();
-			acc.setId(id);
-			var updAcc = accService.search(acc).get(0);
+			var updAcc = accService.search(new Account(id)).get(0);
 			req.setAttribute("updAcc", updAcc);
 			req.getRequestDispatcher("/admin/addAccount.jsp").forward(req, resp);
 			break;
 
 		case "/admin/deleteAccount":
 			id = Integer.valueOf(req.getParameter("id"));
-			acc = new Account();
+			var acc = new Account();
 			acc.setId(id);
 			accService.delete(acc);
+			acc.setId(null);
+			acc.setActive(true);
 			var listAccount = accService.search(null);
 			req.setAttribute("listAccount", listAccount);
 			req.getRequestDispatcher("/admin/listAccount.jsp").forward(req, resp);
@@ -74,7 +74,9 @@ public class AccountController extends HttpServlet {
 			break;
 
 		case "/admin/accountList":
-			listAccount = accService.search(null);
+			acc = new Account();
+			acc.setActive(true);
+			listAccount = accService.search(acc);
 			req.setAttribute("listAccount", listAccount);
 			req.getRequestDispatcher("/admin/listAccount.jsp").forward(req, resp);
 			break;
@@ -93,12 +95,12 @@ public class AccountController extends HttpServlet {
 			break;
 
 		case "/admin/addAccount":
-		case "/admin/updateAccount":
+		case "/student/addAccount":
 			addAccount(req, resp);
 			break;
 
-		case "/student/addAccount":
-			addAccount(req, resp);
+		case "/admin/updateAccount":
+			updateAccount(req, resp);
 			break;
 
 		case "/student/signUp":
@@ -127,7 +129,9 @@ public class AccountController extends HttpServlet {
 		accService = AccountService.getAccountService();
 		var loginId = req.getParameter("loginId").toLowerCase();
 		var pass = req.getParameter("password");
-		var list = accService.search(new Account(loginId));
+		var account = new Account(loginId);
+		account.setActive(true);
+		var list = accService.search(account);
 		String link = null;
 		var session = req.getSession(true);
 
@@ -139,7 +143,6 @@ public class AccountController extends HttpServlet {
 			if (!acc.getPassword().equals(pass)) {
 				throw new StuRegException("Please re-enter your password !");
 			}
-
 			if (acc.getRole() == Role.ADMIN) {
 				link = "/index.jsp";
 			} else {
@@ -151,7 +154,7 @@ public class AccountController extends HttpServlet {
 						uniInfo.getId().getMajor(), uniInfo.getStudent().getName());
 				var uniInfoDto = uniService.searchUniversityInfo(dto).get(0);
 				var messengers = mSerivice.search(new Messenger(new Student(uniInfoDto.stuId())));
-				session.setAttribute("messengers", messengers);
+				req.setAttribute("messengers", messengers);
 				session.setAttribute("uniInfoDto", uniInfoDto);
 			}
 			session.setAttribute("account", list.get(0));
@@ -160,77 +163,97 @@ public class AccountController extends HttpServlet {
 			message = MessageType.ERROR;
 			message.setMessage(e.getMessage());
 			req.setAttribute("message", message);
-
 		}
+		
 		req.getRequestDispatcher(null != link ? link : "/index.jsp").forward(req, resp);
-
 	}
 
-	private void addAccount(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		var username = req.getParameter("username");
-		var role = req.getParameter("role");
-		var loginId = req.getParameter("loginId");
-		var password = req.getParameter("password");
-		var confirm = req.getParameter("confirm");
+	private void updateAccount(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		var id = req.getParameter("id");
-		var acc = new Account(username, loginId);
-		var session = req.getSession(true);
-		Account sessionAcc = (Account) session.getAttribute("account");
-		UniversityInfoDto uniInfoDto = (UniversityInfoDto) session.getAttribute("uniInfoDto");
+		Integer accId = (null != id) ? Integer.valueOf(id) : null;
 
 		try {
-			acc.setId(null != id ? Integer.valueOf(id) : null);
-			acc.setRole(null != role ? Role.valueOf(role) : null);
-
-			if (null != uniInfoDto && acc.getRole() != Role.ADMIN) {
-				acc.setUniInfo(getUniInfo(uniInfoDto));
-			}
-			if (!password.equals(confirm)) {
-				throw new StuRegException("Password did not match confirm password and try again !");
-			}
-
-			acc.setUsername(username.toLowerCase());
-			acc.setLoginId(loginId.toLowerCase());
-			acc.setPassword(password);
-
-			if (null != acc.getId()) {
-
+			var updAcc = accService.search(new Account(accId)).get(0);			
+			var acc = getAccount(req);
+			
+			updAcc.setActive(true);
+			updAcc.setLoginId(acc.getLoginId());
+			updAcc.setUsername(acc.getUsername());
+			updAcc.setPassword(acc.getPassword());
+					
+			if (updAcc.getRole() == Role.STUDENT) {
 				MessageType m = null;
 				m = MessageType.WARNING;
-				m.setMessage(
-						"""
-							Dear %s , your account information was updated  with user name of %s and password is  %s 
-						"""
-						.formatted(acc.getUniInfo().getStudent().getName(),
-						acc.getUsername(),
-						acc.getPassword()));
+				m.setMessage("""
+							Dear %s , your account information was updated  with user name of %s and password is  %s
+						""".formatted(updAcc.getUsername(), updAcc.getLoginId(), updAcc.getPassword()));
 
 				var messenger = new Messenger();
 				messenger.setMessage(m);
 				messenger.setText(m.getMessage());
-				messenger.setStudent(acc.getUniInfo().getStudent());
-				acc.addMessage(messenger);
-				accService.update(acc);
-				message = MessageType.SUCCESS;
-				message.setMessage("Successfully update account!");
-			} else {
-				var list = accService.search(acc);
-				if (null != list && list.size() > 0) {
-					throw new StuRegException("Aleardy create account for this username !");
-				}
-				accService.save(acc);
-				message = MessageType.SUCCESS;
-				message.setMessage("Successfully create account!");
+				messenger.setStudent(updAcc.getUniInfo().getStudent());
+				updAcc.addMessage(messenger);
 			}
+			
+			accService.update(updAcc);	
+			message = MessageType.SUCCESS;
+			message.setMessage("Successfully update account!");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			message = MessageType.ERROR;
+			message.setMessage(e.getMessage());
+		}
+		req.setAttribute("message", message);
+		req.getRequestDispatcher("/admin/addAccount.jsp").forward(req, resp);
+	}
+
+	private void addAccount(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+		var acc = getAccount(req);
+		try {
+			var list = accService.search(acc);
+			if (null != list && list.size() > 0) {
+				throw new StuRegException("Aleardy create account for this username !");
+			}
+			
+			if (acc.getRole() == Role.STUDENT) {
+				UniversityInfoDto uniInfoDto = (UniversityInfoDto) req.getSession(true).getAttribute("uniInfoDto");
+				acc.setUniInfo(getUniInfo(uniInfoDto));
+			}
+			
+			accService.save(acc);
+			message = MessageType.SUCCESS;
+			message.setMessage("Successfully create account!");
 
 		} catch (StuRegException e) {
 			message = MessageType.ERROR;
 			message.setMessage(e.getMessage());
 		}
 		req.setAttribute("message", message);
+		Account sessionAcc = (Account) req.getSession().getAttribute("account");
 		req.getRequestDispatcher(((null != sessionAcc && sessionAcc.getRole() == Role.ADMIN) ? "/admin" : "/student")
 				.concat("/addAccount.jsp")).forward(req, resp);
 
+	}
+	
+	private Account getAccount(HttpServletRequest req) throws IOException, ServletException {
+		var username = req.getParameter("username");
+		var rol = req.getParameter("role");
+		var loginId = req.getParameter("loginId");
+		var password = req.getParameter("password");
+		var confirm = req.getParameter("confirm");
+		Role role = (null != rol) ? Role.valueOf(rol) : Role.STUDENT;
+
+		var acc = new Account(username, loginId);
+		acc.setRole(role);
+		acc.setUsername(username.toLowerCase());
+		acc.setLoginId(loginId.toLowerCase());
+
+		if (!password.equals(confirm)) {
+			throw new StuRegException("Password did not match confirm password and try again !");
+		}
+		acc.setPassword(password);
+		return acc;
 	}
 
 	private UniversityInfo getUniInfo(UniversityInfoDto dto) {
@@ -259,7 +282,7 @@ public class AccountController extends HttpServlet {
 			if (null == uniInfoDto) {
 				throw new StuRegException("There is no student for that information ! ");
 			}
-			var session = req.getSession();
+			var session = req.getSession(true);
 			var messenger = new Messenger(new Student(uniInfoDto.stuId()));
 			session.setAttribute("messengers", mService.search(messenger));
 			session.setAttribute("uniInfoDto", uniInfoDto);

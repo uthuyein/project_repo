@@ -5,6 +5,8 @@
 <c:url var="head" value="/commons/header.jsp"></c:url>
 <c:url var="foot" value="/commons/footer.jsp"></c:url>
 <c:url var="addAccount" value="/admin/addAccount"></c:url>
+<c:url var="updateAccount" value="/admin/updateAccount"></c:url>
+
 <c:url var="listAccount" value="/admin/accountList"></c:url>
 
 <%@page import="com.mkt.ym.entity.type.*"%>
@@ -35,11 +37,11 @@
 		<div class="card ">
 		<c:choose>
 		<c:when test="${null != updAcc }">
-		<form action="${addAccount }" method="post" class="needs-validation"
+		<form action="${updateAccount }" method="post" class="needs-validation"
 				novalidate>
 				<div class="card-body ">
-				<input class="form-check-input" type="text" name="id"  value="${updAcc.id }"  hidden/>
-				<input class="form-check-input" type="text" name="role"  value="${updAcc.role }"  hidden/>
+				<input class="form-check-input" type="text" name="id"  value="${updAcc.id }"  hidden="true"/>
+				<input class="form-check-input" type="text" name="role"  value="${updAcc.role }"  hidden="true"/>
 				
 					<div class="card-header mt-2 mb-3 primary-header-text-color">			
 						<i class="bi bi-person-fill "></i>&nbsp; Update Account

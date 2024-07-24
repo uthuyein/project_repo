@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.mkt.ym.AccountTest
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.157 s -- in com.mkt.ym.AccountTest

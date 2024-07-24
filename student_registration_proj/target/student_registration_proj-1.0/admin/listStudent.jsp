@@ -30,27 +30,31 @@
 	</nav>
 	<div class="row p-5 m-3">
 		<form action="${studentList }" class="form  mt-2 w-75" method="post">
-			<div class="row">
-				<div class="col">
-					<label for="city" class="form-label primary-text-color">City</label><input
-						type="text" class="form-control" name="city" id="city" />
+			<fieldset class="border p-2 mb-2">
+				<legend class="float-none w-auto primary-text-color">&nbsp;Search
+					By &nbsp;</legend>
+				<div class="row">
+					<div class="col">
+						<label for="city" class="form-label primary-text-color">City</label><input
+							type="text" class="form-control" name="city" id="city" />
+					</div>
+					<div class="col">
+						<label for="township" class="form-label primary-text-color">Township
+						</label><input type="text" class="form-control" name="township"
+							id="township" />
+					</div>
+					<div class="col">
+						<label for="stuName" class="form-label primary-text-color">Student
+							Name</label><input type="text" name="stuName" id="stuName"
+							class="form-control" />
+					</div>
+					<div class="col mt-4 pt-2 ">
+						<button class="btn primary-color " type="submit">
+							<i class="bi bi-search"></i>&nbsp;Search
+						</button>
+					</div>
 				</div>
-				<div class="col">
-					<label for="township" class="form-label primary-text-color">Township
-					</label><input type="text" class="form-control" name="township"
-						id="township" />
-				</div>
-				<div class="col">
-					<label for="stuName" class="form-label primary-text-color">Student
-						Name</label><input type="text" name="stuName" id="stuName"
-						class="form-control" />
-				</div>
-				<div class="col mt-4 pt-2 ">
-					<button class="btn primary-color " type="submit">
-						<i class="bi bi-search"></i>&nbsp;Search
-					</button>
-				</div>
-			</div>
+			</fieldset>
 		</form>
 		<c:choose>
 			<c:when test="${null ne listStudentDto }">
@@ -95,8 +99,10 @@
 									<td>${s.fNrc() }</td>
 									<td>${s.mName() }</td>
 									<td>${s.mNrc() }</td>
-									<td><a href="${editStudent }?id=${s.id()}" class="btn btn-outline-primary">Edit</a></td>
-									<td><a href="${deleteStudent }?id=${s.id()}"  class="btn btn-outline-danger">Delete</a></td>
+									<td><a href="${editStudent }?id=${s.id()}"
+										class="btn btn-outline-primary">Edit</a></td>
+									<td><a href="${deleteStudent }?id=${s.id()}"
+										class="btn btn-outline-danger">Delete</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

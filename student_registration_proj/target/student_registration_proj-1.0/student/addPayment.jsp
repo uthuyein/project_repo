@@ -8,13 +8,15 @@
 <c:url var="payment" value="/student/addPayment"></c:url>
 <c:url var="acc" value="/student/addAccount"></c:url>
 <c:url var="stuDetail" value="/student/detailStudent"></c:url>
+<c:url var="messager" value="/student/messenger"></c:url>
+
 
 
 <%@page import="com.mkt.ym.entity.type.*"%>
 <c:set var="majors" value="<%=Major.values()%>"></c:set>
 <c:set var="uniYears" value="<%=UniYear.values()%>"></c:set>
-	<c:set var="pays" value="<%=PaymentType.values()%>"></c:set>
-							
+<c:set var="pays" value="<%=PaymentType.values()%>"></c:set>
+
 
 
 <jsp:include page="${head }"></jsp:include>
@@ -27,9 +29,22 @@
 				class="nav-link primary-text-color fs-sm"
 				href="${stuDetail }?id=${uniInfoDto.stuId()}">Student</a></li>
 			<li class="nav-item "><a class="nav-link primary-text-color"
-				href="${payment }">Payment</a></li>
-			<li class="nav-item"><a class="nav-link primary-text-color"
-				href="${acc }">Account</a></li>
+				href="${payment }?id=${uniInfoDto.stuId()}">Payment</a></li>
+			<c:if test="${null == account }">
+				<li class="nav-item"><a class="nav-link primary-text-color"
+					href="${acc }?id=${uniInfoDto.stuId()}">Account</a></li>
+			</c:if>
+
+			<li class="nav-item"><a
+				class="nav-link primary-text-color position-relative"
+				href="${messager }?id=${uniInfoDto.stuId()}">Messager <c:if
+						test="${null ne messengers && messengers.size() > 0 }">
+						<span
+							class="position-absolute top-25 start-75 translate-middle badge rounded-pill bg-danger">
+							${messengers.size()} </span>
+					</c:if>
+			</a></li>
+
 		</ul>
 	</nav>
 	<div class="row justify-content-center  p-5 message-target">
@@ -50,49 +65,51 @@
 						</div>
 						<div class="row">
 							<div class="col col-md-4">
-								<label for="payment" class="form-label primary-text-color">Open
-									Year </label> <select class="form-select" name="openYear"
+								<label for="openYear" class="form-label primary-text-color">Open
+									Year </label> <select id="openYear" class="form-select" name="openYear"
 									required="required">
 									<option selected disabled="disabled" value="">---</option>
 									<c:forEach var="year" items="${openYears }">
 										<option>${year}</option>
 									</c:forEach>
 								</select>
-								<div class="invalid-feedback">Please select university open year  !</div>
+								<div class="invalid-feedback">Please select university
+									open year !</div>
 
 							</div>
 							<div class="col col-md-4">
-							<label for="payment" class="form-label primary-text-color">University
-								Year</label> <select class="form-select" name="uniYear"
-								required="required">
-								<option selected disabled="disabled" value="">---</option>
-								<c:forEach var="u" items="${uniYears }">
-									<option>${u.name()}</option>
-								</c:forEach>
-							</select>
-							<div class="invalid-feedback">Please select university year !</div>
+								<label for="uniYear" class="form-label primary-text-color">University
+									Year</label> <select class="form-select" id="uniYear" name="uniYear"
+									required="required">
+									<option selected disabled="disabled" value="">---</option>
+									<c:forEach var="u" items="${uniYears }">
+										<option>${u.name()}</option>
+									</c:forEach>
+								</select>
+								<div class="invalid-feedback">Please select university
+									year !</div>
+
+							</div>
+							<div class="col col-md-4">
+								<label for="major" class="form-label primary-text-color">Major
+								</label> <select class="form-select" id="major" name="major"
+									required="required">
+									<option selected disabled="disabled" value="">---</option>
+									<c:forEach var="m" items="${majors }">
+										<option>${m.name()}</option>
+									</c:forEach>
+								</select>
+								<div class="invalid-feedback">Please select Major type !</div>
+
+							</div>
 
 						</div>
-						<div class="col col-md-4">
-							<label for="payment" class="form-label primary-text-color">Major
-								</label> <select class="form-select" name="major"
-								required="required">
-								<option selected disabled="disabled" value="">---</option>
-								<c:forEach var="m" items="${majors }">
-									<option>${m.name()}</option>
-								</c:forEach>
-							</select>
-							<div class="invalid-feedback">Please select Major type !</div>
-
-						</div>
-						
-						</div>
-						<div class="mb-3">
-							<label for="rollNumber" class="form-label primary-text-color">Roll Number
-								</label> <input type="text" class="form-control" id="rollNumber"
+						<div class="mb-3 mt-3">
+							<label for="rollNumber" class="form-label primary-text-color">Roll
+								Number </label> <input type="text" class="form-control" id="rollNumber"
 								name="rollNumber" required="required">
-							<div class="invalid-feedback">Please re-enter university roll number
-								number !</div>
+							<div class="invalid-feedback">Please re-enter university
+								roll number number !</div>
 						</div>
 						<div class="mt-2 mb-3">
 							<label for="payment" class="form-label primary-text-color">Payment

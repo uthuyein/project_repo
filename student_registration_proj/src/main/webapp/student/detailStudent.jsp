@@ -43,61 +43,63 @@
 		<c:set var="u" value="${uniInfoDto }"></c:set>
 		<div class="row justify-content-center p-5 message-target">
 			<div class="col col-md-8">
-				<div class="row g-0">
-					<div class="col-md-4 mt-4">
-
-						<img src="/images/${u.image() }" class="img-thumbnail rounded-circle"
+				<div class="row">
+					<div class="col-md-4 mt-5">
+						<img src="/images/${u.image() }" class="img-thumbnail "
 							style="width: 300px; height: 300px; object-fit: cover;" alt="...">
 					</div>
-					<div class="col-md-8">
-						<div class="card-body">
-							<h5 class="card-title primary-header-text-color">
-								<span>Name : </span>${u.name() }</h5>
-							<p class="card-text">
-								<span class="primary-text-color">Date Of Birth : </span><u
-									class="text-muted">${u.dob() } </u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">Religion : </span><u
-									class="text-muted">${u.religion() }</u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">Nrc Nuumber : </span><u
-									class="text-muted">${u.nrc() }</u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">Primary Phone : </span><u
-									class="text-muted">${u.primaryPhone() }</u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">Secondary Phone : </span><u
-									class="text-muted">${u.secondaryPhone() }</u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">Father Name : NRC : </span><u
-									class="text-muted">${u.fName() } : ${u.fNrc() }</u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">Mother Name : NRC : </span><u
-									class="text-muted"> ${u.mName() } : ${u.mNrc() }</u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">Nrc Nuumber : </span><u
-									class="text-muted">${u.nrc() }</u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">City : </span><u
-									class="text-muted">${u.city() }</u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">Township : </span><u
-									class="text-muted">${u.township() }</u>
-							</p>
-							<p class="card-text">
-								<span class="primary-text-color">Street : </span><u
-									class="text-muted">${u.street() }</u>
-							</p>
-						</div>
+					<div class="col-md-8 ">
+						<table class="table">
+							<tbody>
+								<tr>
+									<td class="primary-header-text-color">Name :</td>
+									<td class="primary-header-text-color" >${u.name() }</td>
+								</tr>
+								<tr>
+									<td class="primary-text-color">Date Of Birth :</td>
+									<td class="text-secondary">${u.dob() }</td>
+								</tr>
+								<tr>
+									<td class="primary-text-color">Religion :</td>
+									<td class="text-secondary">${u.religion() }</td>
+								</tr>
+								<tr>
+									<td class="primary-text-color">NRC Number :</td>
+									<td class="text-secondary">${u.nrc() }</td>
+								</tr>
+								<tr>
+									<td class="primary-text-color">Primary Phone :</td>
+									<td class="text-secondary">${u.primaryPhone() }</td>
+								</tr>
+								<tr>
+									<td class="primary-text-color">Secondary Phone :</td>
+									<td class="text-secondary">${u.secondaryPhone() }</td>
+								</tr>
+								<tr>
+									<td class="primary-text-color">Father Name / NRC :</td>
+									<td class="text-secondary">${u.fName() }&nbsp;( ${u.fNrc() } )</td>
+
+								</tr>
+								<tr>
+									<td class="primary-text-color">Mother Name / NRC :</td>
+									<td class="text-secondary">${u.mName() } &nbsp;( ${u.mNrc() } )</td>
+
+								</tr>
+								<tr>
+									<td class="primary-text-color">City :</td>
+									<td class="text-secondary">${u.city() }</td>
+								</tr>
+								<tr>
+									<td class="primary-text-color">Township :</td>
+									<td class="text-secondary">${u.township() }</td>
+								</tr>
+								<tr>
+									<td class="primary-text-color">Street :</td>
+									<td class="text-secondary">${u.street() }</td>
+								</tr>
+							</tbody>
+						</table>
+
 					</div>
 				</div>
 			</div>

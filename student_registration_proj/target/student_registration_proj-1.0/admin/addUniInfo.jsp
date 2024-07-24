@@ -18,14 +18,15 @@
 	class="navbar navbar-light bg-light px-3 sticky-sm-top">
 	<ul class="nav">
 		<li class="nav-item"><a href="${addUniInfo }"
-			class="nav-link primary-text-color"><i class="bi bi-collection"></i>&nbsp;Add
+			class="nav-link primary-text-color"><i class="bi bi-person-fill"></i>&nbsp;Add
 				Student To University</a></li>
 		<li class="nav-item"><a href="${listStudentUni }"
 			class="nav-link primary-text-color"><i
-				class="bi bi-collection-fill"></i>&nbsp;Student List From University</a></li>
-				<li class="nav-item"><a href="${listPayment }"
+				class="bi bi-person-lines-fill"></i>&nbsp;Student List From
+				University</a></li>
+		<li class="nav-item"><a href="${listPayment }"
 			class="nav-link primary-text-color"><i
-				class="bi bi-collection-fill"></i>&nbsp;Payments</a></li>
+				class="bi bi-person-badge-fill"></i>&nbsp;Payments</a></li>
 	</ul>
 </nav>
 <div class="row justify-content-center p-5 message-target">
@@ -39,7 +40,7 @@
 			<c:choose>
 				<c:when test="${null != uniInfo }">
 					<c:set var="u" value="${uniInfo }"></c:set>
-					<form action="${addUniInfo }" method="post"
+					<form action="${addUniInfo }?${uniInfo.id}" method="post"
 						class="needs-validation" novalidate>
 						<div class="card-body ">
 
@@ -51,10 +52,20 @@
 									<div class="col col-md-5">
 										<label for="openYear" class="form-label primary-text-color">University
 											Opening Year</label> <input type="text" id="openYear"
-											class="form-control" name="openYear" required="required">
+											class="form-control" name="openYear" required="required"
+											value="${uniInfo.id.openYear }" disabled="disabled">
 										<div class="invalid-feedback">Please re-enter university
 											open year !</div>
 									</div>
+								</div>
+							</div>
+							<div class="mb-3">
+								<div class="col col-md-5">
+									<label for="stuName" class="form-label primary-text-color">Student
+										Name</label> <input name="stuName" type="text" class="form-control"
+										value="${uniInfo.student.name }" />
+									<div class="invalid-feedback">Please type student's name
+										!</div>
 								</div>
 							</div>
 							<div class="mb-3">
@@ -62,8 +73,8 @@
 									<div class="col col-md-5">
 										<label for="uniYear" class="form-label primary-text-color">Student
 											New Year</label> <select id="uniYear" class="form-select"
-											name="uniYear" required="required">
-											<option selected disabled="disabled" value="">---</option>
+											name="uniYear" required="required" disabled="disabled">
+											<option selected>${uniInfo.id.uniYear }</option>
 											<c:forEach var="y" items="${years }">
 												<option>${y.name() }</option>
 											</c:forEach>
@@ -71,11 +82,11 @@
 										<div class="invalid-feedback">Please select university
 											year !</div>
 									</div>
-									<div class="col">
+									<div class="col col-md-5">
 										<label for="major" class="form-label primary-text-color">Major</label>
 										<select class="form-select" id="major" name="major"
-											required="required">
-											<option selected disabled="disabled" value="">---</option>
+											required="required" disabled="disabled">
+											<option selected>${uniInfo.id.major }</option>
 											<c:forEach var="m" items="${majors }">
 												<option>${m.name() }</option>
 											</c:forEach>
@@ -84,19 +95,29 @@
 									</div>
 								</div>
 							</div>
+							
 							<div class="mb-3">
+							<label for="nrc" class="form-label primary-text-color">National
+										Registration Card(NRC)</label>
 								<div class="row">
-									<div class="col">
-										<label for="stuName" class="form-label primary-text-color">Student
-											Name</label> <input name="stuName" type="text" class="form-control" />
-										<div class="invalid-feedback">Please type student's name
-											!</div>
+									<div class="col col-sm-2">
+										<select id="code" name="code" class="form-select"
+											onchange="fetchNrc('code','codeName')">
+											<c:forEach var="n" items="${nrcCodes }">
+												<option>${n}</option>
+											</c:forEach>
+										</select>
 									</div>
-									<div class="col">
-										<label for="nrc" class="form-label primary-text-color">Student
-											Nrc</label> <input name="nrc" type="text" class="form-control" />
-										<div class="invalid-feedback">Please type student's nrc
-											!</div>
+									<div class="col col-sm-4">
+										<select id="codeName" name="codeName" class="form-select">
+										</select>
+									</div>
+
+									<div class="col ">
+										<input type="text" class="form-control" id="codeNum"
+											name="codeNum" required="required" value="${codeNum }">
+										<div class="invalid-feedback">Please re-enter student's
+											nrc !</div>
 									</div>
 								</div>
 
@@ -104,12 +125,14 @@
 							<div class="mb-3">
 								<label for="newRollNum" class="form-label primary-text-color">Add
 									Roll Number</label> <input type="text" class="form-control"
-									id="newRollNum" name="newRollNum" required="required">
+									id="newRollNum" name="newRollNum" required="required"
+									value="${uniInfo.id.rollNumber }">
 								<div class="invalid-feedback">Please re-enter student
 									university roll number !</div>
 							</div>
 							<div class="nav justify-content-end">
-								<button type="submit" class="btn primary-color w-50">Update University Info</button>
+								<button type="submit" class="btn primary-color w-50">Update
+									University Info</button>
 							</div>
 						</div>
 					</form>
@@ -136,6 +159,15 @@
 								</div>
 							</div>
 							<div class="mb-3">
+								<div class="col col-md-5">
+									<label for="stuName" class="form-label primary-text-color">Student
+										Name</label> <input name="stuName" type="text" class="form-control"
+										value="${uniInfo.student.name }" />
+									<div class="invalid-feedback">Please type student's name
+										!</div>
+								</div>
+							</div>
+							<div class="mb-3">
 								<div class="row">
 									<div class="col col-md-5">
 										<label for="uniYear" class="form-label primary-text-color">Student
@@ -149,7 +181,7 @@
 										<div class="invalid-feedback">Please select university
 											year !</div>
 									</div>
-									<div class="col">
+									<div class="col col-md-5">
 										<label for="major" class="form-label primary-text-color">Major</label>
 										<select class="form-select" id="major" name="major"
 											required="required">
@@ -163,18 +195,28 @@
 								</div>
 							</div>
 							<div class="mb-3">
+							<label for="nrc" class="form-label primary-text-color">National
+										Registration Card(NRC)</label>
 								<div class="row">
-									<div class="col">
-										<label for="stuName" class="form-label primary-text-color">Student
-											Name</label> <input name="stuName" type="text" class="form-control" />
-										<div class="invalid-feedback">Please type student's name
-											!</div>
+									<div class="col col-sm-2">
+										<select id="code" name="code" class="form-select"
+											onchange="fetchNrc('code','codeName')">
+												<option selected="selected" disabled="disabled" value="">---</option>						
+											<c:forEach var="n" items="${nrcCodes }">
+												<option>${n}</option>
+											</c:forEach>
+										</select>
 									</div>
-									<div class="col">
-										<label for="nrc" class="form-label primary-text-color">Student
-											Nrc</label> <input name="nrc" type="text" class="form-control" />
-										<div class="invalid-feedback">Please type student's nrc
-											!</div>
+									<div class="col col-sm-4">
+										<select id="codeName" name="codeName" class="form-select">
+										</select>
+									</div>
+
+									<div class="col ">
+										<input type="text" class="form-control" id="codeNum"
+											name="codeNum" required="required" value="${codeNum }">
+										<div class="invalid-feedback">Please re-enter student's
+											nrc !</div>
 									</div>
 								</div>
 

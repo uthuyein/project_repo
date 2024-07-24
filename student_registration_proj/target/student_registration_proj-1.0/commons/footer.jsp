@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<c:url var="home" value="/index.jsp"></c:url>
 
 <nav class=" relative-bottom navbar-expand-lg bg-light ">
 	<div class="card text-center ">
@@ -12,12 +12,30 @@
 				City</h5>
 			<p class="card-text">This project is used for student
 				registration</p>
-			<a href="#" class="btn primary-color">Go somewhere</a>
+			<a href="${home }" class="btn primary-color">Go Home Page</a>
 		</div>
 	</div>
 </nav>
 
 <script>
+/* for nrc data binding */
+function fetchNrc(code,codeName) {
+    const selectedcode = document.getElementById(code).value;
+    fetch("/nrc.json")
+    .then(response => response.json())
+    .then(({data}) => {
+        const nrcs = data.filter(region => region.nrc_code === selectedcode)
+        const resultsDropdown = document.getElementById(codeName);
+              resultsDropdown.innerHTML = ''; 
+	
+            nrcs.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.name_en;
+                option.text = item.name_en;
+                resultsDropdown.add(option);
+            });
+      });
+}
 	/* for image upload */
 	function displaySelectedImage(event, elementId) {
 		const selectedImage = document.getElementById(elementId);
@@ -58,6 +76,8 @@
 			message.style.display = 'none';
 		});
 	});
+	
+	
 </script>
 
 </body>

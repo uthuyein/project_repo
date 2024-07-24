@@ -159,7 +159,10 @@ public class AccountController extends HttpServlet {
 			session.setAttribute("account", list.get(0));
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			message = MessageType.ERROR;
+			message.setMessage(e.getMessage());
+			req.setAttribute("message", message);
+			
 		}
 		req.getRequestDispatcher(null != link ? link : "/index.jsp").forward(req, resp);
 

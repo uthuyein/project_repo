@@ -1,3 +1,4 @@
+<%@page import="com.mkt.ym.entity.type.MessageType"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,15 +8,7 @@
 
 
 <jsp:include page="${head }"></jsp:include>
-<!-- <nav id="navbar-example"
-	class="navbar navbar-light bg-light px-3 sticky-sm-top">
-	<ul class="nav">
-		<li class="nav-item"><a href="#"
-			class="nav-link primary-text-color"><i></i>&nbsp;</a></li>
-		<li class="nav-item"><a href="#"
-			class="nav-link primary-text-color"><i></i>&nbsp;</a></li>
-	</ul>
-</nav> -->
+
 <div id="carouselExampleControls" class="carousel slide"
 	data-bs-ride="carousel">
 	<div class="carousel-inner">
@@ -47,8 +40,38 @@
 			class="visually-hidden">Next</span>
 	</button>
 </div>
-
+<button id="btnError" class="nav-link text-white" data-bs-toggle="modal"
+	data-bs-target="#errorBox" hidden="true"></button>
 </body>
 </html>
 
 <jsp:include page="${foot }"></jsp:include>
+
+<c:if test="${null ne message }">
+
+<!-- Alert Modal -->
+<div class="modal fade " id="errorBox" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title primary-header-text-color">
+					<i class="bi bi-info-circle-fill"></i> ${message }
+				</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>${message.message }</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn primary-color"
+					data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var btn = document.getElementById("btnError");
+	btn.click();
+</script>
+</c:if>

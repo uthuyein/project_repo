@@ -14,11 +14,9 @@
 <div class="row">
 	<nav id="navbar-example"
 		class="navbar navbar-light bg-light px-3 sticky-sm-top">
-		<ul class="nav">
+		<ul class="nav vh-2">
 			<li class="nav-item"><a
-				class="nav-link primary-text-color fs-sm" href="${register }">Register</a></li>
-		<%-- 	<li class="nav-item"><a
-				class="nav-link primary-text-color" href="${account }">Account</a></li> --%>
+				class="nav-link primary-text-color fs-sm" href="${register }"></a></li>
 		</ul>
 	</nav>
 	<div class="row justify-content-center p-5 message-target">
@@ -32,11 +30,10 @@
 				<form action="${signUp }" method="post" class="needs-validation"
 					novalidate>
 					<div class="card-body ">
-
 						<div class="card-header  mb-4 primary-header-text-color">
 							<i class="bi bi-person-fill"></i> SignUp Form
 						</div>
-						
+
 						<div class="mb-3">
 							<label for="stuName" class="form-label primary-text-color">Student's
 								Name</label> <input type="text" class="form-control" id="stuName"
@@ -55,27 +52,78 @@
 						</div>
 						<div class="mb-3">
 							<label for="nrc" class="form-label primary-text-color">National
-								Identity Card(NRC)</label> <input type="text" class="form-control"
-								id="nrc" name="nrc" value="9/pamana(n)765642"
-								aria-describedby="nrc" required>
-							<div class="invalid-feedback">Please re-enter student's nrc
-								!</div>
+								Registration Card(NRC)</label>
+							<div class="row">
+								<div class="col col-sm-2">
+									<select id="code" name="code" class="form-select"
+										onchange="fetchNrc('code','codeName')">
+									<option selected="selected" disabled="disabled" value="">---</option>
+										<c:forEach var="n" items="${nrcCodes }">
+											<option>${n}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="col col-sm-4">
+									<select id="codeName" name="codeName" class="form-select">
+									</select>
+								</div>
+								<div class="col ">
+									<input type="text" class="form-control" id="codeNum"
+										name="codeNum" required="required">
+									<div class="invalid-feedback">Please re-enter student's
+										nrc !</div>
+								</div>
+							</div>
 						</div>
 						<div class="mb-3">
-							<label for="fNrc" class="form-label primary-text-color">Father
-								NRC</label> <input type="text" class="form-control" id="fNrc"
-								name="fNrc" value="5/pakaka(n)982342"
-								aria-describedby="fNrc fNrcfeedback" required>
-							<div id="fNrcfeedback" class="invalid-feedback">Please
-								re-enter father Name !</div>
+							<label for="fNrc" class="form-label primary-text-color">Father's
+								NRC</label>
+							<div class="row">
+								<div class="col col-sm-2">
+									<select id="fcode" name="fcode" class="form-select"
+										onchange="fetchNrc('fcode','fcodeName')">
+										<option selected="selected" disabled="disabled" value="">---</option>
+										<c:forEach var="n" items="${nrcCodes }">
+											<option>${n}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="col col-sm-4">
+									<select id="fcodeName" name="fcodeName" class="form-select">
+									</select>
+								</div>
+								<div class="col ">
+									<input type="text" class="form-control" name="fcodeNum"
+										required="required">
+									<div class="invalid-feedback">Please re-enter father's
+										nrc !</div>
+								</div>
+							</div>
 						</div>
 						<div class="mb-3">
-							<label for="mNrc" class="form-label primary-text-color">Mother
-								NRC</label> <input type="text" class="form-control" id="mNrc"
-								name="mNrc" value="6/yatata(F)0942342"
-								aria-describedby="mNrc mNrcfeedback" required>
-							<div id="mNrcfeedback" class="invalid-feedback">Please
-								re-enter student date of birth !</div>
+							<label for="mNrc" class="form-label primary-text-color">Mother's
+								NRC</label>
+							<div class="row">
+								<div class="col col-sm-2">
+									<select id="mcode" name="mcode" class="form-select"
+										onchange="fetchNrc('mcode','mcodeName')">
+										<option selected="selected" disabled="disabled" value="">---</option>
+										<c:forEach var="n" items="${nrcCodes }">
+											<option>${n}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="col col-sm-4">
+									<select id="mcodeName" name="mcodeName" class="form-select">
+									</select>
+								</div>
+								<div class="col ">
+									<input type="text" class="form-control" name="mcodeNum"
+										required="required">
+									<div class="invalid-feedback">Please re-enter mother's
+										nrc !</div>
+								</div>
+							</div>
 						</div>
 						<div class="mb-3">
 							<label for="schEnroll" class="form-label primary-text-color">School

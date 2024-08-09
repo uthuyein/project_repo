@@ -1,6 +1,5 @@
 com/mkt/ym/entity/type/Major.class
 com/mkt/ym/services/MessengerService.class
-com/mkt/ym/utils/CommonServices.class
 com/mkt/ym/entity/type/Role.class
 com/mkt/ym/entity/Messenger.class
 com/mkt/ym/entity/Parent.class

@@ -1,11 +1,14 @@
 package com.mkt.ym.controller;
 
+import static com.mkt.ym.utils.NrcConverter.getNrc;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.mkt.ym.entity.Messenger;
 import com.mkt.ym.entity.Student;
 import com.mkt.ym.entity.UniversityInfo;
 import com.mkt.ym.entity.UniversityInfoPK;
@@ -22,12 +25,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import static com.mkt.ym.utils.NrcConverter.getNrc;
 
-
-@WebServlet(urlPatterns = { "/admin/addStudentToUni", 
-		"/admin/studentListfrmUni", 
-		"/admin/deleteUniversityInfo" })
+@WebServlet(urlPatterns = { "/admin/addStudentToUni", "/admin/studentListfrmUni", "/admin/deleteUniversityInfo" })
 public class UniversityController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -46,7 +45,7 @@ public class UniversityController extends HttpServlet {
 		case "/admin/addStudentToUni":
 			req.getRequestDispatcher("/admin/addUniInfo.jsp").forward(req, resp);
 			break;
-			
+
 		case "/admin/deleteUniversityInfo":
 			var uniInfo = findUniInfoByIndexFromAttributeList(req);
 			uniService.delete(uniInfo);
@@ -69,7 +68,7 @@ public class UniversityController extends HttpServlet {
 			saveUniInfo(req, resp);
 			break;
 		case "/admin/editUniversityInfo":
-			
+
 			break;
 		case "/admin/studentListfrmUni":
 			var info = searchStudentFromUni(req);
@@ -91,7 +90,7 @@ public class UniversityController extends HttpServlet {
 		student.setName(uni.name());
 		student.setNrc(uni.nrc());
 		university.setId(uniInfoPk);
-		
+
 		university.setStudent(student);
 		return university;
 	}
@@ -100,10 +99,23 @@ public class UniversityController extends HttpServlet {
 		MessageType message = null;
 		try {
 			var uniInfo = getUniInfo(req);
+
+			MessageType m = null;
+			m = MessageType.SUCCESS;
+			m.setMessage("""
+						Conguration %s , you have pass exam  with roll number of %s
+					""".formatted(uniInfo.getStudent().getName(), uniInfo.getId().getRollNumber().toString()));
+
+			var mm = new Messenger();
+			mm.setMessage(m);
+			mm.setText(m.getMessage());
+			mm.setStudent(uniInfo.getStudent());
+			uniInfo.addMessage(mm);
+
 			uniService.save(uniInfo);
 			message = MessageType.SUCCESS;
 			message.setMessage("Successfully add to university !");
-
+			
 		} catch (Exception e) {
 			message = MessageType.ERROR;
 			message.setMessage(e.getMessage());
@@ -126,7 +138,7 @@ public class UniversityController extends HttpServlet {
 			var uniInfo = new UniversityInfo();
 			var uniPk = new UniversityInfoPK(openYear, newRoll, major, uniYear);
 
-			var stuDto = getStudent(req.getParameter("stuName"),getNrc("", req)).get();
+			var stuDto = getStudent(req.getParameter("stuName"), getNrc("", req)).get();
 			if (null == stuDto) {
 				throw new StuRegException("Student name and student nrc did not match. Please try again !");
 			}

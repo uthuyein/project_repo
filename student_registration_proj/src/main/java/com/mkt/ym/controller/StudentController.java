@@ -1,5 +1,8 @@
 package com.mkt.ym.controller;
 
+import static com.mkt.ym.utils.NrcConverter.getNrc;
+import static com.mkt.ym.utils.NrcConverter.setNrc;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,7 +16,6 @@ import com.mkt.ym.entity.Parent;
 import com.mkt.ym.entity.SchoolInfo;
 import com.mkt.ym.entity.Student;
 import com.mkt.ym.entity.dto.StudentDto;
-import com.mkt.ym.entity.dto.UniversityInfoDto;
 import com.mkt.ym.entity.type.MessageType;
 import com.mkt.ym.services.MessengerService;
 import com.mkt.ym.services.StudentService;
@@ -25,9 +27,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
-import static com.mkt.ym.utils.NrcConverter.getNrc;
-import static com.mkt.ym.utils.NrcConverter.setNrc;;
+import jakarta.servlet.http.Part;;
 
 @WebServlet(urlPatterns = { "/student/detailStudent", "/admin/studentList", "/admin/editStudent",
 		"/admin/deleteStudent", "/admin/addStudent", "/student/messenger", "/student/deleteMessenges" })

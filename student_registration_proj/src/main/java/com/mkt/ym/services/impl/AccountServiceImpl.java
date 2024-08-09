@@ -27,8 +27,6 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public int update(Account t) {
 		if (null != t.getMessengers() && t.getMessengers().size() > 0) {
-			System.out.println(
-					"Messager :::::::::::::::::::::::::::::::::::::::::::::::::::::::::: " + t.getMessengers().size());
 			var messService = MessengerService.getMessengerService();
 			for (Messenger m : t.getMessengers()) {
 				var mm = messService.search(m);
@@ -43,20 +41,6 @@ public class AccountServiceImpl implements AccountService {
 		em.merge(t);
 		em.getTransaction().commit();
 		return 0;
-
-//		em.getTransaction().begin();
-//		var sb = new StringBuilder("update Account a set a.loginId = :loginId,a.password = :password where 1=1");
-//		if(t.getRole() == Role.STUDENT) {
-//			sb.append(" and a.uniInfo.openYear = :openYear and  a.uniInfo.rollNumber = :roll and a.uniInfo.uniYear = :year");
-//			query.setParameter("openYear", t.getUniInfo().getId().getOpenYear());
-//			query.setParameter("roll", t.getUniInfo().getId().getRollNumber());
-//			query.setParameter("year", t.getUniInfo().getId().getUniYear());
-//			
-//		}
-//		var query = em.createQuery();
-//		query.setParameter("loginId", t.getLoginId());
-//		query.setParameter("password", t.getPassword());
-//		query.executeUpdate();
 	}
 
 	@Override

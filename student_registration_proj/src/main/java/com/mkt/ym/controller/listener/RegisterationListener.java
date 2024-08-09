@@ -21,41 +21,44 @@ public class RegisterationListener implements ServletRequestListener {
 	private StudentService stuService;
 	private List<UniversityInfoDto> listUniInfo;
 	private List<StudentDto> listStudentDto;
-	
+
 	@Override
 	public void requestInitialized(ServletRequestEvent sre) {
-		
+
 		HttpServletRequest req = (HttpServletRequest) sre.getServletRequest();
 		uniService = UniversityInfoService.getUniversityInfoService();
 		stuService = StudentService.getStudentService();
 		listUniInfo = uniService.searchUniversityInfo(null);
 		listStudentDto = stuService.searchStudentDto(null);
-	
+
 		if (null != listStudentDto) {
 			req.setAttribute("listStudentDto", listStudentDto);
 		}
 
 		req.setAttribute("openYears", getYear());
 		req.setAttribute("listUniInfo", listUniInfo);
-		req.setAttribute("cities", getCities());
-		req.setAttribute("townships", getTownships());
 		req.setAttribute("nrcCodes", getNrcCodes());
-		
+
+//		req.setAttribute("cities", getCities());
+//		req.setAttribute("townships", getTownships());
+
 	}
 
 	private List<Integer> getYear() {
 		return listUniInfo.stream().map(UniversityInfoDto::openYear).distinct().sorted().collect(Collectors.toList());
 	}
 
-	private List<String> getCities() {
-		return listStudentDto.stream().map(StudentDto::city).distinct().collect(Collectors.toList());
-	}
-
-	private List<String> getTownships() {
-		return listStudentDto.stream().map(StudentDto::township).distinct().collect(Collectors.toList());
-	}
-
 	public List<String> getNrcCodes() {
 		return IntStream.range(1, 15).mapToObj(num -> String.valueOf(num)).collect(Collectors.toList());
 	}
+
+//	private List<String> getCities() {
+//		return listStudentDto.stream().map(StudentDto::city).distinct().collect(Collectors.toList());
+//	}
+//
+//	private List<String> getTownships() {
+//		return listStudentDto.stream().map(StudentDto::township).distinct().collect(Collectors.toList());
+//	}
+//
+
 }

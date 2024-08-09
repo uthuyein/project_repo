@@ -21,7 +21,6 @@ public class NrcConverter {
 		String code = arr[0];
 		String nameMM = arr2[0];
 		String codeNum = arr2[1].substring(3);
-		System.out.println("code ::::" + code + "\tcode name :::::" + nameMM + "\tcode num ::::" + codeNum);
 		req.setAttribute(name + "code", code);
 		req.setAttribute(name + "codeName", nameMM);
 		req.setAttribute(name + "codeNum", codeNum);

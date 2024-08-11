@@ -150,7 +150,7 @@ public class PaymentController extends HttpServlet {
 			if (!amo.matches("[0-9]+")) {
 				throw new StuRegException("Amount must be digit only !");
 			}
-
+			
 			UniversityInfoDto uniInfoDto = (UniversityInfoDto) req.getSession().getAttribute("uniInfoDto");
 			var uniInfoDtonNew = new UniversityInfoDto(Integer.valueOf(open), UniYear.valueOf(uni), Major.valueOf(maj),
 					roll, uniInfoDto.name());
@@ -163,6 +163,8 @@ public class PaymentController extends HttpServlet {
 			var payType = (null != pay) ? PaymentType.valueOf(pay) : null;
 			var amount = (null != amo) ? Integer.valueOf(amo) : 0;
 
+			checkTransactionNumberLength(payType,tNum);
+			
 			var pk = new PaymentPk(payType, LocalDate.now(), LocalTime.now());
 			var payment = new Payment();
 			payment.setId(pk);
@@ -194,6 +196,23 @@ public class PaymentController extends HttpServlet {
 		req.setAttribute("message", message);
 		req.getRequestDispatcher("/student/addPayment.jsp").forward(req, resp);
 
+	}
+
+	private void checkTransactionNumberLength(PaymentType payType, String tNum) {
+		if(PaymentType.KBZ == payType) {
+			if(tNum.length() != 20) {
+				throw new StuRegException("Kpay transaction number length must be 20 !");
+			}
+		}else if(PaymentType.AYA == payType) {
+			if(tNum.length() != 15) {
+				throw new StuRegException("Aya pay transaction number length must be 15 !");
+			}
+			
+		}else if(PaymentType.WAVE == payType) {
+			if(tNum.length() != 19) {
+				throw new StuRegException("Wave pay transaction number length must be 19 !");
+			}
+		}
 	}
 
 }

@@ -39,9 +39,6 @@ public class RegisterationListener implements ServletRequestListener {
 		req.setAttribute("listUniInfo", listUniInfo);
 		req.setAttribute("nrcCodes", getNrcCodes());
 
-//		req.setAttribute("cities", getCities());
-//		req.setAttribute("townships", getTownships());
-
 	}
 
 	private List<Integer> getYear() {
@@ -52,13 +49,5 @@ public class RegisterationListener implements ServletRequestListener {
 		return IntStream.range(1, 15).mapToObj(num -> String.valueOf(num)).collect(Collectors.toList());
 	}
 
-//	private List<String> getCities() {
-//		return listStudentDto.stream().map(StudentDto::city).distinct().collect(Collectors.toList());
-//	}
-//
-//	private List<String> getTownships() {
-//		return listStudentDto.stream().map(StudentDto::township).distinct().collect(Collectors.toList());
-//	}
-//
 
 }
